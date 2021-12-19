@@ -1,57 +1,58 @@
-const ProductItem = ({
-  productType,
-  name,
-  category,
-  weight,
-  thickness,
-  width,
-  height,
-  price,
-  quantity,
-  companyDiscount,
-}) => {
+const ProductItem = ({ product }) => {
+  const {
+    type,
+    name,
+    category,
+    weight,
+    thickness,
+    width,
+    height,
+    price,
+    quantity,
+    companyDiscount,
+  } = product;
   return (
-    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-center md:justify-around flex-row-reverse text-right">
+    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-around md:justify-evenly flex-row-reverse text-right">
       <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
-          المنتج: <span class="text-blue-500">{productType}</span>
+          المنتج: <span className="text-blue-500">{type}</span>
         </p>
         <p className="m-1">
-          الاسم: <span class="text-blue-500">{name}</span>
+          الاسم: <span className="text-blue-500">{name}</span>
         </p>
         <p className="m-1">
-          النوع: <span class="text-blue-500">{category}</span>
+          النوع: <span className="text-blue-500">{category}</span>
         </p>
       </div>
       <div className="p-2 ti:flex flex-row-reverse">
         {weight && (
           <p className="m-1">
-            الوزن: <span class="text-blue-500">{weight}</span>
+            الوزن: <span className="text-blue-500">{weight}</span>
           </p>
         )}
         <p className="m-1">
-          الارتفاع: <span class="text-blue-500">{thickness}</span>
+          الارتفاع: <span className="text-blue-500">{thickness}</span>
         </p>
         <p className="m-1">
-          العرض: <span class="text-blue-500">{width}</span>
+          العرض: <span className="text-blue-500">{width}</span>
         </p>
         <p className="m-1">
-          الطول: <span class="text-blue-500">{height}</span>
+          الطول: <span className="text-blue-500">{height}</span>
         </p>
       </div>
       <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
-          السعر: <span class="text-green-500">{price}</span>
+          السعر: <span className="text-green-500">{price}</span>
         </p>
         {quantity && (
           <p className="m-1">
-            العدد بالمخزن: <span class="text-blue-500">{quantity}</span>
+            العدد بالمخزن: <span className="text-blue-500">{quantity}</span>
           </p>
         )}
         {companyDiscount && (
           <p className="m-1">
             خصم الشركة:
-            <span class="text-red-500">%{+companyDiscount * 100}</span>
+            <span className="text-red-500">%{+companyDiscount * 100}</span>
           </p>
         )}
       </div>

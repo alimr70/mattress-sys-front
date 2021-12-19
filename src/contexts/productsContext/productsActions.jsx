@@ -1,0 +1,1 @@
+export const INIT_PRODUCTS_DATA = "INIT_PRODUCTS_DATA";
