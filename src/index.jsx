@@ -5,12 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ProductsStoreProvider } from "./contexts/productsContext";
+import { WarehouseStoreProvider } from "./contexts/warehouseContext";
+import { InvoicesStoreProvider } from "./contexts/invoicesContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ProductsStoreProvider>
-        <App />
+        <WarehouseStoreProvider>
+          <InvoicesStoreProvider>
+            <App />
+          </InvoicesStoreProvider>
+        </WarehouseStoreProvider>
       </ProductsStoreProvider>
     </BrowserRouter>
   </React.StrictMode>,

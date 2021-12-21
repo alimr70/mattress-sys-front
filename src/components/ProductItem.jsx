@@ -12,7 +12,7 @@ const ProductItem = ({ product }) => {
     companyDiscount,
   } = product;
   return (
-    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-around md:justify-evenly flex-row-reverse text-right">
+    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row-reverse text-right">
       <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
           المنتج: <span className="text-blue-500">{type}</span>
