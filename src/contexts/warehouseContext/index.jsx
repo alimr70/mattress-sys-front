@@ -11,7 +11,10 @@ const isDataSaved = localStorage.getItem("mattressSysWarehouse")
 export const WarehouseStore = createContext(isDataSaved);
 
 export const WarehouseStoreProvider = ({ children }) => {
-  const [warehouseState, dispatch] = useReducer(warehouseReducer, isDataSaved);
+  const [warehouseState, warehouseDispatch] = useReducer(
+    warehouseReducer,
+    isDataSaved
+  );
 
   useEffect(() => {
     localStorage.setItem(
@@ -21,7 +24,7 @@ export const WarehouseStoreProvider = ({ children }) => {
   }, [warehouseState]);
 
   return (
-    <WarehouseStore.Provider value={{ warehouseState, dispatch }}>
+    <WarehouseStore.Provider value={{ warehouseState, warehouseDispatch }}>
       {children}
     </WarehouseStore.Provider>
   );

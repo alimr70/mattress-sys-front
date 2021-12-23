@@ -15,7 +15,7 @@ const Header = () => {
             <Link to="/warehouse">
               <li className="px-5">المخزن</li>
             </Link>
-            <Link to="/">
+            <Link to="/products">
               <li className="px-5">المنتجات</li>
             </Link>
           </ul>

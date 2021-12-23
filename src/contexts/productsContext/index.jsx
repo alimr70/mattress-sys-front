@@ -11,14 +11,17 @@ const isDataSaved = localStorage.getItem("mattressSysProducts")
 export const ProductsStore = createContext(isDataSaved);
 
 export const ProductsStoreProvider = ({ children }) => {
-  const [productsState, dispatch] = useReducer(productsReducer, isDataSaved);
+  const [productsState, productsDispatch] = useReducer(
+    productsReducer,
+    isDataSaved
+  );
 
   useEffect(() => {
     localStorage.setItem("mattressSysProducts", JSON.stringify(productsState));
   }, [productsState]);
 
   return (
-    <ProductsStore.Provider value={{ productsState, dispatch }}>
+    <ProductsStore.Provider value={{ productsState, productsDispatch }}>
       {children}
     </ProductsStore.Provider>
   );
