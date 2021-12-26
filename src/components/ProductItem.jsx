@@ -24,14 +24,8 @@ const ProductItem = ({ product }) => {
       </div> */}
       <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
-          السعر: <span className="text-green-500">{price}</span>
+          سعر البيع الحالي: <span className="text-green-500">{price}</span>
         </p>
-        {companyDiscount && (
-          <p className="m-1">
-            خصم الشركة:
-            <span className="text-red-500">%{+companyDiscount * 100}</span>
-          </p>
-        )}
       </div>
     </li>
   );

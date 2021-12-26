@@ -33,106 +33,21 @@
       "2": "ميلتون بشكير"
     }
   },
-  "products": {
-    "9848956198": {
-      "id": 9848956198,
-      "type": "مرتبة",
-      "name": "ريترو - سوست متصلة",
-      "thickness": "20",
-      "width": "80",
-      "height": "195",
-      "price": "1506"
-    },
-    "1654987893516": {
-      "id": 1654987893516,
-      "type": "مرتبة",
-      "name": "جولدن - سوست متصلة",
-      "thickness": "26",
-      "width": "90",
-      "height": "195",
-      "price": "2276"
-    },
-    "41869874862": {
-      "id": 41869874862,
-      "type": "مرتبة",
-      "name": "دودو - سوست متصلة",
-      "thickness": "30",
-      "width": "90",
-      "height": "195",
-      "price": "3370"
-    },
-    "65148947561": {
-      "id": 65148947561,
-      "type": "مرتبة",
-      "name": "سو - سوست منفصلة",
-      "thickness": "25",
-      "width": "90",
-      "height": "195",
-      "price": "3602"
-    },
-    "15648976513": {
-      "id": 15648976513,
-      "type": "مرتبة",
-      "name": "ميموري",
-      "thickness": "30",
-      "width": "90",
-      "height": "195",
-      "price": "4576"
-    },
-    "165489643218": {
-      "id": 165489643218,
-      "type": "مرتبة",
-      "name": "ماريو - طبية بدون سوست",
-      "thickness": "15",
-      "width": "90",
-      "height": "195",
-      "price": "2128"
-    },
-    "1654896168943218": {
-      "id": 1654896168943218,
-      "type": "مرتبة",
-      "name": "ماريو - طبية بدون سوست",
-      "thickness": "15",
-      "width": "90",
-      "height": "195",
-      "price": "2128"
-    },
-    "1687489563165": {
-      "id": 1687489563165,
-      "type": "مخدة",
-      "name": "فيبر 625جم",
-      "thickness": "",
-      "width": "40",
-      "height": "60",
-      "price": "99"
-    },
-    "1894894553289": {
-      "id": 1894894553289,
-      "type": "مخدة",
-      "name": "ريلاكس",
-      "thickness": "",
-      "width": "50",
-      "height": "70",
-      "price": "146"
-    }
-  },
+  "products": {},
   "warehouse": [{
       "id": "18949841648",
-      "productId": "65148947561",
-      "quantity": "3",
-      "companyDiscount": "0.25"
+      "productId": "Tadzn6pils",
+      "availability": [{ "quantity": 3, "companyDiscount": "25" }, { "quantity": 1, "companyDiscount": "30" }]
     },
     {
       "id": "618946188",
-      "productId": "1894894553289",
-      "quantity": "18",
-      "companyDiscount": "0.3"
+      "productId": "U4O9suEFJr",
+      "availability": [{ "quantity": 18, "companyDiscount": "3" }]
     },
     {
       "id": "169841869",
-      "productId": "1894894553289",
-      "quantity": "18",
-      "companyDiscount": "0.25"
+      "productId": "U4QG5mpfkB",
+      "availability": [{ "quantity": 6, "companyDiscount": "25" }]
     }
   ],
   "invoices": {

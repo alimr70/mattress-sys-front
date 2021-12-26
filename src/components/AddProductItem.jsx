@@ -54,8 +54,13 @@ const AddProductItem = () => {
       height,
       price,
     };
-    console.log(product);
     productsDispatch(addProduct(product));
+    setType("");
+    setName("");
+    setWidth("");
+    setHeight("");
+    setThickness("");
+    setPrice("");
   };
 
   return (
@@ -92,7 +97,7 @@ const AddProductItem = () => {
         <label
           htmlFor="type"
           className="m-2 col-span-1 order-last justify-self-end">
-          الاسم
+          الاسم: أدخل الاسم كاملا بالمقاسات
         </label>
         <input
           inputMode="numeric"
