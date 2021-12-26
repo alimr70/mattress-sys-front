@@ -14,16 +14,8 @@ const WarehouseItem = ({ item }) => {
         <p className="m-1">
           الاسم: <span className="text-blue-500">{product.name}</span>
         </p>
-        <p className="m-1">
-          النوع: <span className="text-blue-500">{product.category}</span>
-        </p>
       </div>
-      <div className="p-2 ti:flex flex-row-reverse">
-        {product.weight && (
-          <p className="m-1">
-            الوزن: <span className="text-blue-500">{product.weight}</span>
-          </p>
-        )}
+      {/* <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
           الارتفاع: <span className="text-blue-500">{product.thickness}</span>
         </p>
@@ -33,7 +25,7 @@ const WarehouseItem = ({ item }) => {
         <p className="m-1">
           الطول: <span className="text-blue-500">{product.height}</span>
         </p>
-      </div>
+      </div> */}
       <div className="p-2 ti:flex flex-row-reverse">
         <p className="m-1">
           السعر: <span className="text-green-500">{product.price}</span>
