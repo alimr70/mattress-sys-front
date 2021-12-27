@@ -17,6 +17,8 @@ const AddProductItem = () => {
   const [height, setHeight] = useState("");
   const [thickness, setThickness] = useState("");
   const [price, setPrice] = useState("");
+  const [weight, setWeight] = useState("");
+  const [warehouseId, setWarehouseId] = useState("");
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -32,6 +34,8 @@ const AddProductItem = () => {
       height: [height, setHeight],
       thickness: [thickness, setThickness],
       price: [price, setPrice],
+      warehouseId: [warehouseId, setWarehouseId],
+      weight: [weight, setWeight],
     };
 
     if (isNaN(+e.target.value))
@@ -43,16 +47,22 @@ const AddProductItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (type === "" || name === "" || price === "") return;
+    const fullWeight = weight !== "" ? " - " + weight + "جم" : "";
+
+    const fullThickness = thickness !== "" ? " × " + thickness : "";
+
+    const fullName =
+      name + " " + width + " × " + height + fullThickness + fullWeight;
 
     const product = {
       id: nanoid(10),
       type,
-      name,
+      name: fullName,
       thickness,
       width,
       height,
       price,
+      warehouseId,
     };
     productsDispatch(addProduct(product));
     setType("");
@@ -61,10 +71,15 @@ const AddProductItem = () => {
     setHeight("");
     setThickness("");
     setPrice("");
+    setWarehouseId("");
+    setWeight("");
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="max-w-sm mx-auto">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="max-w-sm mx-auto"
+      autoComplete="off">
       <div className="m-5 grid grid-cols-3">
         <label
           htmlFor="type"
@@ -73,7 +88,7 @@ const AddProductItem = () => {
         </label>
         <select
           name="type"
-          id="selectType"
+          id="type"
           className="col-span-2 text-gray-800"
           value={type}
           onChange={(e) => handleTypeChange(e)}
@@ -95,15 +110,33 @@ const AddProductItem = () => {
       </div>
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="type"
+          htmlFor="warehouseId"
           className="m-2 col-span-1 order-last justify-self-end">
-          الاسم: أدخل الاسم كاملا بالمقاسات
+          رقم المخزن
         </label>
         <input
           inputMode="numeric"
           type="text"
-          name="width"
-          id="width"
+          name="warehouseId"
+          id="warehouseId"
+          className="col-span-2 text-center text-gray-800"
+          value={warehouseId}
+          onChange={(e) => {
+            handleNumberInputChange(e, "warehouseId");
+          }}
+        />
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="name"
+          className="m-2 col-span-1 order-last justify-self-end">
+          الاسم
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="name"
+          id="name"
           className="col-span-2 text-center text-gray-800"
           value={name}
           onChange={(e) => {
@@ -114,7 +147,7 @@ const AddProductItem = () => {
       </div>
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="type"
+          htmlFor="width"
           className="m-2 col-span-1 order-last justify-self-end">
           العرض
         </label>
@@ -132,15 +165,15 @@ const AddProductItem = () => {
       </div>
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="type"
+          htmlFor="height"
           className="m-2 col-span-1 order-last justify-self-end">
           الطول
         </label>
         <input
           inputMode="numeric"
           type="text"
-          name="width"
-          id="width"
+          name="height"
+          id="height"
           className="col-span-2 text-center text-gray-800"
           value={height}
           onChange={(e) => {
@@ -150,19 +183,37 @@ const AddProductItem = () => {
       </div>
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="type"
+          htmlFor="thickness"
           className="m-2 col-span-1 order-last justify-self-end">
           الارتفاع
         </label>
         <input
           inputMode="numeric"
           type="text"
-          name="width"
-          id="width"
+          name="thickness"
+          id="thickness"
           className="col-span-2 text-center text-gray-800"
           value={thickness}
           onChange={(e) => {
             handleNumberInputChange(e, "thickness");
+          }}
+        />
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="weight"
+          className="m-2 col-span-1 order-last justify-self-end">
+          الوزن
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="weight"
+          id="weight"
+          className="col-span-2 text-center text-gray-800"
+          value={weight}
+          onChange={(e) => {
+            handleNumberInputChange(e, "weight");
           }}
         />
       </div>
