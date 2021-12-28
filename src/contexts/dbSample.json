@@ -36,8 +36,8 @@
   "products": {
     "Tadzn6pils": { "id": "Tadzn6pils", "type": "مرتبة", "name": "ريترو 80×195×20", "thickness": "20", "width": "80", "height": "195", "price": "1506", "warehouseId": "18949841648" },
     "U4QG5mpfkB": { "id": "U4QG5mpfkB", "type": "مرتبة", "name": "ريترو 90×195×20", "thickness": "20", "width": "90", "height": "195", "price": "1617", "warehouseId": "169841869" },
-    "_NHkm7ooPB": { "id": "_NHkm7ooPB", "type": "مخدة", "name": "فيبر 40×60 625جم", "thickness": "", "width": "40", "height": "60", "price": "99", "warehouseId": "" },
-    "PdoNUfd8Gv": { "id": "PdoNUfd8Gv", "type": "مخدة", "name": "فيبر 40×60 750جم", "thickness": "", "width": "40", "height": "60", "price": "104", "warehouseId": "" },
+    "_NHkm7ooPB": { "id": "_NHkm7ooPB", "type": "مخدة", "name": "فيبر 40×60 625جم", "thickness": "", "width": "40", "height": "60", "price": "99", "warehouseId": "111648" },
+    "PdoNUfd8Gv": { "id": "PdoNUfd8Gv", "type": "مخدة", "name": "فيبر 40×60 750جم", "thickness": "", "width": "40", "height": "60", "price": "104", "warehouseId": "1556984362" },
     "U4O9suEFJr": { "id": "U4O9suEFJr", "type": "مخدة", "name": "فيبر 40×60 900جم", "thickness": "", "width": "40", "height": "60", "price": "116", "warehouseId": "618946188" }
   },
   "warehouse": {

@@ -18,7 +18,7 @@ const Warehouse = () => {
       <Container title="المخزن">
         <div>
           <ul className="flex justify-end flex-col">
-            {warehouseState.map((item) => {
+            {Object.values(warehouseState).map((item) => {
               return <WarehouseItem key={item.id} item={item} />;
             })}
           </ul>

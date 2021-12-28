@@ -1,9 +1,29 @@
-import { INIT_WAREHOUSE_DATA } from "./warehouseActions";
+import {
+  INIT_WAREHOUSE_DATA,
+  ADD_NEW_WAREHOUSE_ITEM,
+  ADD_EXISTING_WAREHOUSE_ITEM,
+} from "./warehouseActions";
 
 const warehouseReducer = (state, action) => {
   switch (action.type) {
     case INIT_WAREHOUSE_DATA:
       return { ...action.warehouse };
+
+    case ADD_NEW_WAREHOUSE_ITEM:
+      return { ...state, [action.item.id]: { ...action.item } };
+
+    case ADD_EXISTING_WAREHOUSE_ITEM:
+      const foundItem = state[action.item.warehouseId];
+      return {
+        ...state,
+        [foundItem.id]: {
+          ...foundItem,
+          availability: [
+            ...foundItem.availability,
+            ...action.item.newAvailability,
+          ],
+        },
+      };
 
     default:
       return state;

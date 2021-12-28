@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { useContext } from "react/cjs/react.development";
 import { ProductsStore } from "../contexts/productsContext";
+import { WarehouseStore } from "../contexts/warehouseContext";
+import {
+  addExistingWarehouseItem,
+  addNewWarehouseItem,
+} from "../contexts/warehouseContext/warehouseActions";
 
 const AddWarehouseItem = () => {
   const { productsState } = useContext(ProductsStore);
+  const { warehouseState, warehouseDispatch } = useContext(WarehouseStore);
   const products = Object.values(productsState);
   const [productId, setProductId] = useState("");
-  const [quantity, setQuantity] = useState("0");
+  const [quantity, setQuantity] = useState("");
   const [companyDiscount, setCompanyDiscount] = useState("25");
+
+  const productWarehouseId = productsState[productId]?.warehouseId;
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
@@ -23,6 +31,29 @@ const AddWarehouseItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const availability = [
+      { quantity: +quantity, companyDiscount: +companyDiscount },
+    ];
+
+    if (warehouseState[productWarehouseId]) {
+      const item = {
+        warehouseId: productWarehouseId,
+        newAvailability: availability,
+      };
+
+      warehouseDispatch(addExistingWarehouseItem(item));
+    } else {
+      const item = {
+        id: productWarehouseId,
+        productId,
+        availability: availability,
+      };
+      warehouseDispatch(addNewWarehouseItem(item));
+    }
+    setProductId("");
+    setQuantity("");
+    setCompanyDiscount("25");
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="max-w-sm mx-auto">
@@ -70,6 +101,7 @@ const AddWarehouseItem = () => {
           onChange={(e) => {
             handleNumberInputChange(e, "quantity");
           }}
+          required
         />
       </div>
       <div className="m-5 grid grid-cols-3">

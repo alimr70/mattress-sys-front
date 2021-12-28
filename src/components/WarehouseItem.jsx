@@ -1,14 +1,19 @@
 import { useContext } from "react/cjs/react.development";
 import { ProductsStore } from "../contexts/productsContext";
 
+const getTotalAvailableItems = (arr) => {
+  let number = 0;
+  arr.forEach((el) => {
+    number += el.quantity;
+  });
+  return number;
+};
+
 const WarehouseItem = ({ item }) => {
   const { productId, availability } = item;
   const { productsState } = useContext(ProductsStore);
   const product = productsState[productId];
-  const numberOfAvailableItems =
-    availability.length > 1
-      ? availability.reduce((prev, current) => prev.quantity + current.quantity)
-      : availability[0].quantity;
+  let numberOfAvailableItems = getTotalAvailableItems(availability);
   return (
     <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row-reverse text-right">
       <div className="p-2 ti:flex flex-row-reverse">

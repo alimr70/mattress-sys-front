@@ -1,9 +1,17 @@
 export const INIT_WAREHOUSE_DATA = "INIT_WAREHOUSE_DATA";
-export const ADD_WAREHOUSE_ITEM = "ADD_WAREHOUSE_ITEM";
+export const ADD_NEW_WAREHOUSE_ITEM = "ADD_NEW_WAREHOUSE_ITEM";
+export const ADD_EXISTING_WAREHOUSE_ITEM = "ADD_EXISTING_WAREHOUSE_ITEM";
 
-export const addWarehouseItem = (item) => {
+export const addNewWarehouseItem = (item) => {
   return {
-    type: ADD_WAREHOUSE_ITEM,
+    type: ADD_NEW_WAREHOUSE_ITEM,
+    item,
+  };
+};
+
+export const addExistingWarehouseItem = (item) => {
+  return {
+    type: ADD_EXISTING_WAREHOUSE_ITEM,
     item,
   };
 };
