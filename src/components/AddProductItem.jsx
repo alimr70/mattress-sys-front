@@ -81,9 +81,7 @@ const AddProductItem = () => {
       className="max-w-sm mx-auto"
       autoComplete="off">
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="type"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
           نوع المنتج
         </label>
         <select
@@ -111,7 +109,7 @@ const AddProductItem = () => {
       <div className="m-5 grid grid-cols-3">
         <label
           htmlFor="warehouseId"
-          className="m-2 col-span-1 order-last justify-self-end">
+          className="m-2 col-span-1 justify-self-start">
           رقم المخزن
         </label>
         <input
@@ -127,9 +125,7 @@ const AddProductItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="name"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="name" className="m-2 col-span-1 justify-self-start">
           الاسم
         </label>
         <input
@@ -146,9 +142,7 @@ const AddProductItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="width"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="width" className="m-2 col-span-1 justify-self-start">
           العرض
         </label>
         <input
@@ -164,9 +158,7 @@ const AddProductItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="height"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="height" className="m-2 col-span-1 justify-self-start">
           الطول
         </label>
         <input
@@ -184,7 +176,7 @@ const AddProductItem = () => {
       <div className="m-5 grid grid-cols-3">
         <label
           htmlFor="thickness"
-          className="m-2 col-span-1 order-last justify-self-end">
+          className="m-2 col-span-1 justify-self-start">
           الارتفاع
         </label>
         <input
@@ -200,9 +192,7 @@ const AddProductItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="weight"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="weight" className="m-2 col-span-1 justify-self-start">
           الوزن
         </label>
         <input
@@ -218,9 +208,7 @@ const AddProductItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="type"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
           السعر
         </label>
         <input

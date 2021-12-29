@@ -56,11 +56,12 @@ const AddWarehouseItem = () => {
     setCompanyDiscount("25");
   };
   return (
-    <form onSubmit={(e) => handleSubmit(e)} className="max-w-sm mx-auto">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      className="max-w-sm mx-auto"
+      autoComplete="off">
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="type"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
           إختر المنتج
         </label>
         <select
@@ -86,9 +87,7 @@ const AddWarehouseItem = () => {
         </select>
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="quantity"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="quantity" className="m-2 col-span-1 justify-self-start">
           العدد
         </label>
         <input
@@ -105,9 +104,7 @@ const AddWarehouseItem = () => {
         />
       </div>
       <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="quantity"
-          className="m-2 col-span-1 order-last justify-self-end">
+        <label htmlFor="quantity" className="m-2 col-span-1 justify-self-start">
           خصم الشركة
         </label>
         <input

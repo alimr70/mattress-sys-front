@@ -14,13 +14,13 @@ const InvoiceItem = ({ item }) => {
   } = item;
 
   return (
-    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between lg:justify-around flex-row-reverse text-right">
-      <div className="p-2 ti:flex flex-row-reverse">
+    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between lg:justify-around flex-row text-right">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           رقم الفاتورة: <span className="text-blue-500">{id}</span>
         </p>
       </div>
-      <div className="p-2 ti:flex flex-row-reverse">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           اسم العميل: <span className="text-blue-500">{cutomerName}</span>
         </p>
@@ -40,7 +40,7 @@ const InvoiceItem = ({ item }) => {
           </span>
         </p>
       </div>
-      <div className="p-2 ti:flex flex-row-reverse">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           طريقة الدفع: <span className="text-blue-500">{paymentMethod}</span>
         </p>
@@ -56,7 +56,7 @@ const InvoiceItem = ({ item }) => {
           خصم المعرض: <span className="text-blue-500">{retailOffer}</span>
         </p>
       </div>
-      <div className="p-2 ti:flex flex-row-reverse">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           المبلغ الاجمالي: <span className="text-green-500">{totalPrice}</span>
         </p>

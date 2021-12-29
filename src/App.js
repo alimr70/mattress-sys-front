@@ -4,6 +4,7 @@ import Warehouse from "./pages/Warehouse";
 import Invoices from "./pages/Invoices";
 import AddProduct from "./pages/AddProduct";
 import AddToWarehouse from "./pages/AddToWarehouse";
+import AddInvoice from "./pages/AddInvoice";
 function App() {
   return (
     <div className="App h-screen overflow-auto bg-gray-900 text-gray-300">
@@ -14,6 +15,7 @@ function App() {
         <Route path="warehouse" element={<Warehouse />} />
         <Route path="invoices" element={<Invoices />} />
         <Route path="addtowarehouse" element={<AddToWarehouse />} />
+        <Route path="addinvoice" element={<AddInvoice />} />
       </Routes>
     </div>
   );

@@ -11,7 +11,7 @@ const Products = () => {
   return (
     <>
       <Header />
-      <div className="p-5 flex flex-row-reverse">
+      <div className="p-5 flex flex-row">
         <Link to="/addproduct" className="px-5 py-2 bg-blue-500">
           <button>إضافة منتج</button>
         </Link>

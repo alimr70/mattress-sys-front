@@ -10,7 +10,7 @@ const Warehouse = () => {
   return (
     <>
       <Header />
-      <div className="p-5 flex flex-row-reverse">
+      <div className="p-5 flex flex-row">
         <Link to="/addtowarehouse" className="px-5 py-2 bg-blue-500">
           <button>إضافة مخزون</button>
         </Link>

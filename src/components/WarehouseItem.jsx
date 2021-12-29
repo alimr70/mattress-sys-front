@@ -15,8 +15,8 @@ const WarehouseItem = ({ item }) => {
   const product = productsState[productId];
   let numberOfAvailableItems = getTotalAvailableItems(availability);
   return (
-    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row-reverse text-right">
-      <div className="p-2 ti:flex flex-row-reverse">
+    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row text-right">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           المنتج: <span className="text-blue-500">{product.type}</span>
         </p>
@@ -24,7 +24,7 @@ const WarehouseItem = ({ item }) => {
           الاسم: <span className="text-blue-500">{product.name}</span>
         </p>
       </div>
-      {/* <div className="p-2 ti:flex flex-row-reverse">
+      {/* <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           الارتفاع: <span className="text-blue-500">{product.thickness}</span>
         </p>
@@ -35,7 +35,7 @@ const WarehouseItem = ({ item }) => {
           الطول: <span className="text-blue-500">{product.height}</span>
         </p>
       </div> */}
-      <div className="p-2 ti:flex flex-row-reverse">
+      <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           السعر: <span className="text-green-500">{product.price}</span>
         </p>
