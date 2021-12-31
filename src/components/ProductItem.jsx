@@ -10,20 +10,9 @@ const ProductItem = ({ product }) => {
           الاسم: <span className="text-blue-500">{name}</span>
         </p>
       </div>
-      {/* <div className="p-2 ti:flex flex-row">
-        <p className="m-1">
-          العرض: <span className="text-blue-500">{width}</span>
-        </p>
-        <p className="m-1">
-          الطول: <span className="text-blue-500">{height}</span>
-        </p>
-        <p className="m-1">
-          الارتفاع: <span className="text-blue-500">{thickness}</span>
-        </p>
-      </div> */}
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
-          سعر البيع الحالي: <span className="text-green-500">{price}</span>
+          السعر: <span className="text-green-500">{price}</span>
         </p>
       </div>
     </li>

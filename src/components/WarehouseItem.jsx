@@ -40,8 +40,7 @@ const WarehouseItem = ({ item }) => {
           السعر: <span className="text-green-500">{product.price}</span>
         </p>
         <p className="m-1">
-          العدد بالمخزن:{" "}
-          <span className="text-blue-500">{numberOfAvailableItems}</span>
+          العدد: <span className="text-blue-500">{numberOfAvailableItems}</span>
         </p>
       </div>
     </li>

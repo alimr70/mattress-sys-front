@@ -1,7 +1,9 @@
+import { PlusCircleIcon } from "@heroicons/react/solid";
 import { useContext, useState } from "react";
 import { GeneralTypesStore } from "../contexts/generalTypesContext";
 import { ProductsStore } from "../contexts/productsContext";
 import { WarehouseStore } from "../contexts/warehouseContext";
+import ProductItem from "./ProductItem";
 
 const AddInvoiceItem = () => {
   const [cstName, setCstName] = useState("");
@@ -11,7 +13,7 @@ const AddInvoiceItem = () => {
   const [invocieDate, setInvocieDate] = useState("");
   const [receiptDate, setReceiptDate] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState([]);
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
@@ -33,7 +35,7 @@ const AddInvoiceItem = () => {
     <>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="max-w-sm mx-auto"
+        className="max-w-2xl mx-auto"
         autoComplete="off">
         {/* <CstInfo
           cstName={cstName}
@@ -227,11 +229,12 @@ const OrderInfo = ({ order, setOrder }) => {
   const { warehouseState } = useContext(WarehouseStore);
   const productTypes = Object.values(generalTypesState.productTypes);
 
+  const [quantity, setQuantity] = useState(1);
   const [typeFilter, setTypeFilter] = useState("");
   const [widthFilter, setWidthFilter] = useState("");
   const [heightFilter, setHeightFilter] = useState("");
   const [thicknessFilter, setThicknessFilter] = useState("");
-  const [productId, setProductId] = useState("");
+  // const [productId, setProductId] = useState("");
 
   // const warehouseItems = Object.values(warehouseState);
   const products = Object.values(productsState);
@@ -246,6 +249,7 @@ const OrderInfo = ({ order, setOrder }) => {
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
+      quantity: [quantity, setQuantity],
       thicknessFilter: [thicknessFilter, setThicknessFilter],
       widthFilter: [widthFilter, setWidthFilter],
       heightFilter: [heightFilter, setHeightFilter],
@@ -262,7 +266,38 @@ const OrderInfo = ({ order, setOrder }) => {
       <div className="m-5 grid grid-cols-3">
         <h1 className="my-3 text-xl">بيانات الطلب</h1>
       </div>
-      <div className="m-5 grid grid-cols-4 gap-2">
+
+      {/* Order list */}
+      <div className="m-5">
+        {order.map((item, index) => {
+          const productItem = productsState[item.productId];
+          return (
+            <div className="flex items-center justify-center" key={index}>
+              <ProductItem product={productItem} key={productItem.id} />
+              العدد: {item.quantity} السعر للعدد: {item.price}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Quantity */}
+      <div className="flex">
+        <label htmlFor="quantity">الكمية المطلوبة من المنتج الذي ستضيفه:</label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="quantity"
+          id="quantity"
+          className="text-center text-gray-800"
+          value={quantity}
+          onChange={(e) => {
+            handleNumberInputChange(e, "quantity");
+          }}
+        />
+      </div>
+
+      {/* Filter */}
+      <div className="m-5 grid xs:grid-cols-4 gap-2">
         <div className="col-span-1">
           <select
             className="w-full text-gray-800"
@@ -271,7 +306,7 @@ const OrderInfo = ({ order, setOrder }) => {
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}>
             <option className="text-center text-gray-500" value="" defaultValue>
-              النوع
+              كل الأنواع
             </option>
             {productTypes.map((el, index) => (
               <option
@@ -326,24 +361,29 @@ const OrderInfo = ({ order, setOrder }) => {
           />
         </div>
       </div>
+
       <div className="m-5">
         <ul>
-          <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-between flex-row text-right">
-            <div className="p-2 ti:flex flex-row">
-              <p className="m-1">
-                المنتج: <span className="text-blue-500">{/* type */}</span>
-              </p>
-              <p className="m-1">
-                الاسم: <span className="text-blue-500">{/* name */}</span>
-              </p>
-            </div>
-            <div className="p-2 ti:flex flex-row">
-              <p className="m-1">
-                سعر البيع الحالي:{" "}
-                <span className="text-green-500">{/* price */}</span>
-              </p>
-            </div>
-          </li>
+          {filteredProductsArr.map((item) => {
+            return (
+              <div className="flex items-center justify-center">
+                <ProductItem key={item.id} product={item} />
+                <PlusCircleIcon
+                  className="h-5 w-5 xs:h-7 xs:w-7 cursor-pointer"
+                  onClick={() => {
+                    setOrder([
+                      ...order,
+                      {
+                        productId: item.id,
+                        quantity: quantity,
+                        price: item.price * quantity,
+                      },
+                    ]);
+                  }}
+                />
+              </div>
+            );
+          })}
         </ul>
       </div>
     </>
@@ -383,50 +423,3 @@ const repeatedFilter = (arr, filters) => {
 };
 
 export default AddInvoiceItem;
-
-// const OrderInfo = ({ order, setOrder }) => {
-//   const { productsState } = useContext(ProductsStore);
-//   const { warehouseState } = useContext(WarehouseStore);
-
-//   const [productId, setProductId] = useState("");
-
-//   const warehouseItems = Object.values(warehouseState);
-//   // const products = Object.values(productsState);
-
-//   return (
-//     <>
-//       <div className="m-5 grid grid-cols-3">
-//         <h1 className="my-3 text-xl">بيانات الطلب</h1>
-//       </div>
-//       <div className="m-5 grid grid-cols-3">
-//         <label
-//           htmlFor="selectProduct"
-//           className="m-2 col-span-1 justify-self-start">
-//           أضف منتج
-//         </label>
-//         <select
-//           name="selectProduct"
-//           id="selectProduct"
-//           className="col-span-2 text-center text-gray-800"
-//           value={productId}
-//           onChange={(e) => setProductId(e.target.value)}>
-//           <option className="text-center text-gray-500" value="" defaultValue>
-//             إختر المنتج
-//           </option>
-//           {warehouseItems.map((item) => {
-//             let product = productsState[item.productId];
-//             let availability = getTotalAvailableItems(item.availability);
-//             return (
-//               <option
-//                 key={item.id}
-//                 value={item.id}
-//                 className="text-center text-gray-800">
-//                 {product.name} عدد: {availability}
-//               </option>
-//             );
-//           })}
-//         </select>
-//       </div>
-//     </>
-//   );
-// };
