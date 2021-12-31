@@ -10,11 +10,11 @@ import {
 const AddWarehouseItem = () => {
   const { productsState } = useContext(ProductsStore);
   const { warehouseState, warehouseDispatch } = useContext(WarehouseStore);
-  const products = Object.values(productsState);
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState("");
   const [companyDiscount, setCompanyDiscount] = useState("25");
 
+  const products = Object.values(productsState);
   const productWarehouseId = productsState[productId]?.warehouseId;
 
   const handleNumberInputChange = (e, numberTarget) => {
