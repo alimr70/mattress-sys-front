@@ -13,11 +13,15 @@ const AddInvoiceItem = () => {
   const [receiptDate, setReceiptDate] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [order, setOrder] = useState([]);
+  const [shipmentOnCst, setShipmentOnCst] = useState("");
+  const [shipmentOnRetail, setShipmentOnRetail] = useState("");
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
       phone: [phone, setPhone],
       phoneTwo: [phoneTwo, setPhoneTwo],
+      shipmentOnCst: [shipmentOnCst, setShipmentOnCst],
+      shipmentOnRetail: [shipmentOnRetail, setShipmentOnRetail],
     };
 
     if (isNaN(+e.target.value))
@@ -52,6 +56,9 @@ const AddInvoiceItem = () => {
         setReceiptDate={setReceiptDate}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
+        shipmentOnCst={shipmentOnCst}
+        shipmentOnRetail={shipmentOnRetail}
+        handleNumberInputChange={handleNumberInputChange}
         step={step}
         setStep={setStep}
       />
@@ -74,22 +81,24 @@ const AddInvoiceItem = () => {
         autoComplete="off">
         {stepsNav[step]}
         <div className="flex justify-center">
-          {step < 3 && (
-            <button
-              className="px-5 py-2 bg-blue-500 rounded-md"
-              onClick={() => setStep(step + 1)}>
-              التالي
-            </button>
-          )}
           {step > 1 && (
             <button
-              className="px-5 py-2 bg-blue-500 rounded-md"
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md"
               onClick={() => setStep(step - 1)}>
               السابق
             </button>
           )}
+          {step < 3 && (
+            <button
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md"
+              onClick={() => setStep(step + 1)}>
+              التالي
+            </button>
+          )}
           {step === 3 && (
-            <button type="submit" className="px-5 py-2 bg-blue-500 rounded-md">
+            <button
+              type="submit"
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
               إضافة
             </button>
           )}

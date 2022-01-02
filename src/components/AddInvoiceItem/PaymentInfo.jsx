@@ -5,6 +5,9 @@ const PaymentInfo = ({
   setReceiptDate,
   paymentMethod,
   setPaymentMethod,
+  shipmentOnCst,
+  shipmentOnRetail,
+  handleNumberInputChange,
   step,
   setStep,
 }) => {
@@ -66,6 +69,61 @@ const PaymentInfo = ({
           <option value="both">جزء كاش وجزء أونلاين</option>
         </select>
       </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="shipmentOnCst"
+          className="m-2 col-span-1 justify-self-start">
+          تكلفة الشحن علي العميل
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="shipmentOnCst"
+          id="shipmentOnCst"
+          className="col-span-2 text-center text-gray-800"
+          value={shipmentOnCst}
+          onChange={(e) => {
+            handleNumberInputChange(e, "shipmentOnCst");
+          }}
+        />
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="shipmentOnRetail"
+          className="m-2 col-span-1 justify-self-start">
+          تكلفة الشحن علي المعرض
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="shipmentOnRetail"
+          id="shipmentOnRetail"
+          className="col-span-2 text-center text-gray-800"
+          value={shipmentOnRetail}
+          onChange={(e) => {
+            handleNumberInputChange(e, "shipmentOnRetail");
+          }}
+        />
+      </div>
+
+      {/* 
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="shipmentOnRetail"
+          className="m-2 col-span-1 justify-self-start">
+          تكلفة الشحن علي المعرض
+        </label>
+        <input
+          type="text"
+          name="shipmentOnRetail"
+          id="shipmentOnRetail"
+          className="col-span-2 text-center text-gray-800"
+          value={shipmentOnRetail}
+          onChange={(e) => {
+            handleNumberInputChange(e, "shipmentOnRetail");
+          }}
+        />
+      </div> */}
     </>
   );
 };

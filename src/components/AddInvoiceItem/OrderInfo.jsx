@@ -51,7 +51,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
       </div>
 
       {/* Order list */}
-      <div className="m-5">
+      <div className="m-5 mx-0">
         {order.map((item, index) => {
           const productItem = productsState[item.productId];
           return (

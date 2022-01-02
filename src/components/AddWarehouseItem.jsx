@@ -13,6 +13,7 @@ const AddWarehouseItem = () => {
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState("");
   const [companyDiscount, setCompanyDiscount] = useState("25");
+  const [oldPrice, setOldPrice] = useState("");
 
   const products = Object.values(productsState);
   const productWarehouseId = productsState[productId]?.warehouseId;
@@ -21,6 +22,7 @@ const AddWarehouseItem = () => {
     const numberTargets = {
       quantity: [quantity, setQuantity],
       companyDiscount: [companyDiscount, setCompanyDiscount],
+      oldPrice: [oldPrice, setOldPrice],
     };
 
     if (isNaN(+e.target.value))
@@ -31,29 +33,72 @@ const AddWarehouseItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // const customCost =
+    // oldPrice !== "" ? [{ quantity: quantity, cost: +oldPrice }] : [];
+    const foundTargetWarehouseItem = warehouseState[productWarehouseId];
+    if (foundTargetWarehouseItem) {
+      const targetCompanyDiscount =
+        foundTargetWarehouseItem.availability[companyDiscount];
 
-    const availability = [
-      { quantity: +quantity, companyDiscount: +companyDiscount },
-    ];
-
-    if (warehouseState[productWarehouseId]) {
-      const item = {
-        warehouseId: productWarehouseId,
-        newAvailability: availability,
+      const customCost =
+        oldPrice !== ""
+          ? [
+              ...targetCompanyDiscount.customCostOnRetail,
+              { quantity: quantity, cost: +oldPrice },
+            ]
+          : [...targetCompanyDiscount.customCostOnRetail];
+      if (targetCompanyDiscount) {
+        const item = {
+          ...foundTargetWarehouseItem,
+          availability: {
+            ...foundTargetWarehouseItem.availability,
+            [targetCompanyDiscount.companyDiscount]: {
+              ...targetCompanyDiscount,
+              quantity: targetCompanyDiscount.quantity + +quantity,
+              customCostOnRetail: customCost,
+            },
+          },
+        };
+        console.log({ step1: item });
+        warehouseDispatch(addExistingWarehouseItem(item));
+      } else if (!targetCompanyDiscount) {
+        const item = {
+          ...foundTargetWarehouseItem,
+          availability: {
+            ...foundTargetWarehouseItem.availability,
+            [companyDiscount]: {
+              quantity,
+              companyDiscount,
+              customCostOnRetail: customCost,
+            },
+          },
+        };
+        console.log({ step2: item });
+        warehouseDispatch(addExistingWarehouseItem(item));
+      }
+    } else {
+      const customCost =
+        oldPrice !== "" ? [{ quantity: +quantity, cost: +oldPrice }] : [];
+      let availability = {
+        [companyDiscount]: {
+          quantity: +quantity,
+          companyDiscount,
+          customCostOnRetail: customCost,
+        },
       };
 
-      warehouseDispatch(addExistingWarehouseItem(item));
-    } else {
       const item = {
         id: productWarehouseId,
         productId,
         availability: availability,
       };
+      console.log({ step3: item });
       warehouseDispatch(addNewWarehouseItem(item));
     }
     setProductId("");
     setQuantity("");
     setCompanyDiscount("25");
+    setOldPrice("");
   };
   return (
     <form
@@ -116,6 +161,22 @@ const AddWarehouseItem = () => {
           value={companyDiscount}
           onChange={(e) => {
             handleNumberInputChange(e, "companyDiscount");
+          }}
+        />
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label htmlFor="oldPrice" className="m-2 col-span-1 justify-self-start">
+          سعر قديم؟
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="oldPrice"
+          id="oldPrice"
+          className="col-span-2 text-center text-gray-800"
+          value={oldPrice}
+          onChange={(e) => {
+            handleNumberInputChange(e, "oldPrice");
           }}
         />
       </div>

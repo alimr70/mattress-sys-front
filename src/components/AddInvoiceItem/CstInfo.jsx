@@ -20,7 +20,6 @@ const CstInfo = ({
           الاسم
         </label>
         <input
-          inputMode="numeric"
           type="text"
           name="cstName"
           id="cstName"
@@ -37,8 +36,6 @@ const CstInfo = ({
           العنوان
         </label>
         <input
-          lang="ar-EG"
-          inputMode="numeric"
           type="text"
           name="address"
           id="address"

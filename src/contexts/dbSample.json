@@ -34,27 +34,49 @@
     }
   },
   "products": {
-    "Tadzn6pils": { "id": "Tadzn6pils", "type": "مرتبة", "name": "ريترو 80×195×20", "thickness": "20", "width": "80", "height": "195", "price": "1506", "warehouseId": "18949841648" },
-    "U4QG5mpfkB": { "id": "U4QG5mpfkB", "type": "مرتبة", "name": "ريترو 90×195×20", "thickness": "20", "width": "90", "height": "195", "price": "1617", "warehouseId": "169841869" },
-    "_NHkm7ooPB": { "id": "_NHkm7ooPB", "type": "مخدة", "name": "فيبر 40×60 625جم", "thickness": "", "width": "40", "height": "60", "price": "99", "warehouseId": "111648" },
-    "PdoNUfd8Gv": { "id": "PdoNUfd8Gv", "type": "مخدة", "name": "فيبر 40×60 750جم", "thickness": "", "width": "40", "height": "60", "price": "104", "warehouseId": "1556984362" },
-    "U4O9suEFJr": { "id": "U4O9suEFJr", "type": "مخدة", "name": "فيبر 40×60 900جم", "thickness": "", "width": "40", "height": "60", "price": "116", "warehouseId": "618946188" }
+    "Tadzn6pils": { "id": "Tadzn6pils", "type": "مرتبة", "name": "ريترو 80×195×20", "thickness": "20", "width": "80", "height": "195", "price": "1506", "warehouseId": "18949841648", "standard": false, "nonStandardCostForSquarMeter": 0 },
+    "U4QG5mpfkB": { "id": "U4QG5mpfkB", "type": "مرتبة", "name": "ريترو 90×195×20", "thickness": "20", "width": "90", "height": "195", "price": "1617", "warehouseId": "169841869", "standard": false, "nonStandardCostForSquarMeter": 0 },
+    "_NHkm7ooPB": { "id": "_NHkm7ooPB", "type": "مخدة", "name": "فيبر 40×60 625جم", "thickness": "", "width": "40", "height": "60", "price": "99", "warehouseId": "111648", "standard": false, "nonStandardCostForSquarMeter": 0 },
+    "PdoNUfd8Gv": { "id": "PdoNUfd8Gv", "type": "مخدة", "name": "فيبر 40×60 750جم", "thickness": "", "width": "40", "height": "60", "price": "104", "warehouseId": "1556984362", "standard": false, "nonStandardCostForSquarMeter": 0 },
+    "U4O9suEFJr": { "id": "U4O9suEFJr", "type": "مخدة", "name": "فيبر 40×60 900جم", "thickness": "", "width": "40", "height": "60", "price": "116", "warehouseId": "618946188", "standard": false, "nonStandardCostForSquarMeter": 0 },
+    "sdlkfj65498d": { "id": "sdlkfj65498d", "type": "مخدة", "name": "ماريو", "thickness": "20", "width": "170", "height": "200", "price": "116", "warehouseId": "68987985", "standard": true, "nonStandardCostForSquarMeter": 1995 }
   },
   "warehouse": {
     "18949841648": {
       "id": "18949841648",
       "productId": "Tadzn6pils",
-      "availability": [{ "quantity": 3, "companyDiscount": 25 }, { "quantity": 1, "companyDiscount": 30 }]
+      "availability": {
+        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
+        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
+        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
+        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
+        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
+        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+      }
     },
     "618946188": {
       "id": "618946188",
       "productId": "U4O9suEFJr",
-      "availability": [{ "quantity": 18, "companyDiscount": 30 }]
+      "availability": {
+        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
+        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
+        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
+        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
+        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
+        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+      }
     },
     "169841869": {
       "id": "169841869",
       "productId": "U4QG5mpfkB",
-      "availability": [{ "quantity": 6, "companyDiscount": 25 }]
+      "availability": {
+        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
+        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
+        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
+        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
+        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
+        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+      }
     }
   },
   "invoices": {

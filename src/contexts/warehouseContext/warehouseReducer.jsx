@@ -13,17 +13,8 @@ const warehouseReducer = (state, action) => {
       return { ...state, [action.item.id]: { ...action.item } };
 
     case ADD_EXISTING_WAREHOUSE_ITEM:
-      const foundItem = state[action.item.warehouseId];
-      return {
-        ...state,
-        [foundItem.id]: {
-          ...foundItem,
-          availability: [
-            ...foundItem.availability,
-            ...action.item.newAvailability,
-          ],
-        },
-      };
+      // const foundItem = state[action.item.warehouseId];
+      return { ...state, [action.item.id]: { ...action.item } };
 
     default:
       return state;

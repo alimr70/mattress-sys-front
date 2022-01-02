@@ -13,7 +13,8 @@ const WarehouseItem = ({ item }) => {
   const { productId, availability } = item;
   const { productsState } = useContext(ProductsStore);
   const product = productsState[productId];
-  let numberOfAvailableItems = getTotalAvailableItems(availability);
+  const availableItems = Object.values(availability);
+  let numberOfAvailableItems = getTotalAvailableItems(availableItems);
   return (
     <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row text-right">
       <div className="p-2 ti:flex flex-row">
