@@ -8,6 +8,12 @@ const PaymentInfo = ({
   shipmentOnCst,
   shipmentOnRetail,
   handleNumberInputChange,
+  totalRetailOfferName,
+  setTotalRetailOfferName,
+  totalRetailOfferAmountPrecentage,
+  setTotalRetailOfferAmountPrecentage,
+  totalRetailOfferAmountFixed,
+  setTotalRetailOfferAmountFixed,
   step,
   setStep,
 }) => {
@@ -105,25 +111,62 @@ const PaymentInfo = ({
           }}
         />
       </div>
-
-      {/* 
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="shipmentOnRetail"
+          htmlFor="totalRetailOfferName"
           className="m-2 col-span-1 justify-self-start">
-          تكلفة الشحن علي المعرض
+          اسم الخصم علي كل المنتجات
         </label>
         <input
           type="text"
-          name="shipmentOnRetail"
-          id="shipmentOnRetail"
+          name="totalRetailOfferName"
+          id="totalRetailOfferName"
           className="col-span-2 text-center text-gray-800"
-          value={shipmentOnRetail}
+          value={totalRetailOfferName}
           onChange={(e) => {
-            handleNumberInputChange(e, "shipmentOnRetail");
+            setTotalRetailOfferName(e.target.value);
+          }}
+          required
+        />
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="totalRetailOfferAmountPrecentage"
+          className="m-2 col-span-1 justify-self-start">
+          نسبة الخصم
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="totalRetailOfferAmountPrecentage"
+          id="totalRetailOfferAmountPrecentage"
+          className="col-span-2 text-center text-gray-800"
+          value={totalRetailOfferAmountPrecentage}
+          onChange={(e) => {
+            handleNumberInputChange(e, "totalRetailOfferAmountPrecentage");
+            setTotalRetailOfferAmountFixed("");
           }}
         />
-      </div> */}
+      </div>
+      <div className="m-5 grid grid-cols-3">
+        <label
+          htmlFor="totalRetailOfferAmountFixed"
+          className="m-2 col-span-1 justify-self-start">
+          أو قيمة الخصم المحددة
+        </label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="totalRetailOfferAmountFixed"
+          id="totalRetailOfferAmountFixed"
+          className="col-span-2 text-center text-gray-800"
+          value={totalRetailOfferAmountFixed}
+          onChange={(e) => {
+            handleNumberInputChange(e, "totalRetailOfferAmountFixed");
+            setTotalRetailOfferAmountPrecentage("");
+          }}
+        />
+      </div>
     </>
   );
 };

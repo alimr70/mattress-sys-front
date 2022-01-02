@@ -15,6 +15,13 @@ const AddInvoiceItem = () => {
   const [order, setOrder] = useState([]);
   const [shipmentOnCst, setShipmentOnCst] = useState("");
   const [shipmentOnRetail, setShipmentOnRetail] = useState("");
+  const [totalRetailOfferName, setTotalRetailOfferName] = useState("");
+  const [
+    totalRetailOfferAmountPrecentage,
+    setTotalRetailOfferAmountPrecentage,
+  ] = useState("");
+  const [totalRetailOfferAmountFixed, setTotalRetailOfferAmountFixed] =
+    useState("");
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
@@ -22,6 +29,14 @@ const AddInvoiceItem = () => {
       phoneTwo: [phoneTwo, setPhoneTwo],
       shipmentOnCst: [shipmentOnCst, setShipmentOnCst],
       shipmentOnRetail: [shipmentOnRetail, setShipmentOnRetail],
+      totalRetailOfferAmountPrecentage: [
+        totalRetailOfferAmountPrecentage,
+        setTotalRetailOfferAmountPrecentage,
+      ],
+      totalRetailOfferAmountFixed: [
+        totalRetailOfferAmountFixed,
+        setTotalRetailOfferAmountFixed,
+      ],
     };
 
     if (isNaN(+e.target.value))
@@ -59,6 +74,14 @@ const AddInvoiceItem = () => {
         shipmentOnCst={shipmentOnCst}
         shipmentOnRetail={shipmentOnRetail}
         handleNumberInputChange={handleNumberInputChange}
+        totalRetailOfferName={totalRetailOfferName}
+        setTotalRetailOfferName={setTotalRetailOfferName}
+        totalRetailOfferAmountPrecentage={totalRetailOfferAmountPrecentage}
+        setTotalRetailOfferAmountPrecentage={
+          setTotalRetailOfferAmountPrecentage
+        }
+        totalRetailOfferAmountFixed={totalRetailOfferAmountFixed}
+        setTotalRetailOfferAmountFixed={setTotalRetailOfferAmountFixed}
         step={step}
         setStep={setStep}
       />

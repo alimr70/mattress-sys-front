@@ -91,11 +91,13 @@
       "order": [{
           "productId": "65148947561",
           "quantity": 2,
+          "retailOffer": 0,
           "totalQuantityPrice": 8500
         },
         {
           "productId": "65148947561",
           "quantity": 3,
+          "retailOffer": 0,
           "totalQuantityPrice": 250
         }
       ],
@@ -104,8 +106,10 @@
         "cashAmount": 7750,
         "cardAmound": 1000
       },
-      "shipmentCharge": { "price": "200", "payer": "المعرض" },
-      "retailOffer": "0",
+      "shipmentCharge": {
+        "shipmentOnCst": 100,
+        "shipmentOnRetail": 150
+      },
       "totalPrice": "17750",
       "paidMoney": "10,000",
       "remainingMoney": "7750",

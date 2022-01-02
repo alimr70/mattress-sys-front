@@ -13,6 +13,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
   const productTypes = Object.values(generalTypesState.productTypes);
 
   const [quantity, setQuantity] = useState(1);
+  const [retailOffer, setRetailOffer] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [widthFilter, setWidthFilter] = useState("");
   const [heightFilter, setHeightFilter] = useState("");
@@ -33,6 +34,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
       quantity: [quantity, setQuantity],
+      retailOffer: [retailOffer, setRetailOffer],
       thicknessFilter: [thicknessFilter, setThicknessFilter],
       widthFilter: [widthFilter, setWidthFilter],
       heightFilter: [heightFilter, setHeightFilter],
@@ -71,6 +73,11 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
               <span>
                 العدد: <span className="text-yellow-500">{item.quantity}</span>
               </span>
+              {item.retailOffer !== 0 && (
+                <span>
+                  خصم: <span className="text-red-500">{item.retailOffer}%</span>
+                </span>
+              )}
               <span>
                 السعر للعدد:{" "}
                 <span className="text-lime-600">{item.totalQuantityPrice}</span>
@@ -81,7 +88,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
       </div>
 
       {/* Quantity */}
-      <div className="flex">
+      <div className="flex my-1">
         <label htmlFor="quantity">الكمية المطلوبة من المنتج الذي ستضيفه:</label>
         <input
           inputMode="numeric"
@@ -94,6 +101,23 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
             handleNumberInputChange(e, "quantity");
           }}
         />
+      </div>
+
+      {/* Retail offer */}
+      <div className="flex my-1">
+        <label htmlFor="quantity">خصم من المعرض علي المنتج الذي ستضيفه:</label>
+        <input
+          inputMode="numeric"
+          type="text"
+          name="retailOffer"
+          id="retailOffer"
+          className="text-center text-gray-800"
+          value={retailOffer}
+          onChange={(e) => {
+            handleNumberInputChange(e, "retailOffer");
+          }}
+        />
+        %
       </div>
 
       {/* Filter */}
@@ -176,10 +200,16 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
                       {
                         productId: item.id,
                         quantity: quantity,
-                        totalQuantityPrice: item.price * quantity,
+                        retailOffer: retailOffer === "" ? 0 : +retailOffer,
+                        totalQuantityPrice:
+                          retailOffer !== ""
+                            ? item.price -
+                              (item.price * quantity * +retailOffer) / 100
+                            : item.price * quantity,
                       },
                     ]);
                     setQuantity(1);
+                    setRetailOffer("");
                   }}
                 />
               </div>
