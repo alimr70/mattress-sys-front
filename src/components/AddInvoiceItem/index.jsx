@@ -2,8 +2,11 @@ import { useState } from "react";
 import CstInfo from "./CstInfo";
 import PaymentInfo from "./PaymentInfo";
 import OrderInfo from "./OrderInfo";
+import ReviewInvoice from "./ReviewInvoice";
+import { useEffect } from "react/cjs/react.development";
 
 const AddInvoiceItem = () => {
+  const [canSubmit, setCanSubmit] = useState(false);
   const [step, setStep] = useState(1);
   const [cstName, setCstName] = useState("");
   const [address, setAddress] = useState("");
@@ -94,7 +97,24 @@ const AddInvoiceItem = () => {
         setStep={setStep}
       />
     ),
+    4: <ReviewInvoice />,
   };
+
+  useEffect(() => {
+    if (
+      cstName === "" ||
+      address === "" ||
+      phone === "" ||
+      invoiceDate === "" ||
+      receiptDate === "" ||
+      paymentMethod === "" ||
+      order.length === 0
+    ) {
+      setCanSubmit(false);
+    } else {
+      setCanSubmit(true);
+    }
+  }, [cstName, address, phone, invoiceDate, receiptDate, paymentMethod, order]);
 
   return (
     <>
@@ -120,9 +140,14 @@ const AddInvoiceItem = () => {
           )}
           {step === 3 && (
             <button
-              type="submit"
-              className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
-              إضافة
+              className={
+                "px-5 py-2 mx-2 bg-blue-500 rounded-md" +
+                `${canSubmit ? "" : " cursor-not-allowed bg-gray-500"}`
+              }
+              onClick={() => {
+                return canSubmit ? setStep(step + 1) : "";
+              }}>
+              مراجعة الفاتورة
             </button>
           )}
         </div>
