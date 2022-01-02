@@ -82,7 +82,7 @@ const AddWarehouseItem = () => {
       let availability = {
         [companyDiscount]: {
           quantity: +quantity,
-          companyDiscount,
+          companyDiscount: +companyDiscount,
           customCostOnRetail: customCost,
         },
       };

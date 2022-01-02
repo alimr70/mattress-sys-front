@@ -9,7 +9,7 @@ const AddInvoiceItem = () => {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [phoneTwo, setPhoneTwo] = useState("");
-  const [invocieDate, setInvocieDate] = useState("");
+  const [invoiceDate, setInvoiceDate] = useState("");
   const [receiptDate, setReceiptDate] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [order, setOrder] = useState([]);
@@ -50,8 +50,8 @@ const AddInvoiceItem = () => {
     ),
     2: (
       <PaymentInfo
-        invocieDate={invocieDate}
-        setInvocieDate={setInvocieDate}
+        invoiceDate={invoiceDate}
+        setInvoiceDate={setInvoiceDate}
         receiptDate={receiptDate}
         setReceiptDate={setReceiptDate}
         paymentMethod={paymentMethod}

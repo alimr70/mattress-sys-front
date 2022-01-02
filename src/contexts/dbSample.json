@@ -83,22 +83,27 @@
     "519848916": {
       "id": 519848916,
       "cutomerName": "مروان بابلو",
-      "shipmentAddress": "بالم هيلز فيلا رقم 300",
-      "telNumber": "01022233344",
-      "invocieDate": 1639556836419,
-      "receiptDate": 1639556836419,
+      "address": "بالم هيلز فيلا رقم 300",
+      "phone": "01022233344",
+      "phoneTwo": "01252697945",
+      "InvoiceDate": "2022-1-2",
+      "receiptDate": "2022-1-3",
       "order": [{
           "productId": "65148947561",
-          "quantity": "2",
-          "price": "8500"
+          "quantity": 2,
+          "totalQuantityPrice": 8500
         },
         {
           "productId": "65148947561",
-          "quantity": "3",
-          "price": "250"
+          "quantity": 3,
+          "totalQuantityPrice": 250
         }
       ],
-      "paymentMethod": "فيزا",
+      "paymentMethod": {
+        "method": "cashAndCard",
+        "cashAmount": 7750,
+        "cardAmound": 1000
+      },
       "shipmentCharge": { "price": "200", "payer": "المعرض" },
       "retailOffer": "0",
       "totalPrice": "17750",

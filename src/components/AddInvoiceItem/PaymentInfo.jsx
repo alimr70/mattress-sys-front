@@ -1,6 +1,6 @@
 const PaymentInfo = ({
-  invocieDate,
-  setInvocieDate,
+  invoiceDate,
+  setInvoiceDate,
   receiptDate,
   setReceiptDate,
   paymentMethod,
@@ -19,18 +19,18 @@ const PaymentInfo = ({
       </div>
       <div className="m-5 grid grid-cols-3">
         <label
-          htmlFor="invocieDate"
+          htmlFor="invoiceDate"
           className="m-2 col-span-1 justify-self-start">
           تاريخ الفاتورة
         </label>
         <input
           type="date"
-          name="invocieDate"
-          id="invocieDate"
+          name="invoiceDate"
+          id="invoiceDate"
           className="col-span-2 text-center text-gray-800"
-          value={invocieDate}
+          value={invoiceDate}
           onChange={(e) => {
-            setInvocieDate(e.target.value);
+            setInvoiceDate(e.target.value);
           }}
           required
         />
@@ -66,7 +66,7 @@ const PaymentInfo = ({
           onChange={(e) => setPaymentMethod(e.target.value)}>
           <option value="cash">كاش</option>
           <option value="card">كارت أونلاين</option>
-          <option value="both">جزء كاش وجزء أونلاين</option>
+          <option value="cashAndCard">جزء كاش وجزء أونلاين</option>
         </select>
       </div>
       <div className="m-5 grid grid-cols-3">

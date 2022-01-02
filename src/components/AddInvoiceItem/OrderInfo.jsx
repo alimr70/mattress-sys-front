@@ -72,7 +72,8 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
                 العدد: <span className="text-yellow-500">{item.quantity}</span>
               </span>
               <span>
-                السعر للعدد: <span className="text-lime-600">{item.price}</span>
+                السعر للعدد:{" "}
+                <span className="text-lime-600">{item.totalQuantityPrice}</span>
               </span>
             </div>
           );
@@ -175,7 +176,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
                       {
                         productId: item.id,
                         quantity: quantity,
-                        price: item.price * quantity,
+                        totalQuantityPrice: item.price * quantity,
                       },
                     ]);
                     setQuantity(1);

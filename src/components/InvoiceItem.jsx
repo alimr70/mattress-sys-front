@@ -3,7 +3,7 @@ const InvoiceItem = ({ item }) => {
     id,
     cutomerName,
     shipmentAddress,
-    invocieDate,
+    invoiceDate,
     receiptDate,
     paymentMethod,
     shipmentCharge,
@@ -30,7 +30,7 @@ const InvoiceItem = ({ item }) => {
         <p className="m-1">
           تاريخ الفاتورة:{" "}
           <span className="text-blue-500">
-            {new Date(invocieDate).toLocaleDateString("ar-EG")}
+            {new Date(invoiceDate).toLocaleDateString("ar-EG")}
           </span>
         </p>
         <p className="m-1">
