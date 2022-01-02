@@ -1,7 +1,21 @@
-const ReviewInvoice = () => {
+const ReviewInvoice = ({
+  cstName,
+  address,
+  phone,
+  phoneTwo,
+  invoiceDate,
+  receiptDate,
+  paymentMethod,
+  order,
+  shipmentOnCst,
+  shipmentOnRetail,
+  totalRetailOfferName,
+  totalRetailOfferAmountPrecentage,
+  totalRetailOfferAmountFixed,
+}) => {
   return (
     <>
-      <div>Review</div>
+      <div className="bg-white"></div>
     </>
   );
 };

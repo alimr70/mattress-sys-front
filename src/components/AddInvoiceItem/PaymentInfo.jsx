@@ -27,7 +27,7 @@ const PaymentInfo = ({
         <label
           htmlFor="invoiceDate"
           className="m-2 col-span-1 justify-self-start">
-          تاريخ الفاتورة
+          تاريخ الفاتورة*
         </label>
         <input
           type="date"
@@ -45,7 +45,7 @@ const PaymentInfo = ({
         <label
           htmlFor="receiptDate"
           className="m-2 col-span-1 justify-self-start">
-          تاريخ الاستلام
+          تاريخ الاستلام*
         </label>
         <input
           type="date"
@@ -62,7 +62,7 @@ const PaymentInfo = ({
         <label
           htmlFor="paymentMethod"
           className="m-2 col-span-1 justify-self-start">
-          طريقة الدفع
+          طريقة الدفع*
         </label>
         <select
           name="paymentMethod"

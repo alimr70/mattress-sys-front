@@ -97,7 +97,23 @@ const AddInvoiceItem = () => {
         setStep={setStep}
       />
     ),
-    4: <ReviewInvoice />,
+    4: (
+      <ReviewInvoice
+        cstName={cstName}
+        address={address}
+        phone={phone}
+        phoneTwo={phoneTwo}
+        invoiceDate={invoiceDate}
+        receiptDate={receiptDate}
+        paymentMethod={paymentMethod}
+        order={order}
+        shipmentOnCst={shipmentOnCst}
+        shipmentOnRetail={shipmentOnRetail}
+        totalRetailOfferName={totalRetailOfferName}
+        totalRetailOfferAmountPrecentage={totalRetailOfferAmountPrecentage}
+        totalRetailOfferAmountFixed={totalRetailOfferAmountFixed}
+      />
+    ),
   };
 
   useEffect(() => {

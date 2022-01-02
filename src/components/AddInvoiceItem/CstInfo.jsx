@@ -17,7 +17,7 @@ const CstInfo = ({
       </div>
       <div className="m-5 grid grid-cols-3">
         <label htmlFor="cstName" className="m-2 col-span-1 justify-self-start">
-          الاسم
+          الاسم*
         </label>
         <input
           type="text"
@@ -33,7 +33,7 @@ const CstInfo = ({
       </div>
       <div className="m-5 grid grid-cols-3">
         <label htmlFor="address" className="m-2 col-span-1 justify-self-start">
-          العنوان
+          العنوان*
         </label>
         <input
           type="text"
@@ -48,7 +48,7 @@ const CstInfo = ({
       </div>
       <div className="m-5 grid grid-cols-3">
         <label htmlFor="phone" className="m-2 col-span-1 justify-self-start">
-          رقم التليفون
+          رقم التليفون*
         </label>
         <input
           inputMode="numeric"
