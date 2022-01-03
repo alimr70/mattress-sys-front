@@ -7,7 +7,7 @@ import AddToWarehouse from "./pages/AddToWarehouse";
 import AddInvoice from "./pages/AddInvoice";
 function App() {
   return (
-    <div className="App h-screen overflow-auto bg-gray-900 text-gray-300">
+    <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
       <Routes>
         <Route path="/" element={<Products />} />
         <Route path="products" element={<Products />} />

@@ -5,14 +5,14 @@ const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const isMenuOpen = openMenu ? "" : "hidden";
   return (
-    <header className="bg-blue-500 p-4 grid grid-cols-4">
+    <header className="bg-blue-500 p-4 grid grid-cols-4 print:hidden">
       <nav className="col-span-2 xs:col-span-3">
         <MenuIcon
           className="sm:hidden h-5 w-5 cursor-pointer"
           onClick={() => setOpenMenu(!openMenu)}
         />
 
-        <ul className={`${isMenuOpen} ` + "flex flex-col xs:flex-row sm:flex"}>
+        <ul className={`${isMenuOpen} "flex flex-col xs:flex-row sm:flex"`}>
           <Link to="/invoices" className={`${openMenu ? "my-2" : ""}`}>
             <li className="px-5">الفواتير</li>
           </Link>

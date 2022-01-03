@@ -38,7 +38,6 @@ const PaymentInfo = ({
           onChange={(e) => {
             setInvoiceDate(e.target.value);
           }}
-          required
         />
       </div>
       <div className="m-5 grid grid-cols-3">
@@ -126,7 +125,6 @@ const PaymentInfo = ({
           onChange={(e) => {
             setTotalRetailOfferName(e.target.value);
           }}
-          required
         />
       </div>
       <div className="m-5 grid grid-cols-3">

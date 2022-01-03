@@ -142,7 +142,7 @@ const AddInvoiceItem = () => {
         <div className="flex justify-center">
           {step > 1 && (
             <button
-              className="px-5 py-2 mx-2 bg-blue-500 rounded-md"
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
               onClick={() => setStep(step - 1)}>
               السابق
             </button>

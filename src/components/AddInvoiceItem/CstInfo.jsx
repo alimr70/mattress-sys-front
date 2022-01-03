@@ -28,7 +28,6 @@ const CstInfo = ({
           onChange={(e) => {
             setCstName(e.target.value);
           }}
-          required
         />
       </div>
       <div className="m-5 grid grid-cols-3">
@@ -60,7 +59,6 @@ const CstInfo = ({
           onChange={(e) => {
             handleNumberInputChange(e, "phone");
           }}
-          required
           maxLength={11}
         />
       </div>
