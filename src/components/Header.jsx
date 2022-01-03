@@ -12,7 +12,7 @@ const Header = () => {
           onClick={() => setOpenMenu(!openMenu)}
         />
 
-        <ul className={`${isMenuOpen} "flex flex-col xs:flex-row sm:flex"`}>
+        <ul className={`${isMenuOpen} flex flex-col xs:flex-row sm:flex"`}>
           <Link to="/invoices" className={`${openMenu ? "my-2" : ""}`}>
             <li className="px-5">الفواتير</li>
           </Link>
