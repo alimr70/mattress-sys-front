@@ -136,7 +136,7 @@ const AddInvoiceItem = () => {
     <>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="max-w-2xl mx-auto print:mx-0"
+        className="max-w-2xl mx-auto print:mx-0 print:w-full"
         autoComplete="off">
         {stepsNav[step]}
         <div className="flex justify-center">
