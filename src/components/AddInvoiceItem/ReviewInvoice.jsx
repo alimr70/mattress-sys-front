@@ -63,9 +63,16 @@ const ReviewInvoice = ({
   return (
     <>
       {/* grid grid-cols-1 grid-rows-2 */}
-      <div className="w-full bg-white text-black font-mono flex flex-col print:w-[21cm] print:h-[29.7cm] print:px-[0.25in] print:py-[0.2in] print:block">
+      <div className="w-full bg-white text-black font-mono flex flex-col mb-10 print:mb-0 print:w-[21cm] print:h-[29.7cm] print:px-[0.25in] print:py-[0.2in] print:block">
         {/* FIRST INVOICE COPY */}
-        <div className="h-screen print:h-1/2">
+        <div className="h-[78vh] print:h-1/2 relative">
+          <div className="hidden absolute w-full top-full font-bold text-xs print:hidden flex-col items-center">
+            <p>
+              119 عمارات صقر قريش إمتداد عبد الحميد بدوي شيراتون المطار -
+              القاهرة
+            </p>
+            <p>01003434685 - 01227297834 - 01101223012</p>
+          </div>
           {/* Container */}
           <div className="h-[13cm] m-auto grid grid-rows-13 gap-1">
             {/* Logo */}
@@ -174,12 +181,11 @@ const ReviewInvoice = ({
                 {/* Totals section */}
                 <div className="border-2 border-black h-[29.5%]">
                   <div className="flex">
-                    <div className="w-[45%] flex">
-                      <div className="w-[50%] text-center">
+                    <div className="w-[100%] flex">
+                      <div className="w-[22.5%] text-center">
                         {totalBeforeRetailOffer}
                       </div>
-                      <div className="w-[30%] text-center">الإجمالى</div>
-                      <div className="w-[20%] text-center"></div>
+                      <div className="w-[77.5%] pr-3">الإجمالى</div>
                     </div>
                   </div>
 
@@ -216,7 +222,7 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  <div className="mt-auto flex">
+                  <div className="flex bottom-0">
                     <div className="w-[100%] flex">
                       <div className="w-[22.5%] text-center font-bold">
                         {totalCost}
@@ -230,11 +236,19 @@ const ReviewInvoice = ({
               </div>
             </div>
           </div>
+
+          <div className="w-full mt-5 font-bold text-xs flex flex-col items-center">
+            <p>
+              119 عمارات صقر قريش إمتداد عبد الحميد بدوي شيراتون المطار -
+              القاهرة
+            </p>
+            <p>01003434685 - 01227297834 - 01101223012</p>
+          </div>
         </div>
 
         {/* "hidden mt-3 print:block print:h-1/2" */}
         {/* SECOND INVOICE COPY */}
-        <div className="hidden print:block print:h-1/2">
+        <div className="hidden mt-5 print:block print:h-1/2">
           {/* Container */}
           <div className="h-[13cm] m-auto grid grid-rows-13 gap-1">
             {/* Logo */}
@@ -397,6 +411,9 @@ const ReviewInvoice = ({
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="w-full mt-16 pt-4 font-bold text-xs flex flex-col items-center">
+              <p>نسخة الفرع</p>
             </div>
           </div>
         </div>

@@ -136,7 +136,9 @@ const AddInvoiceItem = () => {
     <>
       <form
         onSubmit={(e) => handleSubmit(e)}
-        className="max-w-2xl mx-auto print:mx-0 print:w-full"
+        className={`${
+          step === 4 ? "w-[20cm]" : "max-w-2xl"
+        } mx-auto print:mx-0 print:w-full`}
         autoComplete="off">
         {stepsNav[step]}
         <div className="flex justify-center">
@@ -164,6 +166,20 @@ const AddInvoiceItem = () => {
                 return canSubmit ? setStep(step + 1) : "";
               }}>
               مراجعة الفاتورة
+            </button>
+          )}
+          {step === 4 && (
+            <button
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
+              onClick={() => window.print()}>
+              حفظ وطبع الفاتورة
+            </button>
+          )}
+          {step === 4 && (
+            <button
+              className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
+              onClick={() => window.print()}>
+              حفظ فقط
             </button>
           )}
         </div>
