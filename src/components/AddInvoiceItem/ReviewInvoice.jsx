@@ -84,7 +84,7 @@ const ReviewInvoice = ({
             <div className="row-span-2">
               <div className="grid grid-cols-5 gap-1">
                 <div className="justify-self-end">
-                  <span className="font-bold">التاريخ: </span>
+                  <span className="font-bold">تاريخ الفاتورة: </span>
                 </div>
                 <div className="justify-self-start col-span-2">
                   {invoiceDate}
@@ -97,7 +97,7 @@ const ReviewInvoice = ({
 
               <div className="grid grid-cols-5 gap-1">
                 <div className="justify-self-end">
-                  <span className="font-bold">اسم العميل: </span>
+                  <span className="font-bold">اســم العمـيـل: </span>
                 </div>
                 <div className="justify-self-start col-span-2">{cstName}</div>
                 <div className="justify-self-end">
@@ -108,9 +108,11 @@ const ReviewInvoice = ({
 
               <div className="grid grid-cols-5 gap-1">
                 <div className="justify-self-end">
-                  <span className="font-bold">عنوان العميل: </span>
+                  <span className="font-bold">عنوان العمـيـل: </span>
                 </div>
-                <div className="justify-self-start col-span-2">{address}</div>
+                <div className="justify-self-start col-span-2 text-xs font-bold">
+                  {address}
+                </div>
                 {phoneTwo !== "" && (
                   <>
                     <div className="justify-self-end">
@@ -211,7 +213,7 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  {shipmentOnCst !== "" && (
+                  {shipmentOnCst !== "" && shipmentOnCst !== "0" && (
                     <div className="flex">
                       <div className="w-[100%] flex">
                         <div className="w-[22.5%] text-center">
@@ -221,6 +223,18 @@ const ReviewInvoice = ({
                       </div>
                     </div>
                   )}
+
+                  {(shipmentOnCst === "0" || shipmentOnCst === "") &&
+                    shipmentOnRetail !== "" && (
+                      <div className="flex">
+                        <div className="w-[100%] flex">
+                          <div className="w-[22.5%] text-center">
+                            {shipmentOnCst}
+                          </div>
+                          <div className="w-[77.5%] pr-3">النقل مجانا</div>
+                        </div>
+                      </div>
+                    )}
 
                   <div className="flex bottom-0">
                     <div className="w-[100%] flex">
@@ -398,6 +412,18 @@ const ReviewInvoice = ({
                       </div>
                     </div>
                   )}
+
+                  {(shipmentOnCst === "0" || shipmentOnCst === "") &&
+                    shipmentOnRetail !== "" && (
+                      <div className="flex">
+                        <div className="w-[100%] flex">
+                          <div className="w-[22.5%] text-center">
+                            {shipmentOnCst}
+                          </div>
+                          <div className="w-[77.5%] pr-3">النقل مجانا</div>
+                        </div>
+                      </div>
+                    )}
 
                   <div className="mt-auto flex">
                     <div className="w-[100%] flex">

@@ -48,6 +48,8 @@ const AddInvoiceItem = () => {
     return numberTargets[numberTarget][1](e.target.value.trim());
   };
 
+  const handleSaveInvoice = () => {};
+
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -171,14 +173,20 @@ const AddInvoiceItem = () => {
           {step === 4 && (
             <button
               className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
-              onClick={() => window.print()}>
+              onClick={() => {
+                handleSaveInvoice();
+                window.print();
+              }}>
               حفظ وطبع الفاتورة
             </button>
           )}
           {step === 4 && (
             <button
               className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
-              onClick={() => window.print()}>
+              onClick={() => {
+                handleSaveInvoice();
+                window.print();
+              }}>
               حفظ فقط
             </button>
           )}
