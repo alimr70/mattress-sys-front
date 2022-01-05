@@ -1,23 +1,30 @@
 import { useContext, useEffect } from "react";
 import { useState } from "react/cjs/react.development";
 import logo from "../../assets/taki-logo.png";
+import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
 
 const ReviewInvoice = ({
+  serialNum,
+  setSerialNum,
   cstName,
   address,
   phone,
   phoneTwo,
   invoiceDate,
   receiptDate,
-  paymentMethod,
   order,
   shipmentOnCst,
   shipmentOnRetail,
   totalRetailOfferName,
   totalRetailOfferAmountPrecentage,
   totalRetailOfferAmountFixed,
+  setTotalInvoicePrice,
 }) => {
+  const { generalTypesState } = useContext(GeneralTypesStore);
+  const { serialNumbers } = generalTypesState;
+  const { invoicesSerials } = serialNumbers;
+
   const { productsState } = useContext(ProductsStore);
 
   const [totalBeforeRetailOffer, setTotalBeforeRetailOffer] = useState(0);
@@ -43,12 +50,19 @@ const ReviewInvoice = ({
 
     setTotalBeforeRetailOffer(beforeOfferNum);
     setTotalAfterRetailOffer(afterOfferNum);
+    setTotalInvoicePrice(totalAfterRetailOffer + +shipmentOnCst);
+    setSerialNum(+invoicesSerials[invoicesSerials.length - 1] + 1);
   }, [
     order,
     setTotalBeforeRetailOffer,
     setTotalAfterRetailOffer,
     totalRetailOfferAmountPrecentage,
     totalRetailOfferAmountFixed,
+    invoicesSerials,
+    setSerialNum,
+    setTotalInvoicePrice,
+    shipmentOnCst,
+    totalAfterRetailOffer,
   ]);
 
   const totalOfferName = totalRetailOfferAmountPrecentage

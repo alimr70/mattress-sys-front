@@ -42,15 +42,18 @@ const InvoiceItem = ({ item }) => {
       </div>
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
-          طريقة الدفع: <span className="text-blue-500">{paymentMethod}</span>
+          طريقة الدفع:{" "}
+          <span className="text-blue-500">{paymentMethod.method}</span>
         </p>
         <p className="m-1">
-          مصاريف التوصيل:
-          <span className="text-blue-500">{shipmentCharge.price}</span>
+          تكلفة النقل علي العميل:
+          <span className="text-blue-500">{shipmentCharge.shipmentOnCst}</span>
         </p>
         <p className="m-1">
-          اللي دفع مصاريف التوصيل:
-          <span className="text-blue-500">{shipmentCharge.payer}</span>
+          تكلفة النقل علي المعرض:
+          <span className="text-blue-500">
+            {shipmentCharge.shipmentOnRetail}
+          </span>
         </p>
         <p className="m-1">
           خصم المعرض: <span className="text-blue-500">{retailOffer}</span>
