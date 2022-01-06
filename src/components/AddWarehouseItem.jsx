@@ -180,6 +180,7 @@ const AddWarehouseItem = () => {
           onChange={(e) => {
             handleNumberInputChange(e, "oldPrice");
           }}
+          disabled
         />
       </div>
       <div className="flex justify-center">
