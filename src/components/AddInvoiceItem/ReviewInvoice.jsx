@@ -19,7 +19,11 @@ const ReviewInvoice = ({
   totalRetailOfferName,
   totalRetailOfferAmountPrecentage,
   totalRetailOfferAmountFixed,
+  totalInvoicePrice,
   setTotalInvoicePrice,
+  paidMoney,
+  remainingMoney,
+  setRemainingMoney,
 }) => {
   const { generalTypesState } = useContext(GeneralTypesStore);
   const { serialNumbers } = generalTypesState;
@@ -52,6 +56,7 @@ const ReviewInvoice = ({
     setTotalAfterRetailOffer(afterOfferNum);
     setTotalInvoicePrice(totalAfterRetailOffer + +shipmentOnCst);
     setSerialNum(+invoicesSerials[invoicesSerials.length - 1] + 1);
+    setRemainingMoney(paidMoney !== "" ? totalInvoicePrice - +paidMoney : "");
   }, [
     order,
     setTotalBeforeRetailOffer,
@@ -60,9 +65,12 @@ const ReviewInvoice = ({
     totalRetailOfferAmountFixed,
     invoicesSerials,
     setSerialNum,
+    totalInvoicePrice,
     setTotalInvoicePrice,
     shipmentOnCst,
     totalAfterRetailOffer,
+    paidMoney,
+    setRemainingMoney,
   ]);
 
   const totalOfferName = totalRetailOfferAmountPrecentage
@@ -142,15 +150,15 @@ const ReviewInvoice = ({
             <div></div>
 
             {/* Order info */}
-            <div className="row-span-10 h-[9.5cm] relative">
+            <div className="row-span-9 h-[9cm] relative">
               {/* Cols dividers */}
               <div className="w-full h-[100%] flex absolute divide-x-4 divide-x-reverse divide-black">
                 <div className="w-[45%] h-[100%] flex divide-x-4 divide-x-reverse divide-black">
-                  <div className="w-[50%] h-[70%]"></div>
+                  <div className="w-[50%] h-[64%]"></div>
                   <div className="w-[30%] h-[100%]"></div>
-                  <div className="w-[20%] h-[70%]"></div>
+                  <div className="w-[20%] h-[64%]"></div>
                 </div>
-                <div className="w-[55.4%] h-[70%] pr-3"></div>
+                <div className="w-[55.4%] h-[64%] pr-3"></div>
               </div>
 
               <div className="w-full h-full border-2 border-black">
@@ -170,7 +178,7 @@ const ReviewInvoice = ({
                 </div>
 
                 {/* divide-x-4 divide-x-reverse divide-black */}
-                <div className="border-2 border-black h-[62.5%]">
+                <div className="border-2 border-black h-[56%]">
                   {order.map((item, index) => {
                     const productDetails = productsState[item.productId];
                     return (
@@ -195,7 +203,7 @@ const ReviewInvoice = ({
                 </div>
 
                 {/* Totals section */}
-                <div className="border-2 border-black h-[29.5%]">
+                <div className="border-2 border-black h-[36%]">
                   <div className="flex">
                     <div className="w-[100%] flex">
                       <div className="w-[22.5%] text-center">
@@ -260,12 +268,25 @@ const ReviewInvoice = ({
                       </div>
                     </div>
                   </div>
+
+                  {paidMoney !== "" && paidMoney !== 0 && paidMoney !== "0" && (
+                    <div className="flex bottom-0">
+                      <div className="w-[100%] flex">
+                        <div className="w-[22.5%] text-center font-bold">
+                          {remainingMoney}
+                        </div>
+                        <div className="w-[77.5%] pr-3 text-right font-bold">
+                          المتبقي
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="w-full mt-5 font-bold text-xs flex flex-col items-center">
+          <div className="w-full mt-1 font-bold text-xs flex flex-col items-center">
             <p>
               119 عمارات صقر قريش إمتداد عبد الحميد بدوي شيراتون المطار -
               القاهرة
@@ -330,15 +351,15 @@ const ReviewInvoice = ({
             <div></div>
 
             {/* Order info */}
-            <div className="row-span-10 h-[9.5cm] relative">
+            <div className="row-span-9 h-[9cm] relative">
               {/* Cols dividers */}
               <div className="w-full h-[100%] flex absolute divide-x-4 divide-x-reverse divide-black">
                 <div className="w-[45%] h-[100%] flex divide-x-4 divide-x-reverse divide-black">
-                  <div className="w-[50%] h-[70%]"></div>
+                  <div className="w-[50%] h-[64%]"></div>
                   <div className="w-[30%] h-[100%]"></div>
-                  <div className="w-[20%] h-[70%]"></div>
+                  <div className="w-[20%] h-[64%]"></div>
                 </div>
-                <div className="w-[55.4%] h-[70%] pr-3"></div>
+                <div className="w-[55.4%] h-[64%] pr-3"></div>
               </div>
 
               <div className="w-full h-full border-2 border-black">
@@ -358,7 +379,7 @@ const ReviewInvoice = ({
                 </div>
 
                 {/* divide-x-4 divide-x-reverse divide-black */}
-                <div className="border-2 border-black h-[62.5%]">
+                <div className="border-2 border-black h-[56%]">
                   {order.map((item, index) => {
                     const productDetails = productsState[item.productId];
                     return (
@@ -383,7 +404,7 @@ const ReviewInvoice = ({
                 </div>
 
                 {/* Totals section */}
-                <div className="border-2 border-black h-[29.5%]">
+                <div className="border-2 border-black h-[36%]">
                   <div className="flex">
                     <div className="w-[45%] flex">
                       <div className="w-[50%] text-center">
@@ -449,6 +470,21 @@ const ReviewInvoice = ({
                       </div>
                     </div>
                   </div>
+
+                  {(remainingMoney !== "" ||
+                    remainingMoney !== 0 ||
+                    remainingMoney !== "0") && (
+                    <div className="flex bottom-0">
+                      <div className="w-[100%] flex">
+                        <div className="w-[22.5%] text-center font-bold">
+                          {remainingMoney}
+                        </div>
+                        <div className="w-[77.5%] pr-3 text-right font-bold">
+                          المتبقي
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

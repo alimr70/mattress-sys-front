@@ -18,6 +18,8 @@ const AddInvoiceItem = () => {
   const [cashAmount, setCashAmount] = useState("");
   const [cardAmound, setCardAmound] = useState("");
   const [order, setOrder] = useState([]);
+  const [isPartialAmount, setIsPartialAmount] = useState(false);
+  const [paidMoney, setPaidMoney] = useState("");
   const [shipmentOnCst, setShipmentOnCst] = useState("");
   const [shipmentOnRetail, setShipmentOnRetail] = useState("");
   const [totalRetailOfferName, setTotalRetailOfferName] = useState("");
@@ -28,8 +30,10 @@ const AddInvoiceItem = () => {
   const [totalRetailOfferAmountFixed, setTotalRetailOfferAmountFixed] =
     useState("");
   const [totalInvoicePrice, setTotalInvoicePrice] = useState(0);
-  const [paidMoney, setPaidMoney] = useState("");
+  const [remainingMoney, setRemainingMoney] = useState("");
   const [serialNum, setSerialNum] = useState("");
+  const [isOffer, setIsOffer] = useState(false);
+  const [isShipment, setIsShipment] = useState(false);
 
   const handleNumberInputChange = (e, numberTarget) => {
     const numberTargets = {
@@ -50,6 +54,7 @@ const AddInvoiceItem = () => {
       totalInvoicePrice: [totalInvoicePrice, setTotalInvoicePrice],
       paidMoney: [paidMoney, setPaidMoney],
       serialNum: [serialNum, setSerialNum],
+      remainingMoney: [remainingMoney, setRemainingMoney],
     };
 
     if (isNaN(+e.target.value))
@@ -101,23 +106,11 @@ const AddInvoiceItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleSaveInvoice();
+    // handleSaveInvoice();
   };
 
   const stepsNav = {
-    1: (
-      <CstInfo
-        cstName={cstName}
-        setCstName={setCstName}
-        address={address}
-        setAddress={setAddress}
-        phone={phone}
-        phoneTwo={phoneTwo}
-        handleNumberInputChange={handleNumberInputChange}
-        step={step}
-        setStep={setStep}
-      />
-    ),
+    1: <OrderInfo order={order} setOrder={setOrder} />,
     2: (
       <PaymentInfo
         invoiceDate={invoiceDate}
@@ -139,16 +132,23 @@ const AddInvoiceItem = () => {
         }
         totalRetailOfferAmountFixed={totalRetailOfferAmountFixed}
         setTotalRetailOfferAmountFixed={setTotalRetailOfferAmountFixed}
-        step={step}
-        setStep={setStep}
+        isOffer={isOffer}
+        setIsOffer={setIsOffer}
+        isPartialAmount={isPartialAmount}
+        setIsPartialAmount={setIsPartialAmount}
+        isShipment={isShipment}
+        setIsShipment={setIsShipment}
       />
     ),
     3: (
-      <OrderInfo
-        order={order}
-        setOrder={setOrder}
-        step={step}
-        setStep={setStep}
+      <CstInfo
+        cstName={cstName}
+        setCstName={setCstName}
+        address={address}
+        setAddress={setAddress}
+        phone={phone}
+        phoneTwo={phoneTwo}
+        handleNumberInputChange={handleNumberInputChange}
       />
     ),
     4: (
@@ -168,6 +168,11 @@ const AddInvoiceItem = () => {
         totalRetailOfferName={totalRetailOfferName}
         totalRetailOfferAmountPrecentage={totalRetailOfferAmountPrecentage}
         totalRetailOfferAmountFixed={totalRetailOfferAmountFixed}
+        totalInvoicePrice={totalInvoicePrice}
+        setTotalInvoicePrice={setTotalInvoicePrice}
+        paidMoney={paidMoney}
+        remainingMoney={remainingMoney}
+        setRemainingMoney={setRemainingMoney}
       />
     ),
   };
@@ -226,10 +231,9 @@ const AddInvoiceItem = () => {
           )}
           {step === 4 && (
             <button
-              type="submit"
               className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
               onClick={() => {
-                // handleSaveInvoice();
+                handleSaveInvoice();
                 window.print();
               }}>
               حفظ وطبع الفاتورة
@@ -237,12 +241,10 @@ const AddInvoiceItem = () => {
           )}
           {step === 4 && (
             <button
-              type="submit"
               className="px-5 py-2 mx-2 bg-blue-500 rounded-md print:hidden"
-              // onClick={() => {
-              //   handleSaveInvoice();
-              // }}
-            >
+              onClick={() => {
+                handleSaveInvoice();
+              }}>
               حفظ فقط
             </button>
           )}

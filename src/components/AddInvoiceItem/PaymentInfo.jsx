@@ -1,5 +1,3 @@
-import { useState } from "react/cjs/react.development";
-
 const PaymentInfo = ({
   invoiceDate,
   setInvoiceDate,
@@ -19,11 +17,13 @@ const PaymentInfo = ({
   setTotalRetailOfferAmountPrecentage,
   totalRetailOfferAmountFixed,
   setTotalRetailOfferAmountFixed,
+  isOffer,
+  setIsOffer,
+  isPartialAmount,
+  setIsPartialAmount,
+  isShipment,
+  setIsShipment,
 }) => {
-  const [isOffer, setIsOffer] = useState(false);
-  const [isPartialAmount, setIsPartialAmount] = useState(false);
-  const [isShipment, setIsShipment] = useState(false);
-
   return (
     <>
       {/* Payment info */}
@@ -132,7 +132,7 @@ const PaymentInfo = ({
           name="isPartialAmount"
           id="isPartialAmount"
           className="col-span-2 self-center text-gray-800"
-          value={isPartialAmount}
+          checked={isPartialAmount}
           onChange={() => {
             setIsPartialAmount(!isPartialAmount);
           }}
@@ -169,7 +169,7 @@ const PaymentInfo = ({
           name="isShipment"
           id="isShipment"
           className="col-span-2 self-center text-gray-800"
-          value={isShipment}
+          checked={isShipment}
           onChange={() => {
             setIsShipment(!isShipment);
           }}
@@ -224,7 +224,7 @@ const PaymentInfo = ({
           name="isOffer"
           id="isOffer"
           className="col-span-2 self-center text-gray-800"
-          value={isOffer}
+          checked={isOffer}
           onChange={() => {
             setIsOffer(!isOffer);
           }}
