@@ -1,7 +1,6 @@
 {
   "generalTypes": {
     "serialNumbers": {
-      "productsSerials": ["0000"],
       "warehouseSerials": ["0000"],
       "invoicesSerials": ["0000"]
     },

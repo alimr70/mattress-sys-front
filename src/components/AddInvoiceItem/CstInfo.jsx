@@ -50,6 +50,7 @@ const CstInfo = ({
           رقم التليفون*
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="phone"
@@ -67,6 +68,7 @@ const CstInfo = ({
           رقم تليفون آخر
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="phoneTwo"

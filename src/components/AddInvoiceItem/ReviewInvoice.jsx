@@ -3,6 +3,7 @@ import { useState } from "react/cjs/react.development";
 import logo from "../../assets/taki-logo.png";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
+import { generateSerialNumber } from "../../utils";
 
 const ReviewInvoice = ({
   serialNum,
@@ -45,7 +46,7 @@ const ReviewInvoice = ({
     if (totalRetailOfferAmountPrecentage !== "") {
       afterOfferNum =
         beforeOfferNum -
-        (beforeOfferNum * +totalRetailOfferAmountPrecentage) / 100;
+        Math.floor((beforeOfferNum * +totalRetailOfferAmountPrecentage) / 100);
     } else if (totalRetailOfferAmountFixed !== "") {
       afterOfferNum = beforeOfferNum - +totalRetailOfferAmountFixed;
     } else {
@@ -55,7 +56,12 @@ const ReviewInvoice = ({
     setTotalBeforeRetailOffer(beforeOfferNum);
     setTotalAfterRetailOffer(afterOfferNum);
     setTotalInvoicePrice(totalAfterRetailOffer + +shipmentOnCst);
-    setSerialNum(+invoicesSerials[invoicesSerials.length - 1] + 1);
+    setSerialNum(
+      generateSerialNumber(
+        "invoicesSerials",
+        `${+invoicesSerials[invoicesSerials.length - 1] + 1}`
+      )
+    );
     setRemainingMoney(paidMoney !== "" ? totalInvoicePrice - +paidMoney : "");
   }, [
     order,
@@ -78,28 +84,27 @@ const ReviewInvoice = ({
     : totalRetailOfferName + " " + totalRetailOfferAmountFixed + "جم";
 
   const totalOfferValue = totalRetailOfferAmountPrecentage
-    ? (totalBeforeRetailOffer * +totalRetailOfferAmountPrecentage) / 100
+    ? Math.floor(
+        (totalBeforeRetailOffer * +totalRetailOfferAmountPrecentage) / 100
+      )
     : totalRetailOfferAmountFixed;
 
   const totalCost = totalAfterRetailOffer + +shipmentOnCst;
+
   return (
     <>
       {/* grid grid-cols-1 grid-rows-2 */}
       <div className="w-full bg-white text-black font-mono flex flex-col mb-10 print:mb-0 print:w-[21cm] print:h-[29.7cm] print:px-[0.25in] print:py-[0.2in] print:block">
         {/* FIRST INVOICE COPY */}
         <div className="h-[78vh] print:h-1/2 relative">
-          <div className="hidden absolute w-full top-full font-bold text-xs print:hidden flex-col items-center">
-            <p>
-              119 عمارات صقر قريش إمتداد عبد الحميد بدوي شيراتون المطار -
-              القاهرة
-            </p>
-            <p>01003434685 - 01227297834 - 01101223012</p>
-          </div>
           {/* Container */}
           <div className="h-[13cm] m-auto grid grid-rows-13 gap-1">
             {/* Logo */}
-            <div className="row-span-1 mx-10">
-              <img src={logo} alt="logo" className="w-[25%]" />
+            <div className="row-span-1 mx-10 grid grid-cols-2">
+              <img src={logo} alt="logo" className="w-[50%]" />
+              <p className="justify-self-end self-center">
+                رقم الفاتورة: {serialNum}
+              </p>
             </div>
 
             {/* Cst info */}
@@ -301,8 +306,11 @@ const ReviewInvoice = ({
           {/* Container */}
           <div className="h-[13cm] m-auto grid grid-rows-13 gap-1">
             {/* Logo */}
-            <div className="row-span-1 mx-10">
-              <img src={logo} alt="logo" className="w-[25%]" />
+            <div className="row-span-1 mx-10 grid grid-cols-2">
+              <img src={logo} alt="logo" className="w-[50%]" />
+              <p className="justify-self-end self-center">
+                رقم الفاتورة: {serialNum}
+              </p>
             </div>
 
             {/* Cst info */}

@@ -1,24 +1,28 @@
 import { nanoid } from "nanoid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react/cjs/react.development";
 import { GeneralTypesStore } from "../contexts/generalTypesContext";
+import { addSerialNumber } from "../contexts/generalTypesContext/generalTypesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { addProduct } from "../contexts/productsContext/productsActions";
+import { generateSerialNumber } from "../utils";
 
 const AddProductItem = () => {
   const { productsDispatch } = useContext(ProductsStore);
-  const { generalTypesState } = useContext(GeneralTypesStore);
-  const { productTypes } = generalTypesState;
+  const { generalTypesState, generalTypesDispatch } =
+    useContext(GeneralTypesStore);
+  const { productTypes, serialNumbers } = generalTypesState;
+  const { warehouseSerials } = serialNumbers;
   const itemTypes = Object.values(productTypes);
 
   const [type, setType] = useState("");
+  const [warehouseSerialNum, setWarehouseSerialNum] = useState("");
   const [name, setName] = useState("");
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
   const [thickness, setThickness] = useState("");
   const [price, setPrice] = useState("");
   const [weight, setWeight] = useState("");
-  const [warehouseId, setWarehouseId] = useState("");
 
   const handleTypeChange = (e) => {
     setType(e.target.value);
@@ -34,7 +38,6 @@ const AddProductItem = () => {
       height: [height, setHeight],
       thickness: [thickness, setThickness],
       price: [price, setPrice],
-      warehouseId: [warehouseId, setWarehouseId],
       weight: [weight, setWeight],
     };
 
@@ -62,8 +65,11 @@ const AddProductItem = () => {
       width,
       height,
       price,
-      warehouseId,
+      warehouseId: warehouseSerialNum,
     };
+    generalTypesDispatch(
+      addSerialNumber(`${warehouseSerialNum}`, "warehouseSerials")
+    );
     productsDispatch(addProduct(product));
     setType("");
     setName("");
@@ -71,9 +77,17 @@ const AddProductItem = () => {
     setHeight("");
     setThickness("");
     setPrice("");
-    setWarehouseId("");
     setWeight("");
   };
+
+  useEffect(() => {
+    setWarehouseSerialNum(
+      generateSerialNumber(
+        "warehouseSerials",
+        `${+warehouseSerials[warehouseSerials.length - 1] + 1}`
+      )
+    );
+  }, [warehouseSerials]);
 
   return (
     <form
@@ -113,15 +127,14 @@ const AddProductItem = () => {
           رقم المخزن
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="warehouseId"
           id="warehouseId"
           className="col-span-2 text-center text-gray-800"
-          value={warehouseId}
-          onChange={(e) => {
-            handleNumberInputChange(e, "warehouseId");
-          }}
+          defaultValue={warehouseSerialNum}
+          disabled
         />
       </div>
       <div className="m-5 grid grid-cols-3">
@@ -146,6 +159,7 @@ const AddProductItem = () => {
           العرض
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="width"
@@ -162,6 +176,7 @@ const AddProductItem = () => {
           الطول
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="height"
@@ -180,6 +195,7 @@ const AddProductItem = () => {
           الارتفاع
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="thickness"
@@ -196,6 +212,7 @@ const AddProductItem = () => {
           الوزن
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="weight"
@@ -212,6 +229,7 @@ const AddProductItem = () => {
           السعر
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="width"

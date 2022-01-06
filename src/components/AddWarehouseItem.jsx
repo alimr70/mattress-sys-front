@@ -92,7 +92,6 @@ const AddWarehouseItem = () => {
         productId,
         availability: availability,
       };
-      console.log({ step3: item });
       warehouseDispatch(addNewWarehouseItem(item));
     }
     setProductId("");
@@ -136,6 +135,7 @@ const AddWarehouseItem = () => {
           العدد
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="quantity"
@@ -153,6 +153,7 @@ const AddWarehouseItem = () => {
           خصم الشركة
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="companyDiscount"
@@ -169,6 +170,7 @@ const AddWarehouseItem = () => {
           سعر قديم؟
         </label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="oldPrice"

@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CstInfo from "./CstInfo";
 import PaymentInfo from "./PaymentInfo";
 import OrderInfo from "./OrderInfo";
 import ReviewInvoice from "./ReviewInvoice";
 import { useEffect } from "react/cjs/react.development";
+import { addInvoiceItem } from "../../contexts/invoicesContext/invoicesActions";
+import { InvoicesStore } from "../../contexts/invoicesContext";
+import { GeneralTypesStore } from "../../contexts/generalTypesContext";
+import { addSerialNumber } from "../../contexts/generalTypesContext/generalTypesActions";
 
 const AddInvoiceItem = () => {
+  const { generalTypesDispatch } = useContext(GeneralTypesStore);
+  const { invoicesDispatch } = useContext(InvoicesStore);
+
   const [canSubmit, setCanSubmit] = useState(false);
   const [step, setStep] = useState(1);
   const [cstName, setCstName] = useState("");
@@ -69,6 +76,7 @@ const AddInvoiceItem = () => {
     // }
 
     const invoice = {
+      time: Date.now(),
       id: serialNum,
       cutomerName: cstName,
       address: address,
@@ -98,8 +106,8 @@ const AddInvoiceItem = () => {
       totalProfit: "",
       status: "pending",
     };
-
-    console.log(invoice);
+    generalTypesDispatch(addSerialNumber(`${serialNum}`, "invoicesSerials"));
+    invoicesDispatch(addInvoiceItem(invoice));
   };
 
   const handleSubmit = (e) => {

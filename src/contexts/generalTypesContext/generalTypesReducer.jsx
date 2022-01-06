@@ -11,7 +11,10 @@ const generalTypesReducer = (state, action) => {
     case ADD_SERIAL_NUMBER:
       return {
         ...state,
-        [action.field]: [...state[action.field], ...action.number],
+        serialNumbers: {
+          ...state.serialNumbers,
+          [action.field]: [...state.serialNumbers[action.field], action.number],
+        },
       };
 
     default:

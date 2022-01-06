@@ -1,26 +1,23 @@
 import { PlusCircleIcon, TrashIcon } from "@heroicons/react/solid";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
-// import { WarehouseStore } from "../../contexts/warehouseContext";
 import { repeatedFilter } from "../../utils/index";
 import ProductItem from "../ProductItem";
 
-const OrderInfo = ({ order, setOrder, step, setStep }) => {
+const OrderInfo = ({ order, setOrder }) => {
   const { generalTypesState } = useContext(GeneralTypesStore);
   const { productsState } = useContext(ProductsStore);
-  // const { warehouseState } = useContext(WarehouseStore);
   const productTypes = Object.values(generalTypesState.productTypes);
 
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState("1");
   const [retailOffer, setRetailOffer] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [widthFilter, setWidthFilter] = useState("");
   const [heightFilter, setHeightFilter] = useState("");
   const [thicknessFilter, setThicknessFilter] = useState("");
-  // const [productId, setProductId] = useState("");
+  const [totalSelectedPrice, setTotalSelectedPrice] = useState("");
 
-  // const warehouseItems = Object.values(warehouseState);
   const products = Object.values(productsState);
 
   const filters = [];
@@ -45,6 +42,14 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
 
     return numberTargets[numberTarget][1](e.target.value.trim());
   };
+
+  useEffect(() => {
+    let num = 0;
+    order.forEach((item) => {
+      num = num + item.totalQuantityPrice;
+    });
+    setTotalSelectedPrice(num);
+  }, [order]);
 
   return (
     <>
@@ -85,12 +90,17 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
             </div>
           );
         })}
+        <div className="my-1 flex items-center justify-center border-2 border-gray-400">
+          <p>المجموع الكلي: </p>
+          <span className="text-lime-600">{totalSelectedPrice}</span>
+        </div>
       </div>
 
       {/* Quantity */}
       <div className="flex my-1">
         <label htmlFor="quantity">الكمية المطلوبة من المنتج الذي ستضيفه:</label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="quantity"
@@ -107,6 +117,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
       <div className="flex my-1">
         <label htmlFor="quantity">خصم من المعرض علي المنتج الذي ستضيفه:</label>
         <input
+          dir="ltr"
           inputMode="numeric"
           type="text"
           name="retailOffer"
@@ -145,6 +156,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
         <div className="col-span-1 flex">
           <label htmlFor="thicknessFilter">العرض:</label>
           <input
+            dir="ltr"
             inputMode="numeric"
             type="text"
             name="widthFilter"
@@ -159,6 +171,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
         <div className="col-span-1 flex">
           <label htmlFor="thicknessFilter">الطول:</label>
           <input
+            dir="ltr"
             inputMode="numeric"
             type="text"
             name="heightFilter"
@@ -173,6 +186,7 @@ const OrderInfo = ({ order, setOrder, step, setStep }) => {
         <div className="col-span-1 flex">
           <label htmlFor="thicknessFilter">الارتفاع:</label>
           <input
+            dir="ltr"
             inputMode="numeric"
             type="text"
             name="thicknessFilter"

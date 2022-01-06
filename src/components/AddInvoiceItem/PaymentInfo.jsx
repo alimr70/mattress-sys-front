@@ -24,7 +24,6 @@ const PaymentInfo = ({
   isShipment,
   setIsShipment,
 }) => {
-  console.log(paidMoney);
   return (
     <>
       {/* Payment info */}
@@ -91,6 +90,7 @@ const PaymentInfo = ({
               قيمة الكاش*
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="cashAmount"
@@ -109,6 +109,7 @@ const PaymentInfo = ({
               قيمة الفيزا*
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="cardAmound"
@@ -148,6 +149,7 @@ const PaymentInfo = ({
               قيمة العربون*
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="paidMoney"
@@ -187,6 +189,7 @@ const PaymentInfo = ({
               تكلفة النقل علي العميل
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="shipmentOnCst"
@@ -205,6 +208,7 @@ const PaymentInfo = ({
               تكلفة النقل علي المعرض
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="shipmentOnRetail"
@@ -259,6 +263,7 @@ const PaymentInfo = ({
               نسبة الخصم
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="totalRetailOfferAmountPrecentage"
@@ -278,6 +283,7 @@ const PaymentInfo = ({
               أو قيمة الخصم المحددة
             </label>
             <input
+              dir="ltr"
               inputMode="numeric"
               type="text"
               name="totalRetailOfferAmountFixed"
