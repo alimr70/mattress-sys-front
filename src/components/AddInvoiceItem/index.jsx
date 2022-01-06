@@ -64,8 +64,6 @@ const AddInvoiceItem = () => {
   };
 
   const handleSaveInvoice = () => {
-    const remainingMoney =
-      paidMoney !== "" ? totalInvoicePrice - +paidMoney : "";
     // {
     //   "status": ["pending", "completed", "deleted"]
     // }
@@ -138,6 +136,7 @@ const AddInvoiceItem = () => {
         setIsPartialAmount={setIsPartialAmount}
         isShipment={isShipment}
         setIsShipment={setIsShipment}
+        paidMoney={paidMoney}
       />
     ),
     3: (

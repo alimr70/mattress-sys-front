@@ -24,6 +24,7 @@ const PaymentInfo = ({
   isShipment,
   setIsShipment,
 }) => {
+  console.log(paidMoney);
   return (
     <>
       {/* Payment info */}
@@ -139,24 +140,26 @@ const PaymentInfo = ({
         />
       </div>
       {isPartialAmount && (
-        <div className="m-5 grid grid-cols-3">
-          <label
-            htmlFor="paidMoney"
-            className="m-2 col-span-1 justify-self-start">
-            قيمة العربون*
-          </label>
-          <input
-            inputMode="numeric"
-            type="text"
-            name="paidMoney"
-            id="paidMoney"
-            className="col-span-2 text-center text-gray-800"
-            value={paidMoney}
-            onChange={(e) => {
-              handleNumberInputChange(e, "paidMoney");
-            }}
-          />
-        </div>
+        <>
+          <div className="m-5 grid grid-cols-3">
+            <label
+              htmlFor="paidMoney"
+              className="m-2 col-span-1 justify-self-start">
+              قيمة العربون*
+            </label>
+            <input
+              inputMode="numeric"
+              type="text"
+              name="paidMoney"
+              id="paidMoney"
+              className="col-span-2 text-center text-gray-800"
+              value={paidMoney}
+              onChange={(e) => {
+                handleNumberInputChange(e, "paidMoney");
+              }}
+            />
+          </div>
+        </>
       )}
       <div className="m-5 grid grid-cols-3">
         <label
