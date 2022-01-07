@@ -22,7 +22,7 @@ export const repeatedFilter = (arr, filters) => {
   return repeatedFilter(arr, filters);
 };
 
-export const generateSerialNumber = (fieldTarget, number) => {
+export const generateSerialNumber = (number) => {
 
   function repeatStringNumTimes(str, num) {
     return num > 0 ? str + repeatStringNumTimes(str, num - 1) : "";
@@ -31,14 +31,5 @@ export const generateSerialNumber = (fieldTarget, number) => {
   const repeatTimes = (6 - number.length) <= 0 ? 0 : 6 - number.length;
   const zeros = repeatStringNumTimes("0", repeatTimes)
 
-  const date = new Date();
-  const yearSerial = `${date.getFullYear()}${date.getMonth()+1}${date.getDate()}`;
-
-  const fieldTargets = {
-    productsSerials: zeros + number,
-    warehouseSerials: zeros + number,
-    invoicesSerials: yearSerial + zeros + number,
-  }
-
-  return fieldTargets[fieldTarget]
+  return `${zeros}${number}`
 }

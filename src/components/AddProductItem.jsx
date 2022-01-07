@@ -83,7 +83,6 @@ const AddProductItem = () => {
   useEffect(() => {
     setWarehouseSerialNum(
       generateSerialNumber(
-        "warehouseSerials",
         `${+warehouseSerials[warehouseSerials.length - 1] + 1}`
       )
     );

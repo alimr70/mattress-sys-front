@@ -58,7 +58,6 @@ const ReviewInvoice = ({
     setTotalInvoicePrice(totalAfterRetailOffer + +shipmentOnCst);
     setSerialNum(
       generateSerialNumber(
-        "invoicesSerials",
         `${+invoicesSerials[invoicesSerials.length - 1] + 1}`
       )
     );
@@ -91,6 +90,11 @@ const ReviewInvoice = ({
 
   const totalCost = totalAfterRetailOffer + +shipmentOnCst;
 
+  const date = new Date();
+  const yearSerial = `${date.getFullYear()}${
+    date.getMonth() + 1
+  }${date.getDate()}`;
+
   return (
     <>
       {/* grid grid-cols-1 grid-rows-2 */}
@@ -103,7 +107,7 @@ const ReviewInvoice = ({
             <div className="row-span-1 mx-10 grid grid-cols-2">
               <img src={logo} alt="logo" className="w-[50%]" />
               <p className="justify-self-end self-center">
-                رقم الفاتورة: {serialNum}
+                رقم الفاتورة: {yearSerial + serialNum}
               </p>
             </div>
 
