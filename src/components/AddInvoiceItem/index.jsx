@@ -7,10 +7,16 @@ import { useEffect } from "react/cjs/react.development";
 import { addInvoiceItem } from "../../contexts/invoicesContext/invoicesActions";
 import { InvoicesStore } from "../../contexts/invoicesContext";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
+import { WarehouseStore } from "../../contexts/warehouseContext";
 import { addSerialNumber } from "../../contexts/generalTypesContext/generalTypesActions";
+import { removeSoldWarehouseItem } from "../../contexts/warehouseContext/warehouseActions";
+import { useNavigate } from "react-router-dom";
 
 const AddInvoiceItem = () => {
+  const navigate = useNavigate();
+
   const { generalTypesDispatch } = useContext(GeneralTypesStore);
+  const { warehouseDispatch } = useContext(WarehouseStore);
   const { invoicesDispatch } = useContext(InvoicesStore);
 
   const [canSubmit, setCanSubmit] = useState(false);
@@ -108,6 +114,12 @@ const AddInvoiceItem = () => {
     };
     generalTypesDispatch(addSerialNumber(`${serialNum}`, "invoicesSerials"));
     invoicesDispatch(addInvoiceItem(invoice));
+    order.forEach((item) => {
+      warehouseDispatch(
+        removeSoldWarehouseItem(item.warehouseId, item.quantity)
+      );
+    });
+    navigate("/");
   };
 
   const handleSubmit = (e) => {

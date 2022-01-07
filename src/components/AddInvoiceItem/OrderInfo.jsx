@@ -213,6 +213,7 @@ const OrderInfo = ({ order, setOrder }) => {
                       ...order,
                       {
                         productId: item.id,
+                        warehouseId: item.warehouseId,
                         quantity: quantity,
                         retailOffer: retailOffer === "" ? 0 : +retailOffer,
                         totalQuantityPrice:
