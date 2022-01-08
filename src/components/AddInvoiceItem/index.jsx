@@ -48,32 +48,25 @@ const AddInvoiceItem = () => {
   const [isOffer, setIsOffer] = useState(false);
   const [isShipment, setIsShipment] = useState(false);
 
-  const handleNumberInputChange = (e, numberTarget) => {
-    const numberTargets = {
-      phone: [phone, setPhone],
-      phoneTwo: [phoneTwo, setPhoneTwo],
-      shipmentOnCst: [shipmentOnCst, setShipmentOnCst],
-      shipmentOnRetail: [shipmentOnRetail, setShipmentOnRetail],
-      totalRetailOfferAmountPrecentage: [
-        totalRetailOfferAmountPrecentage,
-        setTotalRetailOfferAmountPrecentage,
-      ],
-      totalRetailOfferAmountFixed: [
-        totalRetailOfferAmountFixed,
-        setTotalRetailOfferAmountFixed,
-      ],
-      cashAmount: [cashAmount, setCashAmount],
-      cardAmound: [cardAmound, setCardAmound],
-      totalInvoicePrice: [totalInvoicePrice, setTotalInvoicePrice],
-      paidMoney: [paidMoney, setPaidMoney],
-      serialNum: [serialNum, setSerialNum],
-      remainingMoney: [remainingMoney, setRemainingMoney],
-    };
-
-    if (isNaN(+e.target.value))
-      return numberTargets[numberTarget][1](numberTargets[numberTarget][0]);
-
-    return numberTargets[numberTarget][1](e.target.value.trim());
+  const numberTargets = {
+    phone: [phone, setPhone],
+    phoneTwo: [phoneTwo, setPhoneTwo],
+    shipmentOnCst: [shipmentOnCst, setShipmentOnCst],
+    shipmentOnRetail: [shipmentOnRetail, setShipmentOnRetail],
+    totalRetailOfferAmountPrecentage: [
+      totalRetailOfferAmountPrecentage,
+      setTotalRetailOfferAmountPrecentage,
+    ],
+    totalRetailOfferAmountFixed: [
+      totalRetailOfferAmountFixed,
+      setTotalRetailOfferAmountFixed,
+    ],
+    cashAmount: [cashAmount, setCashAmount],
+    cardAmound: [cardAmound, setCardAmound],
+    totalInvoicePrice: [totalInvoicePrice, setTotalInvoicePrice],
+    paidMoney: [paidMoney, setPaidMoney],
+    serialNum: [serialNum, setSerialNum],
+    remainingMoney: [remainingMoney, setRemainingMoney],
   };
 
   const handleSaveInvoice = () => {
@@ -141,7 +134,7 @@ const AddInvoiceItem = () => {
         cardAmound={cardAmound}
         shipmentOnCst={shipmentOnCst}
         shipmentOnRetail={shipmentOnRetail}
-        handleNumberInputChange={handleNumberInputChange}
+        numberTargets={numberTargets}
         totalRetailOfferName={totalRetailOfferName}
         setTotalRetailOfferName={setTotalRetailOfferName}
         totalRetailOfferAmountPrecentage={totalRetailOfferAmountPrecentage}
@@ -167,7 +160,7 @@ const AddInvoiceItem = () => {
         setAddress={setAddress}
         phone={phone}
         phoneTwo={phoneTwo}
-        handleNumberInputChange={handleNumberInputChange}
+        numberTargets={numberTargets}
       />
     ),
     4: (

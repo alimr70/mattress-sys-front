@@ -1,3 +1,5 @@
+import { handleNumberInputChange } from "../../utils";
+
 const PaymentInfo = ({
   invoiceDate,
   setInvoiceDate,
@@ -10,7 +12,7 @@ const PaymentInfo = ({
   cardAmound,
   shipmentOnCst,
   shipmentOnRetail,
-  handleNumberInputChange,
+  numberTargets,
   totalRetailOfferName,
   setTotalRetailOfferName,
   totalRetailOfferAmountPrecentage,
@@ -98,7 +100,7 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={cashAmount}
               onChange={(e) => {
-                handleNumberInputChange(e, "cashAmount");
+                handleNumberInputChange(e, "cashAmount", numberTargets);
               }}
             />
           </div>
@@ -117,7 +119,7 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={cardAmound}
               onChange={(e) => {
-                handleNumberInputChange(e, "cardAmound");
+                handleNumberInputChange(e, "cardAmound", numberTargets);
               }}
             />
           </div>
@@ -157,7 +159,7 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={paidMoney}
               onChange={(e) => {
-                handleNumberInputChange(e, "paidMoney");
+                handleNumberInputChange(e, "paidMoney", numberTargets);
               }}
             />
           </div>
@@ -197,7 +199,7 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={shipmentOnCst}
               onChange={(e) => {
-                handleNumberInputChange(e, "shipmentOnCst");
+                handleNumberInputChange(e, "shipmentOnCst", numberTargets);
               }}
             />
           </div>
@@ -216,7 +218,7 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={shipmentOnRetail}
               onChange={(e) => {
-                handleNumberInputChange(e, "shipmentOnRetail");
+                handleNumberInputChange(e, "shipmentOnRetail", numberTargets);
               }}
             />
           </div>
@@ -271,7 +273,11 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={totalRetailOfferAmountPrecentage}
               onChange={(e) => {
-                handleNumberInputChange(e, "totalRetailOfferAmountPrecentage");
+                handleNumberInputChange(
+                  e,
+                  "totalRetailOfferAmountPrecentage",
+                  numberTargets
+                );
                 setTotalRetailOfferAmountFixed("");
               }}
             />
@@ -291,7 +297,11 @@ const PaymentInfo = ({
               className="col-span-2 text-center text-gray-800"
               value={totalRetailOfferAmountFixed}
               onChange={(e) => {
-                handleNumberInputChange(e, "totalRetailOfferAmountFixed");
+                handleNumberInputChange(
+                  e,
+                  "totalRetailOfferAmountFixed",
+                  numberTargets
+                );
                 setTotalRetailOfferAmountPrecentage("");
               }}
             />

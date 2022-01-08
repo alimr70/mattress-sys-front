@@ -5,7 +5,7 @@ import { GeneralTypesStore } from "../contexts/generalTypesContext";
 import { addSerialNumber } from "../contexts/generalTypesContext/generalTypesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { addProduct } from "../contexts/productsContext/productsActions";
-import { generateSerialNumber } from "../utils";
+import { generateSerialNumber, handleNumberInputChange } from "../utils";
 
 const AddProductItem = () => {
   const { productsDispatch } = useContext(ProductsStore);
@@ -32,19 +32,12 @@ const AddProductItem = () => {
     setName(e.target.value);
   };
 
-  const handleNumberInputChange = (e, numberTarget) => {
-    const numberTargets = {
-      width: [width, setWidth],
-      height: [height, setHeight],
-      thickness: [thickness, setThickness],
-      price: [price, setPrice],
-      weight: [weight, setWeight],
-    };
-
-    if (isNaN(+e.target.value))
-      return numberTargets[numberTarget][1](numberTargets[numberTarget][0]);
-
-    return numberTargets[numberTarget][1](e.target.value.trim());
+  const numberTargets = {
+    width: [width, setWidth],
+    height: [height, setHeight],
+    thickness: [thickness, setThickness],
+    price: [price, setPrice],
+    weight: [weight, setWeight],
   };
 
   const handleSubmit = (e) => {
@@ -166,7 +159,7 @@ const AddProductItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={width}
           onChange={(e) => {
-            handleNumberInputChange(e, "width");
+            handleNumberInputChange(e, "width", numberTargets);
           }}
         />
       </div>
@@ -183,7 +176,7 @@ const AddProductItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={height}
           onChange={(e) => {
-            handleNumberInputChange(e, "height");
+            handleNumberInputChange(e, "height", numberTargets);
           }}
         />
       </div>
@@ -202,7 +195,7 @@ const AddProductItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={thickness}
           onChange={(e) => {
-            handleNumberInputChange(e, "thickness");
+            handleNumberInputChange(e, "thickness", numberTargets);
           }}
         />
       </div>
@@ -219,7 +212,7 @@ const AddProductItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={weight}
           onChange={(e) => {
-            handleNumberInputChange(e, "weight");
+            handleNumberInputChange(e, "weight", numberTargets);
           }}
         />
       </div>
@@ -236,7 +229,7 @@ const AddProductItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={price}
           onChange={(e) => {
-            handleNumberInputChange(e, "price");
+            handleNumberInputChange(e, "price", numberTargets);
           }}
           required
         />
