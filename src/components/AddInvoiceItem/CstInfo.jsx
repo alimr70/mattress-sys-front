@@ -1,13 +1,13 @@
+import { handleNumberInputChange } from "../../utils";
+
 const CstInfo = ({
   cstName,
   setCstName,
   address,
   setAddress,
   phone,
-  handleNumberInputChange,
+  numberTargets,
   phoneTwo,
-  step,
-  setStep,
 }) => {
   return (
     <>
@@ -58,7 +58,7 @@ const CstInfo = ({
           className="col-span-2 text-center text-gray-800"
           value={phone}
           onChange={(e) => {
-            handleNumberInputChange(e, "phone");
+            handleNumberInputChange(e, "phone", numberTargets);
           }}
           maxLength={11}
         />
@@ -76,7 +76,7 @@ const CstInfo = ({
           className="col-span-2 text-center text-gray-800"
           value={phoneTwo}
           onChange={(e) => {
-            handleNumberInputChange(e, "phoneTwo");
+            handleNumberInputChange(e, "phoneTwo", numberTargets);
           }}
           maxLength={11}
         />

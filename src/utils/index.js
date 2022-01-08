@@ -33,3 +33,10 @@ export const generateSerialNumber = (number) => {
 
   return `${zeros}${number}`
 }
+
+export const handleNumberInputChange = (e, numberTarget, targetsArr) => {
+  if (isNaN(+e.target.value))
+    return targetsArr[numberTarget][1](targetsArr[numberTarget][0]);
+
+  return targetsArr[numberTarget][1](e.target.value.trim());
+};

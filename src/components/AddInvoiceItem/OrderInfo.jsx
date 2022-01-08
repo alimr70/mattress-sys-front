@@ -2,7 +2,7 @@ import { PlusCircleIcon, TrashIcon } from "@heroicons/react/solid";
 import { useContext, useEffect, useState } from "react";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
-import { repeatedFilter } from "../../utils/index";
+import { handleNumberInputChange, repeatedFilter } from "../../utils/index";
 import ProductItem from "../ProductItem";
 
 const OrderInfo = ({ order, setOrder }) => {
@@ -28,19 +28,12 @@ const OrderInfo = ({ order, setOrder }) => {
 
   const filteredProductsArr = repeatedFilter(products, filters);
 
-  const handleNumberInputChange = (e, numberTarget) => {
-    const numberTargets = {
-      quantity: [quantity, setQuantity],
-      retailOffer: [retailOffer, setRetailOffer],
-      thicknessFilter: [thicknessFilter, setThicknessFilter],
-      widthFilter: [widthFilter, setWidthFilter],
-      heightFilter: [heightFilter, setHeightFilter],
-    };
-
-    if (isNaN(+e.target.value))
-      return numberTargets[numberTarget][1](numberTargets[numberTarget][0]);
-
-    return numberTargets[numberTarget][1](e.target.value.trim());
+  const numberTargets = {
+    quantity: [quantity, setQuantity],
+    retailOffer: [retailOffer, setRetailOffer],
+    thicknessFilter: [thicknessFilter, setThicknessFilter],
+    widthFilter: [widthFilter, setWidthFilter],
+    heightFilter: [heightFilter, setHeightFilter],
   };
 
   useEffect(() => {
@@ -108,7 +101,7 @@ const OrderInfo = ({ order, setOrder }) => {
           className="text-center text-gray-800"
           value={quantity}
           onChange={(e) => {
-            handleNumberInputChange(e, "quantity");
+            handleNumberInputChange(e, "quantity", numberTargets);
           }}
         />
       </div>
@@ -125,7 +118,7 @@ const OrderInfo = ({ order, setOrder }) => {
           className="text-center text-gray-800"
           value={retailOffer}
           onChange={(e) => {
-            handleNumberInputChange(e, "retailOffer");
+            handleNumberInputChange(e, "retailOffer", numberTargets);
           }}
         />
         %
@@ -164,7 +157,7 @@ const OrderInfo = ({ order, setOrder }) => {
             className="w-full text-center text-gray-800"
             value={widthFilter}
             onChange={(e) => {
-              handleNumberInputChange(e, "widthFilter");
+              handleNumberInputChange(e, "widthFilter", numberTargets);
             }}
           />
         </div>
@@ -179,7 +172,7 @@ const OrderInfo = ({ order, setOrder }) => {
             className="w-full text-center text-gray-800"
             value={heightFilter}
             onChange={(e) => {
-              handleNumberInputChange(e, "heightFilter");
+              handleNumberInputChange(e, "heightFilter", numberTargets);
             }}
           />
         </div>
@@ -194,7 +187,7 @@ const OrderInfo = ({ order, setOrder }) => {
             className="w-full text-center text-gray-800"
             value={thicknessFilter}
             onChange={(e) => {
-              handleNumberInputChange(e, "thicknessFilter");
+              handleNumberInputChange(e, "thicknessFilter", numberTargets);
             }}
           />
         </div>

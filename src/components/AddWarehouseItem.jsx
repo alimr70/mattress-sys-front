@@ -6,6 +6,7 @@ import {
   addExistingWarehouseItem,
   addNewWarehouseItem,
 } from "../contexts/warehouseContext/warehouseActions";
+import { handleNumberInputChange } from "../utils";
 
 const AddWarehouseItem = () => {
   const { productsState } = useContext(ProductsStore);
@@ -18,17 +19,10 @@ const AddWarehouseItem = () => {
   const products = Object.values(productsState);
   const productWarehouseId = productsState[productId]?.warehouseId;
 
-  const handleNumberInputChange = (e, numberTarget) => {
-    const numberTargets = {
-      quantity: [quantity, setQuantity],
-      companyDiscount: [companyDiscount, setCompanyDiscount],
-      oldPrice: [oldPrice, setOldPrice],
-    };
-
-    if (isNaN(+e.target.value))
-      return numberTargets[numberTarget][1](numberTargets[numberTarget][0]);
-
-    return numberTargets[numberTarget][1](e.target.value.trim());
+  const numberTargets = {
+    quantity: [quantity, setQuantity],
+    companyDiscount: [companyDiscount, setCompanyDiscount],
+    oldPrice: [oldPrice, setOldPrice],
   };
 
   const handleSubmit = (e) => {
@@ -143,7 +137,7 @@ const AddWarehouseItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={quantity}
           onChange={(e) => {
-            handleNumberInputChange(e, "quantity");
+            handleNumberInputChange(e, "quantity", numberTargets);
           }}
           required
         />
@@ -161,7 +155,7 @@ const AddWarehouseItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={companyDiscount}
           onChange={(e) => {
-            handleNumberInputChange(e, "companyDiscount");
+            handleNumberInputChange(e, "companyDiscount", numberTargets);
           }}
         />
       </div>
@@ -178,7 +172,7 @@ const AddWarehouseItem = () => {
           className="col-span-2 text-center text-gray-800"
           value={oldPrice}
           onChange={(e) => {
-            handleNumberInputChange(e, "oldPrice");
+            handleNumberInputChange(e, "oldPrice", numberTargets);
           }}
           disabled
         />
