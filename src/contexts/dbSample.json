@@ -14,11 +14,11 @@
       "7": "سرير إنتركونتننتال"
     },
     "mattressNames": {
-      "1": "ريترو - سوست متصلة",
-      "2": "جولدن - سوست متصلة",
-      "3": "دودو - سوست متصلة",
-      "4": "سو - سوست منفصلة",
-      "5": "ماريو - طبية بدون سوست",
+      "1": "ريترو",
+      "2": "جولدن",
+      "3": "دودو",
+      "4": "سو",
+      "5": "ماريو",
       "6": "ميموري"
     },
     "pillowNames": {
@@ -42,8 +42,7 @@
     "U4QG5mpfkB": { "id": "U4QG5mpfkB", "type": "مرتبة", "name": "ريترو 90×195×20", "thickness": "20", "width": "90", "height": "195", "price": "1617", "warehouseId": "169841869", "standard": false, "nonStandardCostForSquarMeter": 0 },
     "_NHkm7ooPB": { "id": "_NHkm7ooPB", "type": "مخدة", "name": "فيبر 40×60 625جم", "thickness": "", "width": "40", "height": "60", "price": "99", "warehouseId": "111648", "standard": false, "nonStandardCostForSquarMeter": 0 },
     "PdoNUfd8Gv": { "id": "PdoNUfd8Gv", "type": "مخدة", "name": "فيبر 40×60 750جم", "thickness": "", "width": "40", "height": "60", "price": "104", "warehouseId": "1556984362", "standard": false, "nonStandardCostForSquarMeter": 0 },
-    "U4O9suEFJr": { "id": "U4O9suEFJr", "type": "مخدة", "name": "فيبر 40×60 900جم", "thickness": "", "width": "40", "height": "60", "price": "116", "warehouseId": "618946188", "standard": false, "nonStandardCostForSquarMeter": 0 },
-    "sdlkfj65498d": { "id": "sdlkfj65498d", "type": "مخدة", "name": "ماريو", "thickness": "20", "width": "170", "height": "200", "price": "116", "warehouseId": "68987985", "standard": true, "nonStandardCostForSquarMeter": 1995 }
+    "U4O9suEFJr": { "id": "U4O9suEFJr", "type": "مخدة", "name": "فيبر 40×60 900جم", "thickness": "", "width": "40", "height": "60", "price": "116", "warehouseId": "618946188", "standard": false, "nonStandardCostForSquarMeter": 0 }
   },
   "warehouse": {
     "18949841648": {

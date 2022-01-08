@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
+import Filter from "../components/Filter";
 import Header from "../components/Header";
-import ProductItem from "../components/ProductItem";
 import { ProductsStore } from "../contexts/productsContext";
 
 const Products = () => {
   const { productsState } = useContext(ProductsStore);
   const products = Object.values(productsState);
+
   return (
     <>
       <Header />
@@ -17,13 +18,14 @@ const Products = () => {
         </Link>
       </div>
       <Container title="المنتجات">
-        <div>
+        <Filter toBeFilteredArr={products} />
+        {/* <div>
           <ul className="flex justify-end flex-col">
             {products.map((product) => {
               return <ProductItem key={product.id} product={product} />;
             })}
           </ul>
-        </div>
+        </div> */}
       </Container>
     </>
   );
