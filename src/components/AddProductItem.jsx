@@ -1,6 +1,5 @@
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
-import { useContext } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react";
 import { GeneralTypesStore } from "../contexts/generalTypesContext";
 import { addSerialNumber } from "../contexts/generalTypesContext/generalTypesActions";
 import { ProductsStore } from "../contexts/productsContext";

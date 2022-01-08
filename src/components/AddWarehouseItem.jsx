@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useContext } from "react/cjs/react.development";
+import { useContext, useState } from "react";
 import { ProductsStore } from "../contexts/productsContext";
 import { WarehouseStore } from "../contexts/warehouseContext";
 import {
