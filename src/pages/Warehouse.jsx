@@ -1,12 +1,19 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
+import Filter from "../components/Filter";
 import Header from "../components/Header";
-import WarehouseItem from "../components/WarehouseItem";
-import { WarehouseStore } from "../contexts/warehouseContext";
+import { ProductsStore } from "../contexts/productsContext";
+// import { WarehouseStore } from "../contexts/warehouseContext";
+// import WarehouseItem from "../components/WarehouseItem";
 
 const Warehouse = () => {
-  const { warehouseState } = useContext(WarehouseStore);
+  // const { warehouseState } = useContext(WarehouseStore);
+  // const warehouseItems = Object.values(warehouseState);
+
+  const { productsState } = useContext(ProductsStore);
+  const products = Object.values(productsState);
+
   return (
     <>
       <Header />
@@ -16,13 +23,14 @@ const Warehouse = () => {
         </Link>
       </div>
       <Container title="المخزن">
-        <div>
+        <Filter toBeFilteredArr={products} />
+        {/* <div>
           <ul className="flex justify-end flex-col">
             {Object.values(warehouseState).map((item) => {
               return <WarehouseItem key={item.id} item={item} />;
             })}
           </ul>
-        </div>
+        </div> */}
       </Container>
     </>
   );
