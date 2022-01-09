@@ -18,7 +18,7 @@ const Products = () => {
         </Link>
       </div>
       <Container title="المنتجات">
-        <Filter toBeFilteredArr={products} />
+        <Filter toBeFilteredProductsArr={products} />
         {/* <div>
           <ul className="flex justify-end flex-col">
             {products.map((product) => {

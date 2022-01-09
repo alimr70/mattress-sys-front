@@ -23,7 +23,7 @@ const Warehouse = () => {
         </Link>
       </div>
       <Container title="المخزن">
-        <Filter toBeFilteredArr={products} />
+        <Filter toBeFilteredProductsArr={products} />
         {/* <div>
           <ul className="flex justify-end flex-col">
             {Object.values(warehouseState).map((item) => {

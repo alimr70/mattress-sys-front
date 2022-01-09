@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Products from "./pages/Products";
 import Warehouse from "./pages/Warehouse";
 import Invoices from "./pages/Invoices";
@@ -16,6 +16,7 @@ function App() {
         <Route path="invoices" element={<Invoices />} />
         <Route path="addtowarehouse" element={<AddToWarehouse />} />
         <Route path="addinvoice" element={<AddInvoice />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </div>
   );
