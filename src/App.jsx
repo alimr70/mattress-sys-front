@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Products from "./pages/Products";
 import Warehouse from "./pages/Warehouse";
 import Invoices from "./pages/Invoices";
@@ -7,6 +7,10 @@ import AddToWarehouse from "./pages/AddToWarehouse";
 import AddInvoice from "./pages/AddInvoice";
 import Login from "./pages/Login";
 import RequireAuth from "./components/RequireAuth";
+import NotFound from "./pages/NotFound";
+import NotAuth from "./pages/NotAuth";
+import RequireRole from "./components/RequireRole";
+import Logout from "./pages/Logout";
 function App() {
   return (
     <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
@@ -19,7 +23,6 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="login" element={<Login />} />
         <Route
           path="products"
           element={
@@ -32,7 +35,9 @@ function App() {
           path="addproduct"
           element={
             <RequireAuth>
-              <AddProduct />
+              <RequireRole roles={["programmer"]}>
+                <AddProduct />
+              </RequireRole>
             </RequireAuth>
           }
         />
@@ -56,7 +61,9 @@ function App() {
           path="addtowarehouse"
           element={
             <RequireAuth>
-              <AddToWarehouse />
+              <RequireRole roles={["programmer", "manager"]}>
+                <AddToWarehouse />
+              </RequireRole>
             </RequireAuth>
           }
         />
@@ -64,11 +71,16 @@ function App() {
           path="addinvoice"
           element={
             <RequireAuth>
-              <AddInvoice />
+              <RequireRole roles={["programmer", "manager"]}>
+                <AddInvoice />
+              </RequireRole>
             </RequireAuth>
           }
         />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="login" element={<Login />} />
+        <Route path="logout" element={<Logout />} />
+        <Route path="notauth" element={<NotAuth />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

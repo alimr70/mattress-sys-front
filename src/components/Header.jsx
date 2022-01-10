@@ -45,10 +45,10 @@ const Header = () => {
             <li className="px-5">المخزن</li>
           </Link>
           <Link to="/products">
-            <li className="px-5 pl-2">المنتجات</li>
+            <li className="px-5">المنتجات</li>
           </Link>
           <span>|</span>
-          <li className="px-2">
+          <li className="px-5">
             مرحبا {authState.username}{" "}
             <button
               className="px-1 bg-red-500 rounded-md"

@@ -51,7 +51,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
         filters
       );
       setFilteredProductsArr(filteredProductsArr);
-    }, 500);
+    }, 300);
 
     return () => {
       clearTimeout(delay);

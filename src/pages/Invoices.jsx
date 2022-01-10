@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Container from "../components/Container";
 import Filter from "../components/Filter";
 import Header from "../components/Header";
-import InvoiceItem from "../components/InvoiceItem";
 import { InvoicesStore } from "../contexts/invoicesContext";
 
 const Invoices = () => {

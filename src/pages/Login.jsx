@@ -32,12 +32,6 @@ const Login = () => {
       navigate(from, { replace: true });
     }
 
-    console.log({
-      username,
-      password,
-      role,
-    });
-
     return setPassWord("") + setUserName("");
   }
 
