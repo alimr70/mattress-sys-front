@@ -8,19 +8,22 @@ import { GeneralTypesStoreProvider } from "./contexts/generalTypesContext";
 import { ProductsStoreProvider } from "./contexts/productsContext";
 import { WarehouseStoreProvider } from "./contexts/warehouseContext";
 import { InvoicesStoreProvider } from "./contexts/invoicesContext";
+import { AuthStoreProvider } from "./contexts/authContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GeneralTypesStoreProvider>
-        <ProductsStoreProvider>
-          <WarehouseStoreProvider>
-            <InvoicesStoreProvider>
-              <App />
-            </InvoicesStoreProvider>
-          </WarehouseStoreProvider>
-        </ProductsStoreProvider>
-      </GeneralTypesStoreProvider>
+      <AuthStoreProvider>
+        <GeneralTypesStoreProvider>
+          <ProductsStoreProvider>
+            <WarehouseStoreProvider>
+              <InvoicesStoreProvider>
+                <App />
+              </InvoicesStoreProvider>
+            </WarehouseStoreProvider>
+          </ProductsStoreProvider>
+        </GeneralTypesStoreProvider>
+      </AuthStoreProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

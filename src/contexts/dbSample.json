@@ -1,4 +1,8 @@
 {
+  "auth": {
+    "username": "",
+    "role": ""
+  },
   "generalTypes": {
     "serialNumbers": {
       "warehouseSerials": ["0000"],

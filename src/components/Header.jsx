@@ -1,7 +1,11 @@
 import { MenuIcon } from "@heroicons/react/solid";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthStore } from "../contexts/authContext";
+import { logout } from "../contexts/authContext/authActions";
 const Header = () => {
+  let { authDispatch } = useContext(AuthStore);
+  const { authState } = useContext(AuthStore);
   const [openMenu, setOpenMenu] = useState(false);
   const isMenuOpen = openMenu ? "" : "hidden";
   return (
@@ -20,8 +24,17 @@ const Header = () => {
             <li className="px-5">المخزن</li>
           </Link>
           <Link to="/products" className="my-2">
-            <li className="px-5">المنتجات</li>
+            <li className="px-5 pl-2">المنتجات</li>
           </Link>
+          <span className="hidden sm:block">|</span>
+          <li className="px-2">
+            مرحبا {authState.username}{" "}
+            <button
+              className="p-1 bg-red-500 rounded-md"
+              onClick={() => authDispatch(logout())}>
+              تسجيل الخروج
+            </button>
+          </li>
         </ul>
 
         <ul className="hidden sm:flex flex-col xs:flex-row">
@@ -32,8 +45,17 @@ const Header = () => {
             <li className="px-5">المخزن</li>
           </Link>
           <Link to="/products">
-            <li className="px-5">المنتجات</li>
+            <li className="px-5 pl-2">المنتجات</li>
           </Link>
+          <span>|</span>
+          <li className="px-2">
+            مرحبا {authState.username}{" "}
+            <button
+              className="px-1 bg-red-500 rounded-md"
+              onClick={() => authDispatch(logout())}>
+              تسجيل الخروج
+            </button>
+          </li>
         </ul>
       </nav>
 
