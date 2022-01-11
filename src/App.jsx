@@ -11,7 +11,7 @@ import NotFound from "./pages/NotFound";
 import NotAuth from "./pages/NotAuth";
 import RequireRole from "./components/RequireRole";
 import Logout from "./pages/Logout";
-import EditProductItem from "./components/EditProductItem";
+import DetailsAndEdit from "./pages/DetailsAndEdit";
 function App() {
   return (
     <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
@@ -24,19 +24,21 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route
-          path="products"
-          element={
-            <RequireAuth>
-              <Products />
-            </RequireAuth>
-          }>
+        <Route path="products">
           <Route
-            path="products/:productId"
+            index
+            element={
+              <RequireAuth>
+                <Products />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/products/:productId"
             element={
               <RequireAuth>
                 <RequireRole roles={["programmer"]}>
-                  <EditProductItem />
+                  <DetailsAndEdit />
                 </RequireRole>
               </RequireAuth>
             }
