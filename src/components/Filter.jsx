@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { GeneralTypesStore } from "../contexts/generalTypesContext";
 import { WarehouseStore } from "../contexts/warehouseContext";
 import { handleNumberInputChange, repeatedFilter } from "../utils";
@@ -210,7 +210,11 @@ const Filter = ({ toBeFilteredProductsArr }) => {
         <ul className="flex justify-end flex-col">
           {pathname === "/products" &&
             filteredProductsArr.map((product) => {
-              return <ProductItem key={product.id} product={product} />;
+              return (
+                <Link to={`/products/${product.id}`} key={product.id}>
+                  <ProductItem product={product} />
+                </Link>
+              );
             })}
           {pathname === "/warehouse" &&
             filteredProductsArr

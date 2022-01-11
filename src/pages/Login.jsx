@@ -17,15 +17,15 @@ const Login = () => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (password === process.env.REACT_APP_PROGRAMMER_PS) {
-      setRole("programmer");
-    }
-    if (password === process.env.REACT_APP_MANAGER_PS) {
-      setRole("manager");
-    }
-    if (password === process.env.REACT_APP_ACCOUNTANT_PS) {
-      setRole("accountant");
-    }
+    // if (password === process.env.REACT_APP_PROGRAMMER_PS) {
+    //   setRole("programmer");
+    // }
+    // if (password === process.env.REACT_APP_MANAGER_PS) {
+    //   setRole("manager");
+    // }
+    // if (password === process.env.REACT_APP_ACCOUNTANT_PS) {
+    //   setRole("accountant");
+    // }
 
     if (username !== "" && role !== "") {
       authDispatch(login({ username, role }));
@@ -36,6 +36,7 @@ const Login = () => {
   }
 
   useEffect(() => {
+    setRole("");
     if (password === process.env.REACT_APP_PROGRAMMER_PS) {
       return setRole("programmer");
     }
