@@ -41,3 +41,11 @@ export const handleNumberInputChange = (e, numberTarget, targetsArr) => {
 
   return targetsArr[numberTarget][1](e.target.value.trim());
 };
+
+export const getTotalAvailableItems = (arr) => {
+  let number = 0;
+  arr.forEach((el) => {
+    number += el.quantity;
+  });
+  return number;
+};

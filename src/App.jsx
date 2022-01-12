@@ -37,7 +37,7 @@ function App() {
             path="/products/:productId"
             element={
               <RequireAuth>
-                <RequireRole roles={["programmer"]}>
+                <RequireRole roles={["programmer", "manager"]}>
                   <DetailsAndEdit />
                 </RequireRole>
               </RequireAuth>
@@ -54,14 +54,26 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route
-          path="warehouse"
-          element={
-            <RequireAuth>
-              <Warehouse />
-            </RequireAuth>
-          }
-        />
+        <Route path="warehouse">
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Warehouse />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/warehouse/:warehouseItemId"
+            element={
+              <RequireAuth>
+                <RequireRole roles={["programmer", "manager"]}>
+                  <DetailsAndEdit />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+        </Route>
         <Route
           path="invoices"
           element={

@@ -223,10 +223,13 @@ const Filter = ({ toBeFilteredProductsArr }) => {
               )
               .map((filteredProduct) => {
                 return (
-                  <WarehouseItem
-                    key={filteredProduct.warehouseId}
-                    item={warehouseState[filteredProduct.warehouseId]}
-                  />
+                  <Link
+                    to={`/warehouse/${filteredProduct.warehouseId}`}
+                    key={filteredProduct.warehouseId}>
+                    <WarehouseItem
+                      item={warehouseState[filteredProduct.warehouseId]}
+                    />
+                  </Link>
                 );
               })}
           {pathname === "/invoices" &&

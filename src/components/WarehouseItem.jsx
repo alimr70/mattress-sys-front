@@ -1,13 +1,6 @@
 import { useContext } from "react";
 import { ProductsStore } from "../contexts/productsContext";
-
-const getTotalAvailableItems = (arr) => {
-  let number = 0;
-  arr.forEach((el) => {
-    number += el.quantity;
-  });
-  return number;
-};
+import { getTotalAvailableItems } from "../utils";
 
 const WarehouseItem = ({ item }) => {
   const { productId, availability } = item;

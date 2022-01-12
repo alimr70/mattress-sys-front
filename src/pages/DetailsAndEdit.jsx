@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "../components/Container";
+import DetailWarehouseItem from "../components/DetailWarehouseItem";
 import EditProductItem from "../components/EditProductItem";
 import Header from "../components/Header";
 
@@ -13,19 +14,22 @@ const DetailsAndEdit = () => {
     <>
       <Header />
       <Container title={"تفاصيل وتعديل"}>
-        <div>
-          <label htmlFor="editMode">تفعيل وضع التعديل</label>
-          <input
-            type="checkbox"
-            name="editMode"
-            id="editMode"
-            checked={isEditMode}
-            onChange={() => setIsEditMode(!isEditMode)}
-          />
-        </div>
+        {!location.pathname.startsWith("/warehouse") && (
+          <div>
+            <label htmlFor="editMode">تفعيل وضع التعديل</label>
+            <input
+              type="checkbox"
+              name="editMode"
+              id="editMode"
+              checked={isEditMode}
+              onChange={() => setIsEditMode(!isEditMode)}
+            />
+          </div>
+        )}
         {location.pathname.startsWith("/products") && (
           <EditProductItem isEditMode={isEditMode} />
         )}
+        {location.pathname.startsWith("/warehouse") && <DetailWarehouseItem />}
       </Container>
     </>
   );
