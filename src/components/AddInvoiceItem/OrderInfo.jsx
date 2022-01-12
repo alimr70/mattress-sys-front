@@ -216,7 +216,9 @@ const OrderInfo = ({ order, setOrder }) => {
                         totalQuantityPrice:
                           retailOffer !== ""
                             ? item.price -
-                              (item.price * quantity * +retailOffer) / 100
+                              Math.ceil(
+                                (item.price * quantity * +retailOffer) / 100
+                              )
                             : item.price * quantity,
                       },
                     ]);

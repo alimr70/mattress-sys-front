@@ -94,7 +94,7 @@ const EditInvoice = ({ isEditMode }) => {
                         المنتج: {productsState[orderItem.productId].name}
                       </span>
                       <span>الكمية: {orderItem.quantity}</span>
-                      <span>خصم للمنتج: {orderItem.retailOffer}</span>
+                      <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
                       <span>سعر قديم: {orderItem.oldPrice.price}</span>
                       <span>
                         كمية السعر القديم: {orderItem.oldPrice.quantity}
@@ -107,25 +107,25 @@ const EditInvoice = ({ isEditMode }) => {
                 );
               })}
             </div>
-            <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">خصم المعرض: </span>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">خصم المعرض:- </span>
               <span className="justify-self-start">
-                {invoiceItem.totalRetailOffer.name} اسم الخصم:
+                اسم الخصم: {invoiceItem.totalRetailOffer.name}
               </span>
               <span className="justify-self-start">
-                {invoiceItem.totalRetailOffer.percentage} نسبة:
+                نسبة: {invoiceItem.totalRetailOffer.percentage}
               </span>
               <span className="justify-self-start">
-                {invoiceItem.totalRetailOffer.fixed} قيمة:
+                قيمة محددة: {invoiceItem.totalRetailOffer.fixed}
               </span>
             </div>
-            <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">النقل: </span>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">النقل:- </span>
               <span className="justify-self-start">
-                {invoiceItem.shipmentCharge.shipmentOnCst} علي العميل:
+                علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
               </span>
               <span className="justify-self-start">
-                {invoiceItem.shipmentCharge.shipmentOnRetail} علي المعرض:
+                علي المعرض: {invoiceItem.shipmentCharge.shipmentOnRetail}
               </span>
             </div>
             <div className="col-span-1 grid grid-cols-2 gap-2">

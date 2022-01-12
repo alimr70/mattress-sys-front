@@ -46,7 +46,7 @@ const ReviewInvoice = ({
     if (totalRetailOfferAmountPrecentage !== "") {
       afterOfferNum =
         beforeOfferNum -
-        Math.floor((beforeOfferNum * +totalRetailOfferAmountPrecentage) / 100);
+        Math.ceil((beforeOfferNum * +totalRetailOfferAmountPrecentage) / 100);
     } else if (totalRetailOfferAmountFixed !== "") {
       afterOfferNum = beforeOfferNum - +totalRetailOfferAmountFixed;
     } else {
@@ -83,7 +83,7 @@ const ReviewInvoice = ({
     : totalRetailOfferName + " " + totalRetailOfferAmountFixed + "جم";
 
   const totalOfferValue = totalRetailOfferAmountPrecentage
-    ? Math.floor(
+    ? Math.ceil(
         (totalBeforeRetailOffer * +totalRetailOfferAmountPrecentage) / 100
       )
     : totalRetailOfferAmountFixed;
