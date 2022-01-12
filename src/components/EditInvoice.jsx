@@ -1,11 +1,15 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { InvoicesStore } from "../contexts/invoicesContext";
+import { ProductsStore } from "../contexts/productsContext";
 import { handleNumberInputChange } from "../utils";
 
 const EditInvoice = ({ isEditMode }) => {
   const { invoiceId } = useParams();
   const { invoicesState } = useContext(InvoicesStore);
+
+  const { productsState } = useContext(ProductsStore);
+
   const invoiceItem = invoicesState[invoiceId];
   console.log(invoiceItem);
   const handleEdit = () => {};
@@ -79,6 +83,29 @@ const EditInvoice = ({ isEditMode }) => {
               <span className="justify-self-start">
                 {invoiceItem.receiptDate}
               </span>
+            </div>
+            <div className="col-span-1 border-2 border-gray-400">
+              <span className="justify-self-end">الأوردر: </span>
+              {invoiceItem.order.map((orderItem) => {
+                return (
+                  <>
+                    <div className="m-2 flex flex-col border-2 border-gray-400">
+                      <span>
+                        المنتج: {productsState[orderItem.productId].name}
+                      </span>
+                      <span>الكمية: {orderItem.quantity}</span>
+                      <span>خصم للمنتج: {orderItem.retailOffer}</span>
+                      <span>سعر قديم: {orderItem.oldPrice.price}</span>
+                      <span>
+                        كمية السعر القديم: {orderItem.oldPrice.quantity}
+                      </span>
+                      <span>
+                        إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}
+                      </span>
+                    </div>
+                  </>
+                );
+              })}
             </div>
             <div className="col-span-1 grid grid-cols-2 gap-2">
               <span className="justify-self-end">خصم المعرض: </span>
