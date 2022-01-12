@@ -234,7 +234,11 @@ const Filter = ({ toBeFilteredProductsArr }) => {
               })}
           {pathname === "/invoices" &&
             filteredProductsArr.map((item) => {
-              return <InvoiceItem key={item.id} item={item} />;
+              return (
+                <Link to={`/invoices/${item.id}`} key={item.id}>
+                  <InvoiceItem item={item} />
+                </Link>
+              );
             })}
         </ul>
       </div>

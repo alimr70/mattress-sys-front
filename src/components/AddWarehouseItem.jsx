@@ -13,7 +13,6 @@ const AddWarehouseItem = () => {
   const [productId, setProductId] = useState("");
   const [quantity, setQuantity] = useState("");
   const [companyDiscount, setCompanyDiscount] = useState("25");
-  const [oldPrice, setOldPrice] = useState("");
 
   const products = Object.values(productsState);
   const productWarehouseId = productsState[productId]?.warehouseId;
@@ -21,25 +20,16 @@ const AddWarehouseItem = () => {
   const numberTargets = {
     quantity: [quantity, setQuantity],
     companyDiscount: [companyDiscount, setCompanyDiscount],
-    oldPrice: [oldPrice, setOldPrice],
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const customCost =
-    // oldPrice !== "" ? [{ quantity: quantity, cost: +oldPrice }] : [];
+
     const foundTargetWarehouseItem = warehouseState[productWarehouseId];
     if (foundTargetWarehouseItem) {
       const targetCompanyDiscount =
         foundTargetWarehouseItem.availability[companyDiscount];
 
-      const customCost =
-        oldPrice !== ""
-          ? [
-              ...targetCompanyDiscount.customCostOnRetail,
-              { quantity: quantity, cost: +oldPrice },
-            ]
-          : [...targetCompanyDiscount.customCostOnRetail];
       if (targetCompanyDiscount) {
         const item = {
           ...foundTargetWarehouseItem,
@@ -48,7 +38,6 @@ const AddWarehouseItem = () => {
             [targetCompanyDiscount.companyDiscount]: {
               ...targetCompanyDiscount,
               quantity: targetCompanyDiscount.quantity + +quantity,
-              customCostOnRetail: customCost,
             },
           },
         };
@@ -62,7 +51,6 @@ const AddWarehouseItem = () => {
             [companyDiscount]: {
               quantity,
               companyDiscount,
-              customCostOnRetail: customCost,
             },
           },
         };
@@ -70,13 +58,10 @@ const AddWarehouseItem = () => {
         warehouseDispatch(addExistingWarehouseItem(item));
       }
     } else {
-      const customCost =
-        oldPrice !== "" ? [{ quantity: +quantity, cost: +oldPrice }] : [];
       let availability = {
         [companyDiscount]: {
           quantity: +quantity,
           companyDiscount: +companyDiscount,
-          customCostOnRetail: customCost,
         },
       };
 
@@ -90,7 +75,6 @@ const AddWarehouseItem = () => {
     setProductId("");
     setQuantity("");
     setCompanyDiscount("25");
-    setOldPrice("");
   };
   return (
     <form
@@ -156,24 +140,6 @@ const AddWarehouseItem = () => {
           onChange={(e) => {
             handleNumberInputChange(e, "companyDiscount", numberTargets);
           }}
-        />
-      </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="oldPrice" className="m-2 col-span-1 justify-self-start">
-          سعر قديم؟
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="oldPrice"
-          id="oldPrice"
-          className="col-span-2 text-center text-gray-800"
-          value={oldPrice}
-          onChange={(e) => {
-            handleNumberInputChange(e, "oldPrice", numberTargets);
-          }}
-          disabled
         />
       </div>
       <div className="flex justify-center">

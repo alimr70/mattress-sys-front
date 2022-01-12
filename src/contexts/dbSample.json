@@ -53,36 +53,36 @@
       "id": "18949841648",
       "productId": "Tadzn6pils",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
-        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
-        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
-        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
-        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
-        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+        "25": { "quantity": 3, "companyDiscount": 25 },
+        "30": { "quantity": 1, "companyDiscount": 30 },
+        "35": { "quantity": 3, "companyDiscount": 35 },
+        "40": { "quantity": 1, "companyDiscount": 40 },
+        "45": { "quantity": 3, "companyDiscount": 45 },
+        "50": { "quantity": 1, "companyDiscount": 50 }
       }
     },
     "618946188": {
       "id": "618946188",
       "productId": "U4O9suEFJr",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
-        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
-        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
-        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
-        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
-        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+        "25": { "quantity": 3, "companyDiscount": 25 },
+        "30": { "quantity": 1, "companyDiscount": 30 },
+        "35": { "quantity": 3, "companyDiscount": 35 },
+        "40": { "quantity": 1, "companyDiscount": 40 },
+        "45": { "quantity": 3, "companyDiscount": 45 },
+        "50": { "quantity": 1, "companyDiscount": 50 }
       }
     },
     "169841869": {
       "id": "169841869",
       "productId": "U4QG5mpfkB",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25, "customCostOnRetail": [] },
-        "30": { "quantity": 1, "companyDiscount": 30, "customCostOnRetail": [] },
-        "35": { "quantity": 3, "companyDiscount": 35, "customCostOnRetail": [] },
-        "40": { "quantity": 1, "companyDiscount": 40, "customCostOnRetail": [] },
-        "45": { "quantity": 3, "companyDiscount": 45, "customCostOnRetail": [] },
-        "50": { "quantity": 1, "companyDiscount": 50, "customCostOnRetail": [] }
+        "25": { "quantity": 3, "companyDiscount": 25 },
+        "30": { "quantity": 1, "companyDiscount": 30 },
+        "35": { "quantity": 3, "companyDiscount": 35 },
+        "40": { "quantity": 1, "companyDiscount": 40 },
+        "45": { "quantity": 3, "companyDiscount": 45 },
+        "50": { "quantity": 1, "companyDiscount": 50 }
       }
     }
   },
@@ -99,12 +99,20 @@
           "productId": "65148947561",
           "quantity": 2,
           "retailOffer": 0,
+          "oldPrice": {
+            "price": 4150,
+            "quantity": 1
+          },
           "totalQuantityPrice": 8500
         },
         {
           "productId": "65148947561",
           "quantity": 3,
           "retailOffer": 0,
+          "oldPrice": {
+            "price": 0,
+            "quantity": 1
+          },
           "totalQuantityPrice": 250
         }
       ],
@@ -123,6 +131,7 @@
         "fixed": 500
       },
       "totalInvoicePrice": "17750",
+
       "paidMoney": "10,000",
       "remainingMoney": "7750",
       "totalPriceOnRetail": "13400",

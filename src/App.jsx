@@ -74,14 +74,26 @@ function App() {
             }
           />
         </Route>
-        <Route
-          path="invoices"
-          element={
-            <RequireAuth>
-              <Invoices />
-            </RequireAuth>
-          }
-        />
+        <Route path="invoices">
+          <Route
+            index
+            element={
+              <RequireAuth>
+                <Invoices />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/invoices/:invoiceId"
+            element={
+              <RequireAuth>
+                <RequireRole roles={["programmer", "manager"]}>
+                  <DetailsAndEdit />
+                </RequireRole>
+              </RequireAuth>
+            }
+          />
+        </Route>
         <Route
           path="addtowarehouse"
           element={

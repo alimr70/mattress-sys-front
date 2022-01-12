@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Container from "../components/Container";
 import DetailWarehouseItem from "../components/DetailWarehouseItem";
+import EditInvoice from "../components/EditInvoice";
 import EditProductItem from "../components/EditProductItem";
 import Header from "../components/Header";
 
@@ -30,6 +31,7 @@ const DetailsAndEdit = () => {
           <EditProductItem isEditMode={isEditMode} />
         )}
         {location.pathname.startsWith("/warehouse") && <DetailWarehouseItem />}
+        {location.pathname.startsWith("/invoices") && <EditInvoice />}
       </Container>
     </>
   );
