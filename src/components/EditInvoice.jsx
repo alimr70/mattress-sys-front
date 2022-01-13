@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import { ProductsStore } from "../contexts/productsContext";
-import { handleNumberInputChange } from "../utils";
+import { englishTypesToArabic, handleNumberInputChange } from "../utils";
 
 const EditInvoice = ({ isEditMode }) => {
   const { invoiceId } = useParams();
@@ -18,6 +18,9 @@ const EditInvoice = ({ isEditMode }) => {
       <div className="max-w-sm mx-auto grid grid-cols-1 gap-2">
         <div className="col-span-1 justify-self-center text-2xl">
           تفاصيل الفاتورة
+        </div>
+        <div className="col-span-1 justify-self-center text-2xl">
+          حالة الفاتورة: {invoiceItem.status}
         </div>
         {isEditMode ? (
           <>
@@ -86,24 +89,25 @@ const EditInvoice = ({ isEditMode }) => {
             </div>
             <div className="col-span-1 border-2 border-gray-400">
               <span className="justify-self-end">الأوردر: </span>
-              {invoiceItem.order.map((orderItem) => {
+              {invoiceItem.order.map((orderItem, index) => {
+                let productItem = productsState[orderItem.productId];
                 return (
-                  <>
-                    <div className="m-2 flex flex-col border-2 border-gray-400">
-                      <span>
-                        المنتج: {productsState[orderItem.productId].name}
-                      </span>
-                      <span>الكمية: {orderItem.quantity}</span>
-                      <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
-                      <span>سعر قديم: {orderItem.oldPrice.price}</span>
-                      <span>
-                        كمية السعر القديم: {orderItem.oldPrice.quantity}
-                      </span>
-                      <span>
-                        إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}
-                      </span>
-                    </div>
-                  </>
+                  <div
+                    key={index}
+                    className="m-2 flex flex-col border-2 border-gray-400">
+                    <span>
+                      المنتج: {productItem.type + " " + productItem.name}
+                    </span>
+                    <span>الكمية: {orderItem.quantity}</span>
+                    <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
+                    <span>سعر قديم: {orderItem.oldPrice.price}</span>
+                    <span>
+                      كمية السعر القديم: {orderItem.oldPrice.quantity}
+                    </span>
+                    <span>
+                      إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}
+                    </span>
+                  </div>
                 );
               })}
             </div>
@@ -128,10 +132,39 @@ const EditInvoice = ({ isEditMode }) => {
                 علي المعرض: {invoiceItem.shipmentCharge.shipmentOnRetail}
               </span>
             </div>
-            <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">الإجمالي: </span>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">
+                طريقة الدفع:{" "}
+                {englishTypesToArabic[invoiceItem.paymentMethod.method]}
+              </span>
+              <span className="justify-self-end">
+                المدفوع اونلاين: {invoiceItem.paymentMethod.cardAmound}
+              </span>
+              <span className="justify-self-end">
+                المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">
+                الإجمالي: {invoiceItem.totalInvoicePrice}
+              </span>
+              <span className="justify-self-end">
+                المدفوع: {invoiceItem.paidMoney}
+              </span>
+              <span className="justify-self-end">
+                المتبقي: {invoiceItem.remainingMoney}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">تقفيل الفاتورة:- </span>
               <span className="justify-self-start">
-                {invoiceItem.totalInvoicePrice}
+                إجمالي الفاتورة: {invoiceItem.totalInvoicePrice}
+              </span>
+              <span className="justify-self-start">
+                تكلفة الفاتورة علي المعرض: {invoiceItem.totalPriceOnRetail}
+              </span>
+              <span className="justify-self-start">
+                صافي ربح الفاتورة: {invoiceItem.totalProfit}
               </span>
             </div>
           </>

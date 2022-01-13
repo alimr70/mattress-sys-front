@@ -1,3 +1,5 @@
+import { englishTypesToArabic } from "../utils";
+
 const InvoiceItem = ({ item }) => {
   const {
     id,
@@ -43,7 +45,9 @@ const InvoiceItem = ({ item }) => {
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           طريقة الدفع:{" "}
-          <span className="text-blue-500">{paymentMethod.method}</span>
+          <span className="text-blue-500">
+            {englishTypesToArabic[paymentMethod.method]}
+          </span>
         </p>
         <p className="m-1">
           تكلفة النقل علي العميل:

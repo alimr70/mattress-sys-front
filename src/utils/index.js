@@ -49,3 +49,12 @@ export const getTotalAvailableItems = (arr) => {
   });
   return number;
 };
+
+export const englishTypesToArabic = {
+  pending: "معلقة",
+  completed: "مقفولة",
+  deleted: "ملغية",
+  cash: "كاش",
+  card: "كارت أونلاين",
+  cashAndCard: "جزء كاش وجزء أونلاين",
+}
