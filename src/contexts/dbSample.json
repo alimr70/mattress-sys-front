@@ -54,11 +54,9 @@
       "productId": "Tadzn6pils",
       "availability": {
         "25": { "quantity": 3, "companyDiscount": 25 },
-        "30": { "quantity": 1, "companyDiscount": 30 },
-        "35": { "quantity": 3, "companyDiscount": 35 },
-        "40": { "quantity": 1, "companyDiscount": 40 },
-        "45": { "quantity": 3, "companyDiscount": 45 },
-        "50": { "quantity": 1, "companyDiscount": 50 }
+        "30": { "quantity": 0, "companyDiscount": 30 },
+        "35": { "quantity": 0, "companyDiscount": 35 },
+        "40": { "quantity": 0, "companyDiscount": 40 }
       }
     },
     "618946188": {
@@ -67,10 +65,8 @@
       "availability": {
         "25": { "quantity": 3, "companyDiscount": 25 },
         "30": { "quantity": 1, "companyDiscount": 30 },
-        "35": { "quantity": 3, "companyDiscount": 35 },
-        "40": { "quantity": 1, "companyDiscount": 40 },
-        "45": { "quantity": 3, "companyDiscount": 45 },
-        "50": { "quantity": 1, "companyDiscount": 50 }
+        "35": { "quantity": 0, "companyDiscount": 35 },
+        "40": { "quantity": 0, "companyDiscount": 40 }
       }
     },
     "169841869": {
@@ -79,10 +75,8 @@
       "availability": {
         "25": { "quantity": 3, "companyDiscount": 25 },
         "30": { "quantity": 1, "companyDiscount": 30 },
-        "35": { "quantity": 3, "companyDiscount": 35 },
-        "40": { "quantity": 1, "companyDiscount": 40 },
-        "45": { "quantity": 3, "companyDiscount": 45 },
-        "50": { "quantity": 1, "companyDiscount": 50 }
+        "35": { "quantity": 0, "companyDiscount": 35 },
+        "40": { "quantity": 0, "companyDiscount": 40 }
       }
     }
   },
@@ -100,21 +94,29 @@
           "productId": "PdoNUfd8Gv",
           "quantity": 2,
           "retailOffer": 0,
-          "oldPrice": {
-            "price": 4150,
-            "quantity": 1
-          },
+          "priceOnRetailOrOld": [{
+              "price": 4250,
+              "quantity": 1,
+              "companyDiscount": 25
+            },
+            {
+              "price": 4250,
+              "quantity": 1,
+              "companyDiscount": 30
+            }
+          ],
           "totalQuantityPrice": 8500
         },
         {
           "productId": "U4O9suEFJr",
           "quantity": 3,
           "retailOffer": 0,
-          "oldPrice": {
-            "price": 0,
-            "quantity": 1
-          },
-          "totalQuantityPrice": 250
+          "priceOnRetailOrOld": [{
+            "price": 100,
+            "quantity": 3,
+            "companyDiscount": 25
+          }],
+          "totalQuantityPrice": 300
         }
       ],
       "paymentMethod": {

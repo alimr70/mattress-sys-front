@@ -2,12 +2,18 @@ import { PlusCircleIcon, TrashIcon } from "@heroicons/react/solid";
 import { useContext, useEffect, useState } from "react";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
-import { handleNumberInputChange, repeatedFilter } from "../../utils/index";
+import { WarehouseStore } from "../../contexts/warehouseContext";
+import {
+  getOrderDetailsFromWarehouse,
+  handleNumberInputChange,
+  repeatedFilter,
+} from "../../utils/index";
 import ProductItem from "../ProductItem";
 
 const OrderInfo = ({ order, setOrder }) => {
   const { generalTypesState } = useContext(GeneralTypesStore);
   const { productsState } = useContext(ProductsStore);
+  const { warehouseState } = useContext(WarehouseStore);
   const productTypes = Object.values(generalTypesState.productTypes);
 
   const [quantity, setQuantity] = useState("1");
@@ -209,10 +215,13 @@ const OrderInfo = ({ order, setOrder }) => {
                         warehouseId: item.warehouseId,
                         quantity: quantity,
                         retailOffer: retailOffer === "" ? 0 : +retailOffer,
-                        oldPrice: {
-                          price: 0,
-                          quantity: 0,
-                        },
+                        priceOnRetailOrOld: getOrderDetailsFromWarehouse(
+                          warehouseState[item.warehouseId] !== undefined
+                            ? warehouseState[item.warehouseId]
+                            : undefined,
+                          quantity,
+                          item.price
+                        ),
                         totalQuantityPrice:
                           retailOffer !== ""
                             ? item.price -

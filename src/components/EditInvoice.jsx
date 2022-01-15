@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import { ProductsStore } from "../contexts/productsContext";
@@ -7,11 +7,15 @@ import { englishTypesToArabic, handleNumberInputChange } from "../utils";
 const EditInvoice = ({ isEditMode }) => {
   const { invoiceId } = useParams();
   const { invoicesState } = useContext(InvoicesStore);
-
   const { productsState } = useContext(ProductsStore);
-
   const invoiceItem = invoicesState[invoiceId];
-  console.log(invoiceItem);
+
+  const [totalCostOnRetail, setTotalCostOnRetail] = useState("");
+
+  const numberTarget = {
+    totalCostOnRetail: [totalCostOnRetail, setTotalCostOnRetail],
+  };
+
   const handleEdit = () => {};
   return (
     <>
@@ -20,28 +24,142 @@ const EditInvoice = ({ isEditMode }) => {
           تفاصيل الفاتورة
         </div>
         <div className="col-span-1 justify-self-center text-2xl">
-          حالة الفاتورة: {invoiceItem.status}
+          حالة الفاتورة: {englishTypesToArabic[invoiceItem.status]}
         </div>
         {isEditMode ? (
           <>
-            <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">القديم السعر: </span>
-              <span className="justify-self-start">{}</span>
+            {/* <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">رقم الفاتورة: </span>
+              <span className="justify-self-start">{invoiceItem.id}</span>
             </div>
             <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">تعديل السعر: </span>
-              <input
-                dir="ltr"
-                inputMode="numeric"
-                type="text"
-                name="editPrice"
-                id="editPrice"
-                className="text-center text-gray-800"
-                value={""}
-                onChange={(e) =>
-                  handleNumberInputChange(e, "price", "numberTarget")
-                }
-              />
+              <span className="justify-self-end">الاسم: </span>
+              <span className="justify-self-start">
+                {invoiceItem.cutomerName}
+              </span>
+            </div>
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">العنوان: </span>
+              <span className="justify-self-start">{invoiceItem.address}</span>
+            </div>
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">رقم التليفون: </span>
+              <span className="justify-self-start">{invoiceItem.phone}</span>
+            </div>
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">تليفون آخر: </span>
+              <span className="justify-self-start">{invoiceItem.phoneTwo}</span>
+            </div>
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">تاريخ الفاتورة: </span>
+              <span className="justify-self-start">
+                {invoiceItem.invoiceDate}
+              </span>
+            </div>
+            <div className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">تاريخ التسليم: </span>
+              <span className="justify-self-start">
+                {invoiceItem.receiptDate}
+              </span>
+            </div>
+            <div className="col-span-1 border-2 border-gray-400">
+              <span className="justify-self-end">الأوردر: </span>
+              {invoiceItem.order.map((orderItem, index) => {
+                let productItem = productsState[orderItem.productId];
+                return (
+                  <div
+                    key={index}
+                    className="m-2 flex flex-col border-2 border-gray-400">
+                    <span>
+                      المنتج: {productItem.type + " " + productItem.name}
+                    </span>
+                    <span>الكمية: {orderItem.quantity}</span>
+                    <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
+                    <span>سعر قديم: {orderItem.priceOnRetailOrOld.price}</span>
+                    <span>
+                      كمية السعر القديم: {orderItem.priceOnRetailOrOld.quantity}
+                    </span>
+                    <span>
+                      إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">خصم المعرض:- </span>
+              <span className="justify-self-start">
+                اسم الخصم: {invoiceItem.totalRetailOffer.name}
+              </span>
+              <span className="justify-self-start">
+                نسبة: {invoiceItem.totalRetailOffer.percentage}
+              </span>
+              <span className="justify-self-start">
+                قيمة محددة: {invoiceItem.totalRetailOffer.fixed}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">النقل:- </span>
+              <span className="justify-self-start">
+                علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
+              </span>
+              <span className="justify-self-start">
+                علي المعرض: {invoiceItem.shipmentCharge.shipmentOnRetail}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">
+                طريقة الدفع:{" "}
+                {englishTypesToArabic[invoiceItem.paymentMethod.method]}
+              </span>
+              <span className="justify-self-end">
+                المدفوع اونلاين: {invoiceItem.paymentMethod.cardAmound}
+              </span>
+              <span className="justify-self-end">
+                المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">
+                الإجمالي: {invoiceItem.totalInvoicePrice}
+              </span>
+              <span className="justify-self-end">
+                المدفوع: {invoiceItem.paidMoney}
+              </span>
+              <span className="justify-self-end">
+                المتبقي: {invoiceItem.remainingMoney}
+              </span>
+            </div>
+            <div className="m-2 flex flex-col border-2 border-gray-400">
+              <span className="justify-self-end">تقفيل الفاتورة:- </span>
+              <span className="justify-self-start">
+                إجمالي الفاتورة: {invoiceItem.totalInvoicePrice}
+              </span>
+              <span className="justify-self-start">
+                تكلفة الفاتورة علي المعرض: {invoiceItem.totalPriceOnRetail}
+              </span>
+              <div>
+                <span className="justify-self-start">تعديل التكلفة: </span>
+                <input
+                  dir="ltr"
+                  inputMode="numeric"
+                  type="text"
+                  name="totalCostOnRetail"
+                  id="totalCostOnRetail"
+                  className="text-center text-gray-800 justify-self-start"
+                  value={totalCostOnRetail}
+                  onChange={(e) =>
+                    handleNumberInputChange(
+                      e,
+                      "totalCostOnRetail",
+                      numberTarget
+                    )
+                  }
+                />
+              </div>
+              <span className="justify-self-start">
+                صافي ربح الفاتورة: {invoiceItem.totalProfit}
+              </span>
             </div>
             <div className="col-span-1 grid">
               <button
@@ -49,7 +167,7 @@ const EditInvoice = ({ isEditMode }) => {
                 onClick={() => handleEdit()}>
                 تعديل
               </button>
-            </div>
+            </div> */}
           </>
         ) : (
           <>
@@ -100,10 +218,20 @@ const EditInvoice = ({ isEditMode }) => {
                     </span>
                     <span>الكمية: {orderItem.quantity}</span>
                     <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
-                    <span>سعر قديم: {orderItem.oldPrice.price}</span>
-                    <span>
-                      كمية السعر القديم: {orderItem.oldPrice.quantity}
-                    </span>
+                    <span>تكلفة المنتج علي المعرض:-</span>
+                    <div>
+                      {orderItem.priceOnRetailOrOld.map((item, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="flex justify-around border-2 border-gray-400">
+                            <span>التكلفة: {item.price}</span>
+                            <span>الكمية: {item.quantity}</span>
+                            <span>خصم الشركة: {item.companyDiscount}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
                     <span>
                       إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}
                     </span>

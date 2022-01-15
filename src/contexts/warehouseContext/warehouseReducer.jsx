@@ -42,7 +42,8 @@ const removeSoldItemAcending = (warehouseItem, soldQuantity) => {
   };
 
   const cycleThroughAvailability = (availability, sectionNum, soldQuantity) => {
-    if (soldQuantity === 0 || isNaN(soldQuantity)) return availability;
+    if (sectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity))
+      return availability;
 
     if (availability[sectionNum] !== undefined) {
       const removeOperation = removeFromFoundAvalability(

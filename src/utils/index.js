@@ -58,3 +58,78 @@ export const englishTypesToArabic = {
   card: "كارت أونلاين",
   cashAndCard: "جزء كاش وجزء أونلاين",
 }
+
+export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, productPrice) => {
+  // {"price": 4250, "quantity": 3, "companyDiscount": 25},{"price": 4250, "quantity": 1, "companyDiscount": 30}
+  if (warehouseItem === undefined) {
+    alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
+    return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25 }]
+  }
+
+  const priceOnRetailOrOld = [];
+
+  const countFromFoundAvalability = (availabilitySection, soldQuantity) => {
+    return availabilitySection.quantity < soldQuantity ?
+      availabilitySection.quantity === 0 ? { remaining: soldQuantity - availabilitySection.quantity } :
+      priceOnRetailOrOld.push({
+        price: productPrice,
+        quantity: availabilitySection.quantity,
+        companyDiscount: availabilitySection.companyDiscount
+      }) && { remaining: soldQuantity - availabilitySection.quantity } :
+      priceOnRetailOrOld.push({
+        price: productPrice,
+        quantity: soldQuantity,
+        companyDiscount: availabilitySection.companyDiscount
+      });
+  };
+
+  const cycleThroughAvailability = (availability, sectionNum, soldQuantity) => {
+    if (sectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity)) return;
+
+    if (availability[sectionNum] !== undefined) {
+      const countOperation = countFromFoundAvalability(
+        availability[sectionNum],
+        soldQuantity
+      );
+      if (
+        countOperation.remaining !== undefined &&
+        countOperation.remaining > 0
+      ) {
+        return cycleThroughAvailability(
+          availability,
+          sectionNum + 5,
+          countOperation.remaining
+        );
+      }
+    } else {
+      return cycleThroughAvailability(
+        availability,
+        sectionNum + 5,
+        soldQuantity
+      );
+    }
+  };
+
+  const { availability } = warehouseItem;
+
+  cycleThroughAvailability(
+    availability,
+    5,
+    soldQuantity
+  );
+
+  let totalAvailable = 0;
+  priceOnRetailOrOld.forEach((el) => totalAvailable += el.quantity)
+
+  if (totalAvailable < soldQuantity) {
+    alert(`غير متوفر في المخزن عدد ${soldQuantity-totalAvailable} من هذا المنتج وسيتم إضافته لقسم الطلبيات`)
+    if (priceOnRetailOrOld.find(el => el.companyDiscount === 25) !== undefined) {
+      let modified = priceOnRetailOrOld.shift();
+      return [{ price: productPrice, quantity: soldQuantity - totalAvailable + modified.quantity, companyDiscount: 25 }, ...priceOnRetailOrOld]
+    } else {
+      return [{ price: productPrice, quantity: soldQuantity - totalAvailable, companyDiscount: 25 }, ...priceOnRetailOrOld]
+    }
+  } else {
+    return priceOnRetailOrOld;
+  }
+};

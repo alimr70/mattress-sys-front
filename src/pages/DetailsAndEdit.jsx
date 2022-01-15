@@ -31,7 +31,9 @@ const DetailsAndEdit = () => {
           <EditProductItem isEditMode={isEditMode} />
         )}
         {location.pathname.startsWith("/warehouse") && <DetailWarehouseItem />}
-        {location.pathname.startsWith("/invoices") && <EditInvoice />}
+        {location.pathname.startsWith("/invoices") && (
+          <EditInvoice isEditMode={isEditMode} />
+        )}
       </Container>
     </>
   );
