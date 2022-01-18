@@ -235,7 +235,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
           {pathname === "/invoices" &&
             filteredProductsArr.map((item) => {
               return (
-                <Link to={`/invoices/${item.id}`} key={item.id}>
+                <Link key={item.id} to={`/invoices/${item.id}`}>
                   <InvoiceItem item={item} />
                 </Link>
               );

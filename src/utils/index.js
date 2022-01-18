@@ -63,7 +63,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
   // {"price": 4250, "quantity": 3, "companyDiscount": 25},{"price": 4250, "quantity": 1, "companyDiscount": 30}
   if (warehouseItem === undefined) {
     alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
-    return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25 }]
+    return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25, finalPriceBeforeDiscount: 0 }]
   }
 
   const priceOnRetailOrOld = [];
@@ -74,12 +74,14 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
       priceOnRetailOrOld.push({
         price: productPrice,
         quantity: availabilitySection.quantity,
-        companyDiscount: availabilitySection.companyDiscount
+        companyDiscount: availabilitySection.companyDiscount,
+        finalPriceBeforeDiscount: 0
       }) && { remaining: soldQuantity - availabilitySection.quantity } :
       priceOnRetailOrOld.push({
         price: productPrice,
         quantity: soldQuantity,
-        companyDiscount: availabilitySection.companyDiscount
+        companyDiscount: availabilitySection.companyDiscount,
+        finalPriceBeforeDiscount: 0
       });
   };
 
@@ -120,14 +122,13 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
 
   let totalAvailable = 0;
   priceOnRetailOrOld.forEach((el) => totalAvailable += el.quantity)
-
   if (totalAvailable < soldQuantity) {
     alert(`غير متوفر في المخزن عدد ${soldQuantity-totalAvailable} من هذا المنتج وسيتم إضافته لقسم الطلبيات`)
     if (priceOnRetailOrOld.find(el => el.companyDiscount === 25) !== undefined) {
       let modified = priceOnRetailOrOld.shift();
-      return [{ price: productPrice, quantity: soldQuantity - totalAvailable + modified.quantity, companyDiscount: 25 }, ...priceOnRetailOrOld]
+      return [{ price: productPrice, quantity: soldQuantity - totalAvailable + modified.quantity, companyDiscount: 25, finalPriceBeforeDiscount: 0 }, ...priceOnRetailOrOld]
     } else {
-      return [{ price: productPrice, quantity: soldQuantity - totalAvailable, companyDiscount: 25 }, ...priceOnRetailOrOld]
+      return [{ price: productPrice, quantity: soldQuantity - totalAvailable, companyDiscount: 25, finalPriceBeforeDiscount: 0 }, ...priceOnRetailOrOld]
     }
   } else {
     return priceOnRetailOrOld;

@@ -101,8 +101,8 @@ const AddInvoiceItem = () => {
       totalInvoicePrice: totalInvoicePrice,
       paidMoney: paidMoney,
       remainingMoney: remainingMoney,
-      totalPriceOnRetail: "",
-      totalProfit: "",
+      totalPriceOnRetail: 0,
+      totalProfit: 0,
       status: "pending",
     };
     generalTypesDispatch(addSerialNumber(`${serialNum}`, "invoicesSerials"));

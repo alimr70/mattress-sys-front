@@ -19,7 +19,9 @@ const warehouseReducer = (state, action) => {
     case REMOVE_SOLD_WAREHOUSE_ITEM:
       const foundItem = state[action.id];
       const modifiedItem = removeSoldItemAcending(foundItem, action.quantity);
-      return { ...state, [modifiedItem.id]: { ...modifiedItem } };
+      return modifiedItem !== undefined
+        ? { ...state, [modifiedItem.id]: { ...modifiedItem } }
+        : state;
 
     default:
       return state;
@@ -27,6 +29,8 @@ const warehouseReducer = (state, action) => {
 };
 
 const removeSoldItemAcending = (warehouseItem, soldQuantity) => {
+  if (warehouseItem === undefined) return;
+
   const removeFromFoundAvalability = (availabilitySection, soldQuantity) => {
     return availabilitySection.quantity < soldQuantity
       ? {

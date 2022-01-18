@@ -41,7 +41,6 @@ const AddWarehouseItem = () => {
             },
           },
         };
-        console.log({ step1: item });
         warehouseDispatch(addExistingWarehouseItem(item));
       } else if (!targetCompanyDiscount) {
         const item = {
@@ -54,7 +53,6 @@ const AddWarehouseItem = () => {
             },
           },
         };
-        console.log({ step2: item });
         warehouseDispatch(addExistingWarehouseItem(item));
       }
     } else {

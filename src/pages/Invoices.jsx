@@ -18,13 +18,6 @@ const Invoices = () => {
       </div>
       <Container title="الفواتير">
         <Filter toBeFilteredProductsArr={invoices} />
-        {/* <div>
-          <ul className="flex justify-end flex-col">
-            {invoices.map((item) => {
-              return <InvoiceItem key={item.id} item={item} />;
-            })}
-          </ul>
-        </div> */}
       </Container>
     </>
   );
