@@ -99,13 +99,15 @@
               "price": 4250,
               "quantity": 1,
               "companyDiscount": 25,
-              "finalPriceBeforeDiscount": 0
+              "finalPriceBeforeDiscount": 0,
+              "finalPriceAfterDiscount": 0
             },
             "30": {
               "price": 4250,
               "quantity": 1,
               "companyDiscount": 30,
-              "finalPriceBeforeDiscount": 0
+              "finalPriceBeforeDiscount": 0,
+              "finalPriceAfterDiscount": 0
             }
           },
           "totalQuantityPrice": 8500
@@ -119,7 +121,8 @@
               "price": 100,
               "quantity": 3,
               "companyDiscount": 25,
-              "finalPriceBeforeDiscount": 0
+              "finalPriceBeforeDiscount": 0,
+              "finalPriceAfterDiscount": 0
             }
           },
           "totalQuantityPrice": 300
@@ -137,7 +140,7 @@
       "totalRetailOffer": {
         "name": "خصم خاص",
         "percentage": 15,
-        "fixed": 500
+        "fixed": 0
       },
       "totalInvoicePrice": 17750,
       "paidMoney": 10000,

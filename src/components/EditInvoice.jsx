@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import { editInvoiceSection } from "../contexts/invoicesContext/invoicesActions";
 import { ProductsStore } from "../contexts/productsContext";
@@ -9,6 +10,25 @@ const EditInvoice = ({ isEditMode }) => {
   const { invoiceId } = useParams();
   const { invoicesState } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
+
+  const [canCalc, setCanCalc] = useState(false);
+
+  useEffect(() => {
+    let priceOnRetailOrOldArr = [];
+    invoiceItem.order.forEach((item) => {
+      Object.values(item.priceOnRetailOrOld).forEach((el) =>
+        priceOnRetailOrOldArr.push(el.finalPriceBeforeDiscount)
+      );
+    });
+    if (priceOnRetailOrOldArr.every((val) => val > 0)) {
+      setCanCalc(true);
+    } else {
+      setCanCalc(false);
+    }
+  }, [invoiceItem, canCalc]);
+
+  const handleInvoiceCostCalc = () => {};
+
   return (
     <>
       <div className="max-w-sm mx-auto grid grid-cols-1 gap-2">
@@ -109,6 +129,16 @@ const EditInvoice = ({ isEditMode }) => {
             صافي ربح الفاتورة: {invoiceItem.totalProfit}
           </span>
         </div>
+        <div className="m-2 grid">
+          <button
+            onClick={() => handleInvoiceCostCalc()}
+            className={
+              "px-5 py-2 mx-2 bg-blue-500 rounded-md" +
+              `${canCalc ? "" : " cursor-not-allowed bg-gray-500"}`
+            }>
+            حساب تكلفة الفاتورة
+          </button>
+        </div>
       </div>
     </>
   );
@@ -139,6 +169,7 @@ const OrderDetailsItem = ({ isEditMode, orderItem, orderIndex }) => {
       <span>المنتج: {productItem.type + " " + productItem.name}</span>
       <span>الكمية: {orderItem.quantity}</span>
       <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
+      <span>إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}</span>
       <span>تكلفة المنتج علي المعرض:-</span>
       <div>
         {Object.values(orderItem.priceOnRetailOrOld).map((item, index) => {
@@ -152,7 +183,6 @@ const OrderDetailsItem = ({ isEditMode, orderItem, orderIndex }) => {
           );
         })}
       </div>
-      <span>إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}</span>
     </div>
   );
 };
@@ -165,38 +195,60 @@ const PriceOnRetailItem = ({ item, isEditMode, orderIndex }) => {
       } border-2 border-gray-400`}>
       <span>سعر الوحدة: {item.price}</span>
       <span>الكمية: {item.quantity}</span>
-      <span>خصم الشركة: {item.companyDiscount}</span>
+      <span>
+        {isEditMode && "تعديل "}خصم الشركة: {item.companyDiscount}
+      </span>
+      {isEditMode && (
+        <FinalProductSectionCostOrDiscount
+          item={item}
+          orderIndex={orderIndex}
+          numTarget="companyDiscount"
+        />
+      )}
       <span>
         {isEditMode && "تعديل "}إجمالي سعر الوحدات قبل حساب خصم الشركة:
         {item.finalPriceBeforeDiscount}
       </span>
       {isEditMode && (
-        <FinalProductSectionCost item={item} orderIndex={orderIndex} />
+        <FinalProductSectionCostOrDiscount
+          item={item}
+          orderIndex={orderIndex}
+          numTarget="finalPriceBeforeDiscount"
+        />
       )}
+      <span className="bg-green-700">
+        {isEditMode && "تعديل "}إجمالي سعر الوحدات بعد حساب خصم الشركة:
+        {item.finalPriceAfterDiscount}
+      </span>
     </div>
   );
 };
 
-const FinalProductSectionCost = ({ item, orderIndex }) => {
+const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
   const { invoiceId } = useParams();
   const { invoicesState, invoicesDispatch } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
-  const [finalProductSectionCost, setFinalProductSectionCost] = useState("");
+  const [numInputVal, setNumInputVal] = useState("");
 
   const target = {
-    finalProductSectionCost: [
-      finalProductSectionCost,
-      setFinalProductSectionCost,
-    ],
+    numInputVal: [numInputVal, setNumInputVal],
   };
 
-  const handleEditSection = () => {
+  const handleEditItemCompanyDiscount = () => {};
+
+  const handleEditPriceOnRetailSection = () => {
     let targetOrderItem = invoiceItem.order[orderIndex];
     let newPriceOnRetailOrOld = {
       ...targetOrderItem.priceOnRetailOrOld,
       [item.companyDiscount]: {
         ...item,
-        finalPriceBeforeDiscount: +finalProductSectionCost,
+        finalPriceBeforeDiscount:
+          +numInputVal === 0 ? item.price * item.quantity : +numInputVal,
+        finalPriceAfterDiscount:
+          +numInputVal === 0
+            ? item.price * item.quantity -
+              (item.price * item.quantity * item.companyDiscount) / 100
+            : +numInputVal - (+numInputVal * item.companyDiscount) / 100,
       },
     };
     targetOrderItem.priceOnRetailOrOld = newPriceOnRetailOrOld;
@@ -208,7 +260,7 @@ const FinalProductSectionCost = ({ item, orderIndex }) => {
       editInvoiceSection(invoiceItem, { key: "order", value: newOrder })
     );
 
-    setFinalProductSectionCost("");
+    setNumInputVal("");
   };
 
   return (
@@ -218,19 +270,27 @@ const FinalProductSectionCost = ({ item, orderIndex }) => {
         dir="ltr"
         inputMode="numeric"
         type="text"
-        name="finalProductSectionCost"
-        id="finalProductSectionCost"
+        name="numInputVal"
+        id="numInputVal"
         className="text-center text-gray-800"
-        value={finalProductSectionCost}
-        onChange={(e) =>
-          handleNumberInputChange(e, "finalProductSectionCost", target)
-        }
+        value={numInputVal}
+        onChange={(e) => handleNumberInputChange(e, "numInputVal", target)}
       />
-      <button
-        className="px-3 bg-blue-500 justify-self-center rounded-md"
-        onClick={() => handleEditSection()}>
-        تعديل
-      </button>
+
+      {numTarget === "finalPriceBeforeDiscount" && (
+        <button
+          className="px-3 bg-blue-500 justify-self-center rounded-md"
+          onClick={() => handleEditPriceOnRetailSection()}>
+          {numInputVal === "" ? "احسب اوتوماتيكيا" : "تعديل يدويا"}
+        </button>
+      )}
+      {numTarget === "companyDiscount" && (
+        <button
+          className="px-3 bg-blue-500 justify-self-center rounded-md"
+          onClick={() => handleEditItemCompanyDiscount()}>
+          تعديل خصم الشركة
+        </button>
+      )}
     </div>
   );
 };

@@ -221,10 +221,17 @@ const OrderInfo = ({ order, setOrder }) => {
                             : undefined,
                           +quantity,
                           item.price
+                        ).reduce(
+                          // I added the reduce func to convert order array to object like in dbSample.json file because I did't want to mess with getOrderDetailsFromWarehouse function
+                          (prev, current) => ({
+                            ...prev,
+                            [current.companyDiscount]: { ...current },
+                          }),
+                          {}
                         ),
                         totalQuantityPrice:
                           retailOffer !== ""
-                            ? item.price -
+                            ? item.price * quantity -
                               Math.ceil(
                                 (item.price * quantity * +retailOffer) / 100
                               )
