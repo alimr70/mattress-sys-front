@@ -1,6 +1,6 @@
 export const INIT_INVOICES_DATA = "INIT_INVOICES_DATA";
 export const ADD_INVOICE_ITEM = "ADD_INVOICE_ITEM";
-export const EDIT_INVOICE_SECTION = "EDIT_INVOICE_SECTION";
+export const EDIT_INVOICE_SECTIONS = "EDIT_INVOICE_SECTIONS";
 
 export const addInvoiceItem = (invoice) => {
   return {
@@ -9,10 +9,10 @@ export const addInvoiceItem = (invoice) => {
   };
 };
 
-export const editInvoiceSection = (invoiceItem, section) => {
+export const editInvoiceSections = (invoiceItem, sections) => {
   return {
-    type: EDIT_INVOICE_SECTION,
+    type: EDIT_INVOICE_SECTIONS,
     invoiceItem,
-    section,
+    sections,
   };
 };

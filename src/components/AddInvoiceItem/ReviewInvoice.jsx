@@ -1,5 +1,4 @@
-import { useContext, useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../assets/taki-logo.png";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
@@ -255,8 +254,10 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  {(shipmentOnCst === "0" || shipmentOnCst === "") &&
-                    shipmentOnRetail !== "" && (
+                  {(shipmentOnCst === "0" ||
+                    shipmentOnCst === "" ||
+                    shipmentOnCst === 0) &&
+                    (shipmentOnRetail !== "" || shipmentOnRetail !== 0) && (
                       <div className="flex">
                         <div className="w-[100%] flex">
                           <div className="w-[22.5%] text-center">
@@ -460,8 +461,10 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  {(shipmentOnCst === "0" || shipmentOnCst === "") &&
-                    shipmentOnRetail !== "" && (
+                  {(shipmentOnCst === "0" ||
+                    shipmentOnCst === "" ||
+                    shipmentOnCst === 0) &&
+                    (shipmentOnRetail !== "" || shipmentOnRetail !== 0) && (
                       <div className="flex">
                         <div className="w-[100%] flex">
                           <div className="w-[22.5%] text-center">

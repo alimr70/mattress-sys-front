@@ -56,7 +56,7 @@ const AddProductItem = () => {
       thickness,
       width,
       height,
-      price,
+      price: +price,
       warehouseId: warehouseSerialNum,
     };
     generalTypesDispatch(

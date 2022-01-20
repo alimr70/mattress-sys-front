@@ -9,7 +9,7 @@ const PaymentInfo = ({
   paymentMethod,
   setPaymentMethod,
   cashAmount,
-  cardAmound,
+  cardAmount,
   shipmentOnCst,
   shipmentOnRetail,
   numberTargets,
@@ -106,7 +106,7 @@ const PaymentInfo = ({
           </div>
           <div className="m-5 grid grid-cols-3">
             <label
-              htmlFor="cardAmound"
+              htmlFor="cardAmount"
               className="m-2 col-span-1 justify-self-start">
               قيمة الفيزا*
             </label>
@@ -114,12 +114,12 @@ const PaymentInfo = ({
               dir="ltr"
               inputMode="numeric"
               type="text"
-              name="cardAmound"
-              id="cardAmound"
+              name="cardAmount"
+              id="cardAmount"
               className="col-span-2 text-center text-gray-800"
-              value={cardAmound}
+              value={cardAmount}
               onChange={(e) => {
-                handleNumberInputChange(e, "cardAmound", numberTargets);
+                handleNumberInputChange(e, "cardAmount", numberTargets);
               }}
             />
           </div>

@@ -1,7 +1,7 @@
 import {
   ADD_INVOICE_ITEM,
   INIT_INVOICES_DATA,
-  EDIT_INVOICE_SECTION,
+  EDIT_INVOICE_SECTIONS,
 } from "./invoicesActions";
 
 const invoicesReducer = (state, action) => {
@@ -12,12 +12,16 @@ const invoicesReducer = (state, action) => {
     case ADD_INVOICE_ITEM:
       return { ...state, [action.invoice.id]: { ...action.invoice } };
 
-    case EDIT_INVOICE_SECTION:
+    case EDIT_INVOICE_SECTIONS:
+      const editedSections = action.sections.reduce(
+        (prev, current) => ({ ...prev, [current.key]: current.value }),
+        {}
+      );
       return {
         ...state,
         [action.invoiceItem.id]: {
           ...action.invoiceItem,
-          [action.section.key]: action.section.value,
+          ...editedSections,
         },
       };
 

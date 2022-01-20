@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import CstInfo from "./CstInfo";
 import PaymentInfo from "./PaymentInfo";
 import OrderInfo from "./OrderInfo";
 import ReviewInvoice from "./ReviewInvoice";
-import { useEffect } from "react/cjs/react.development";
 import { addInvoiceItem } from "../../contexts/invoicesContext/invoicesActions";
 import { InvoicesStore } from "../../contexts/invoicesContext";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
@@ -29,7 +28,7 @@ const AddInvoiceItem = () => {
   const [receiptDate, setReceiptDate] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash");
   const [cashAmount, setCashAmount] = useState("");
-  const [cardAmound, setCardAmound] = useState("");
+  const [cardAmount, setCardAmount] = useState("");
   const [order, setOrder] = useState([]);
   const [isPartialAmount, setIsPartialAmount] = useState(false);
   const [paidMoney, setPaidMoney] = useState("");
@@ -62,7 +61,7 @@ const AddInvoiceItem = () => {
       setTotalRetailOfferAmountFixed,
     ],
     cashAmount: [cashAmount, setCashAmount],
-    cardAmound: [cardAmound, setCardAmound],
+    cardAmount: [cardAmount, setCardAmount],
     totalInvoicePrice: [totalInvoicePrice, setTotalInvoicePrice],
     paidMoney: [paidMoney, setPaidMoney],
     serialNum: [serialNum, setSerialNum],
@@ -86,21 +85,21 @@ const AddInvoiceItem = () => {
       order: order,
       paymentMethod: {
         method: paymentMethod,
-        cashAmount: cashAmount,
-        cardAmound: cardAmound,
+        cashAmount: +cashAmount,
+        cardAmount: +cardAmount,
       },
       shipmentCharge: {
-        shipmentOnCst: shipmentOnCst,
-        shipmentOnRetail: shipmentOnRetail,
+        shipmentOnCst: +shipmentOnCst,
+        shipmentOnRetail: +shipmentOnRetail,
       },
       totalRetailOffer: {
         name: totalRetailOfferName,
-        percentage: totalRetailOfferAmountPrecentage,
-        fixed: totalRetailOfferAmountFixed,
+        percentage: +totalRetailOfferAmountPrecentage,
+        fixed: +totalRetailOfferAmountFixed,
       },
-      totalInvoicePrice: totalInvoicePrice,
-      paidMoney: paidMoney,
-      remainingMoney: remainingMoney,
+      totalInvoicePrice: +totalInvoicePrice,
+      paidMoney: +paidMoney,
+      remainingMoney: +remainingMoney,
       totalPriceOnRetail: 0,
       totalProfit: 0,
       status: "pending",
@@ -131,7 +130,7 @@ const AddInvoiceItem = () => {
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
         cashAmount={cashAmount}
-        cardAmound={cardAmound}
+        cardAmount={cardAmount}
         shipmentOnCst={shipmentOnCst}
         shipmentOnRetail={shipmentOnRetail}
         numberTargets={numberTargets}

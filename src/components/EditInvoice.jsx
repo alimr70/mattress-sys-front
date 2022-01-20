@@ -1,33 +1,65 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
 import { InvoicesStore } from "../contexts/invoicesContext";
-import { editInvoiceSection } from "../contexts/invoicesContext/invoicesActions";
+import { editInvoiceSections } from "../contexts/invoicesContext/invoicesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { englishTypesToArabic, handleNumberInputChange } from "../utils";
 
 const EditInvoice = ({ isEditMode }) => {
   const { invoiceId } = useParams();
-  const { invoicesState } = useContext(InvoicesStore);
+  const { invoicesState, invoicesDispatch } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
 
+  const [totalProductsCostOnRetail, setTotalProductsCostOnRetail] = useState(0);
   const [canCalc, setCanCalc] = useState(false);
 
   useEffect(() => {
     let priceOnRetailOrOldArr = [];
     invoiceItem.order.forEach((item) => {
       Object.values(item.priceOnRetailOrOld).forEach((el) =>
-        priceOnRetailOrOldArr.push(el.finalPriceBeforeDiscount)
+        priceOnRetailOrOldArr.push(el.finalPriceAfterDiscount)
       );
     });
+    setTotalProductsCostOnRetail(
+      priceOnRetailOrOldArr.reduce((prev, current) => {
+        return prev + current;
+      }, 0)
+    );
     if (priceOnRetailOrOldArr.every((val) => val > 0)) {
       setCanCalc(true);
     } else {
       setCanCalc(false);
     }
-  }, [invoiceItem, canCalc]);
+  }, [invoiceItem, totalProductsCostOnRetail, canCalc]);
 
-  const handleInvoiceCostCalc = () => {};
+  const handleInvoiceCostCalc = () => {
+    // Payment method cahsAndCard else if card else cash
+    let invoiceCostAfterVisaDeduction = 0;
+    // invoiceItem.totalInvoicePric
+    if (invoiceItem.paymentMethod.method === "cashAndCard") {
+      invoiceCostAfterVisaDeduction =
+        invoiceItem.paymentMethod.cardAmount * 0.98 +
+        invoiceItem.paymentMethod.cashAmount;
+    } else if (invoiceItem.paymentMethod.method === "card") {
+      invoiceCostAfterVisaDeduction = invoiceItem.totalInvoicePrice * 0.98;
+    } else {
+      invoiceCostAfterVisaDeduction = invoiceItem.totalInvoicePrice;
+    }
+    // invoice cost on retail after shipment
+    const invoiceCostOnRetail =
+      invoiceCostAfterVisaDeduction -
+      invoiceItem.shipmentCharge.shipmentOnRetail;
+    // Total invoice income/profit
+    const invoiceIncome = invoiceCostOnRetail - totalProductsCostOnRetail;
+
+    // Edit invoice
+    invoicesDispatch(
+      editInvoiceSections(invoiceItem, [
+        { key: "totalPriceOnRetail", value: invoiceCostOnRetail },
+        { key: "totalProfit", value: invoiceIncome },
+      ])
+    );
+  };
 
   return (
     <>
@@ -100,7 +132,7 @@ const EditInvoice = ({ isEditMode }) => {
             {englishTypesToArabic[invoiceItem.paymentMethod.method]}
           </span>
           <span className="justify-self-end">
-            المدفوع اونلاين: {invoiceItem.paymentMethod.cardAmound}
+            المدفوع اونلاين: {invoiceItem.paymentMethod.cardAmount}
           </span>
           <span className="justify-self-end">
             المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
@@ -169,7 +201,7 @@ const OrderDetailsItem = ({ isEditMode, orderItem, orderIndex }) => {
       <span>المنتج: {productItem.type + " " + productItem.name}</span>
       <span>الكمية: {orderItem.quantity}</span>
       <span>خصم خاص بالمنتج: {orderItem.retailOffer}</span>
-      <span>إجمالي السعر للمنتج: {orderItem.totalQuantityPrice}</span>
+      <span>إجمالي سعر المنتج للعميل: {orderItem.totalQuantityPrice}</span>
       <span>تكلفة المنتج علي المعرض:-</span>
       <div>
         {Object.values(orderItem.priceOnRetailOrOld).map((item, index) => {
@@ -257,7 +289,7 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
     newOrder.splice(orderIndex, 1, targetOrderItem);
 
     invoicesDispatch(
-      editInvoiceSection(invoiceItem, { key: "order", value: newOrder })
+      editInvoiceSections(invoiceItem, [{ key: "order", value: newOrder }])
     );
 
     setNumInputVal("");
