@@ -98,7 +98,7 @@ const AddInvoiceItem = () => {
         fixed: +totalRetailOfferAmountFixed,
       },
       totalInvoicePrice: +totalInvoicePrice,
-      paidMoney: +paidMoney,
+      paidMoney: +paidMoney === 0 ? +totalInvoicePrice : +paidMoney,
       remainingMoney: +remainingMoney,
       totalPriceOnRetail: 0,
       totalProfit: 0,

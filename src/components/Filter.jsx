@@ -183,7 +183,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
                 type="date"
                 name="dateFilter"
                 id="dateFilter"
-                className="col-span-2 text-center text-gray-800"
+                className="w-full text-center text-gray-800"
                 value={dateFilter}
                 onChange={(e) => {
                   setDateFilter(e.target.value);
@@ -196,7 +196,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
                 type="text"
                 name="cstNameFilter"
                 id="cstNameFilter"
-                className="col-span-2 text-center text-gray-800"
+                className="w-full text-center text-gray-800"
                 value={cstNameFilter}
                 onChange={(e) => {
                   setCstNameFilter(e.target.value);

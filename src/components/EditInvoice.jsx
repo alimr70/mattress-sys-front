@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import { editInvoiceSections } from "../contexts/invoicesContext/invoicesActions";
@@ -10,29 +10,40 @@ const EditInvoice = ({ isEditMode }) => {
   const { invoicesState, invoicesDispatch } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
 
-  const [totalProductsCostOnRetail, setTotalProductsCostOnRetail] = useState(0);
-  const [canCalc, setCanCalc] = useState(false);
-
-  useEffect(() => {
-    let priceOnRetailOrOldArr = [];
-    invoiceItem.order.forEach((item) => {
-      Object.values(item.priceOnRetailOrOld).forEach((el) =>
-        priceOnRetailOrOldArr.push(el.finalPriceAfterDiscount)
-      );
-    });
-    setTotalProductsCostOnRetail(
-      priceOnRetailOrOldArr.reduce((prev, current) => {
-        return prev + current;
-      }, 0)
-    );
-    if (priceOnRetailOrOldArr.every((val) => val > 0)) {
-      setCanCalc(true);
-    } else {
-      setCanCalc(false);
-    }
-  }, [invoiceItem, totalProductsCostOnRetail, canCalc]);
-
   const handleInvoiceCostCalc = () => {
+    let totalProductsCostOnRetail = 0;
+    invoiceItem.order.forEach((orderItem, index) => {
+      Object.values(orderItem.priceOnRetailOrOld).map((item) => {
+        let finalItemCostOnRtail =
+          item.finalPriceAfterDiscount === 0
+            ? item.price * item.quantity -
+              (item.price * item.quantity * item.companyDiscount) / 100
+            : item.finalPriceAfterDiscount;
+
+        totalProductsCostOnRetail += finalItemCostOnRtail;
+
+        let newPriceOnRetailOrOld = {
+          ...orderItem.priceOnRetailOrOld,
+          [item.companyDiscount]: {
+            ...item,
+            finalPriceBeforeDiscount:
+              item.finalPriceBeforeDiscount === 0
+                ? item.price * item.quantity
+                : item.finalPriceBeforeDiscount,
+            finalPriceAfterDiscount: finalItemCostOnRtail,
+          },
+        };
+        orderItem.priceOnRetailOrOld = newPriceOnRetailOrOld;
+
+        let newOrder = invoiceItem.order;
+        newOrder.splice(index, 1, orderItem);
+
+        return invoicesDispatch(
+          editInvoiceSections(invoiceItem, [{ key: "order", value: newOrder }])
+        );
+      });
+    });
+
     // Payment method cahsAndCard else if card else cash
     let invoiceCostAfterVisaDeduction = 0;
     // invoiceItem.totalInvoicePric
@@ -123,8 +134,12 @@ const EditInvoice = ({ isEditMode }) => {
             علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
           </span>
           <span className="justify-self-start">
-            علي المعرض: {invoiceItem.shipmentCharge.shipmentOnRetail}
+            {isEditMode && "تعديل تكلفة النقل علي المعرض"}علي المعرض:{" "}
+            {invoiceItem.shipmentCharge.shipmentOnRetail}
           </span>
+          {isEditMode && (
+            <FinalProductSectionCostOrDiscount numTarget="shipmentOnRetail" />
+          )}
         </div>
         <div className="m-2 flex flex-col border-2 border-gray-400">
           <span className="justify-self-end">
@@ -164,10 +179,7 @@ const EditInvoice = ({ isEditMode }) => {
         <div className="m-2 grid">
           <button
             onClick={() => handleInvoiceCostCalc()}
-            className={
-              "px-5 py-2 mx-2 bg-blue-500 rounded-md" +
-              `${canCalc ? "" : " cursor-not-allowed bg-gray-500"}`
-            }>
+            className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
             حساب تكلفة الفاتورة
           </button>
         </div>
@@ -266,7 +278,30 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
     numInputVal: [numInputVal, setNumInputVal],
   };
 
-  const handleEditItemCompanyDiscount = () => {};
+  const handleEditItemCompanyDiscount = () => {
+    if (numInputVal === "") return;
+    let targetOrderItem = invoiceItem.order[orderIndex];
+    let newPriceOnRetailOrOld = {
+      ...targetOrderItem.priceOnRetailOrOld,
+      [+numInputVal]: {
+        ...item,
+        companyDiscount: +numInputVal,
+        finalPriceBeforeDiscount: 0,
+        finalPriceAfterDiscount: 0,
+      },
+    };
+    delete newPriceOnRetailOrOld[item.companyDiscount];
+    targetOrderItem.priceOnRetailOrOld = newPriceOnRetailOrOld;
+
+    let newOrder = invoiceItem.order;
+    newOrder.splice(orderIndex, 1, targetOrderItem);
+
+    invoicesDispatch(
+      editInvoiceSections(invoiceItem, [{ key: "order", value: newOrder }])
+    );
+
+    setNumInputVal("");
+  };
 
   const handleEditPriceOnRetailSection = () => {
     let targetOrderItem = invoiceItem.order[orderIndex];
@@ -295,6 +330,22 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
     setNumInputVal("");
   };
 
+  const handleEditShipmentOnRetail = () => {
+    // invoiceItem.shipmentCharge.shipmentOnRetail
+    let newShipmentCharge = {
+      ...invoiceItem.shipmentCharge,
+      shipmentOnRetail: +numInputVal,
+    };
+
+    invoicesDispatch(
+      editInvoiceSections(invoiceItem, [
+        { key: "shipmentCharge", value: newShipmentCharge },
+      ])
+    );
+
+    setNumInputVal("");
+  };
+
   return (
     <div className="flex">
       <input
@@ -311,7 +362,7 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
 
       {numTarget === "finalPriceBeforeDiscount" && (
         <button
-          className="px-3 bg-blue-500 justify-self-center rounded-md"
+          className="px-3 bg-blue-500 justify-self-center rounded-md section-cost-btn"
           onClick={() => handleEditPriceOnRetailSection()}>
           {numInputVal === "" ? "احسب اوتوماتيكيا" : "تعديل يدويا"}
         </button>
@@ -321,6 +372,13 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
           className="px-3 bg-blue-500 justify-self-center rounded-md"
           onClick={() => handleEditItemCompanyDiscount()}>
           تعديل خصم الشركة
+        </button>
+      )}
+      {numTarget === "shipmentOnRetail" && (
+        <button
+          className="px-3 bg-blue-500 justify-self-center rounded-md"
+          onClick={() => handleEditShipmentOnRetail()}>
+          تعديل تكلفة النقل
         </button>
       )}
     </div>
