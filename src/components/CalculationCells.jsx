@@ -60,14 +60,9 @@ const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
 };
 
 const CalcutalteNumbers = ({ startDate, endDate }) => {
-  const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
-
-  console.log({
-    start: new Date(startDate).getTime() + userTimezoneOffset,
-    end: new Date(endDate).getTime() + userTimezoneOffset,
-  });
-
   const { invoicesState } = useContext(InvoicesStore);
+
+  const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
   const filtered = Object.values(invoicesState).filter(
     (invoice) =>
       new Date(startDate).getTime() + userTimezoneOffset < invoice.time &&
