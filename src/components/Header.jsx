@@ -26,6 +26,9 @@ const Header = () => {
           <Link to="/products" className="my-2">
             <li className="px-5 pl-2">المنتجات</li>
           </Link>
+          <Link to="/calculations" className="my-2">
+            <li className="px-5 pl-2">الحسابات</li>
+          </Link>
           <span className="hidden sm:block">|</span>
           <li className="px-2">
             مرحبا {authState.username}{" "}
@@ -39,13 +42,16 @@ const Header = () => {
 
         <ul className="hidden sm:flex flex-col xs:flex-row">
           <Link to="/invoices">
-            <li className="px-5">الفواتير</li>
+            <li className="px-3">الفواتير</li>
           </Link>
           <Link to="/warehouse">
-            <li className="px-5">المخزن</li>
+            <li className="px-3">المخزن</li>
           </Link>
           <Link to="/products">
-            <li className="px-5">المنتجات</li>
+            <li className="px-3">المنتجات</li>
+          </Link>
+          <Link to="/calculations">
+            <li className="px-3">الحسابات</li>
           </Link>
           <span>|</span>
           <li className="px-5">

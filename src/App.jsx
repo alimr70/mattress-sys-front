@@ -12,6 +12,7 @@ import NotAuth from "./pages/NotAuth";
 import RequireRole from "./components/RequireRole";
 import Logout from "./pages/Logout";
 import DetailsAndEdit from "./pages/DetailsAndEdit";
+import Calculations from "./pages/Calculations";
 function App() {
   return (
     <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
@@ -110,6 +111,16 @@ function App() {
             <RequireAuth>
               <RequireRole roles={["programmer", "manager"]}>
                 <AddInvoice />
+              </RequireRole>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="calculations"
+          element={
+            <RequireAuth>
+              <RequireRole roles={["programmer", "manager", "accountant"]}>
+                <Calculations />
               </RequireRole>
             </RequireAuth>
           }
