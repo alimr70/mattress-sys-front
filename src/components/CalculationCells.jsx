@@ -14,7 +14,7 @@ const CalculationCells = () => {
   );
 
   return (
-    <div className="w-full grid grid-cols-3">
+    <div className="w-full max-w-3xl mx-auto grid grid-cols-1 xs:grid-cols-3">
       <DateFilter
         startDate={startDate}
         setStartDate={setStartDate}
@@ -28,7 +28,7 @@ const CalculationCells = () => {
 
 const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
   return (
-    <div className="m-5 col-span-3 grid xs:grid-cols-2 gap-2">
+    <div className="m-5 col-span-full grid xs:grid-cols-2 gap-2">
       <div className="col-span-1 flex xs:justify-self-end">
         <label htmlFor="startDate">تاريخ البدء:</label>
         <input
@@ -60,23 +60,53 @@ const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
 };
 
 const CalcutalteNumbers = ({ startDate, endDate }) => {
+  const [expenses, setExpenses] = useState(30000);
+
   const { invoicesState } = useContext(InvoicesStore);
 
   const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
-  const filtered = Object.values(invoicesState).filter(
+  const timeFiltered = Object.values(invoicesState).filter(
     (invoice) =>
       new Date(startDate).getTime() + userTimezoneOffset < invoice.time &&
       invoice.time < new Date(endDate).getTime() + userTimezoneOffset
   );
-  console.log(filtered);
-  return <></>;
+  let totalSales = 0;
+  let totalIncome = 0;
+  timeFiltered.forEach((el) => {
+    totalSales += el.totalPriceOnRetail;
+    totalIncome += el.totalProfit;
+  });
+  return (
+    <>
+      <div className="col-span-full">
+        <label htmlFor="expenses">أدخل إجمالي المصاريف</label>
+        <input
+          className="text-gray-800"
+          name="expenses"
+          type="number"
+          value={expenses}
+          onChange={(e) => {
+            setExpenses(e.target.value);
+          }}
+        />
+      </div>
+      <NumberCellAndTitle title={"المبيعات"} number={totalSales} />
+      <NumberCellAndTitle title={"الإيرادات"} number={totalIncome} />
+      <NumberCellAndTitle
+        title={"صافي الأرباح"}
+        number={totalIncome - expenses}
+      />
+    </>
+  );
 };
 
-const NumberCellAndTitle = () => {
+const NumberCellAndTitle = ({ title, number }) => {
   return (
-    <div>
-      <h3 className="font-lg font-bold text-blue-500">المبيعات</h3>
-      <h1 className="font-2xl">150669</h1>
+    <div className="m-2 p-3 col-span-1 grid bg-gray-700 rounded-md">
+      <h3 className="text-lg font-bold text-blue-500 justify-self-center">
+        {title}
+      </h3>
+      <h1 className="text-2xl justify-self-center">{number}</h1>
     </div>
   );
 };
