@@ -13,6 +13,7 @@ import RequireRole from "./components/RequireRole";
 import Logout from "./pages/Logout";
 import DetailsAndEdit from "./pages/DetailsAndEdit";
 import Calculations from "./pages/Calculations";
+import Home from "./pages/Home";
 function App() {
   return (
     <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
@@ -21,7 +22,7 @@ function App() {
           path="/"
           element={
             <RequireAuth>
-              <Products />
+              <Home />
             </RequireAuth>
           }
         />

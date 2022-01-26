@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthStore } from "../contexts/authContext";
 import { logout } from "../contexts/authContext/authActions";
 const Header = () => {
-  let { authDispatch } = useContext(AuthStore);
-  const { authState } = useContext(AuthStore);
+  const { authState, authDispatch } = useContext(AuthStore);
   const [openMenu, setOpenMenu] = useState(false);
   const isMenuOpen = openMenu ? "" : "hidden";
   return (
