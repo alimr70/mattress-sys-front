@@ -68,7 +68,8 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
   const timeFiltered = Object.values(invoicesState).filter(
     (invoice) =>
       new Date(startDate).getTime() + userTimezoneOffset < invoice.time &&
-      invoice.time < new Date(endDate).getTime() + userTimezoneOffset
+      new Date(invoice.invoiceDate).getTime() <
+        new Date(endDate).getTime() + userTimezoneOffset
   );
   let totalSales = 0;
   let totalIncome = 0;
