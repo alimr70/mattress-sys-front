@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect } from "react";
 import warehouseReducer from "./warehouseReducer";
-import dbSample from "../dbSample.json";
+import dbCore from "../dbCore.json";
 
-const initialState = dbSample.warehouse;
+const initialState = dbCore.warehouse;
 
 const isDataSaved = localStorage.getItem("mattressSysWarehouse")
   ? JSON.parse(localStorage.getItem("mattressSysWarehouse"))

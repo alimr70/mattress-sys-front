@@ -14,7 +14,7 @@ const OrderInfo = ({ order, setOrder }) => {
   const { generalTypesState } = useContext(GeneralTypesStore);
   const { productsState } = useContext(ProductsStore);
   const { warehouseState } = useContext(WarehouseStore);
-  const productTypes = Object.values(generalTypesState.productTypes);
+  const { productTypes } = generalTypesState;
 
   const [quantity, setQuantity] = useState("1");
   const [retailOffer, setRetailOffer] = useState("");

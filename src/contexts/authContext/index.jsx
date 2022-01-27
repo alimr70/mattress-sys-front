@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect } from "react";
 import authReducer from "./authReducer";
-import dbSample from "../dbSample.json";
+import dbCore from "../dbCore.json";
 
-const initialState = dbSample.auth;
+const initialState = dbCore.auth;
 
 const isDataSaved = localStorage.getItem("mattressSysAuth")
   ? JSON.parse(localStorage.getItem("mattressSysAuth"))

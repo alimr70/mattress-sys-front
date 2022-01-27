@@ -12,7 +12,6 @@ const AddProductItem = () => {
     useContext(GeneralTypesStore);
   const { productTypes, serialNumbers } = generalTypesState;
   const { warehouseSerials } = serialNumbers;
-  const itemTypes = Object.values(productTypes);
 
   const [type, setType] = useState("");
   const [warehouseSerialNum, setWarehouseSerialNum] = useState("");
@@ -46,8 +45,10 @@ const AddProductItem = () => {
 
     const fullThickness = thickness !== "" ? " × " + thickness : "";
 
+    const fullHeight = height !== "" ? " × " + height : "";
+
     const fullName =
-      name + " " + width + " × " + height + fullThickness + fullWeight;
+      name + " " + width + fullHeight + fullThickness + fullWeight;
 
     const product = {
       id: nanoid(10),
@@ -99,7 +100,7 @@ const AddProductItem = () => {
           <option className="text-center text-gray-500" value="" defaultValue>
             إختر نوع المنتج
           </option>
-          {itemTypes.map((itemType, index) => {
+          {productTypes.map((itemType, index) => {
             return (
               <option
                 key={index}
@@ -198,23 +199,25 @@ const AddProductItem = () => {
           }}
         />
       </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="weight" className="m-2 col-span-1 justify-self-start">
-          الوزن
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="weight"
-          id="weight"
-          className="col-span-2 text-center text-gray-800"
-          value={weight}
-          onChange={(e) => {
-            handleNumberInputChange(e, "weight", numberTargets);
-          }}
-        />
-      </div>
+      {type === "مخدة" && (
+        <div className="m-5 grid grid-cols-3">
+          <label htmlFor="weight" className="m-2 col-span-1 justify-self-start">
+            الوزن
+          </label>
+          <input
+            dir="ltr"
+            inputMode="numeric"
+            type="text"
+            name="weight"
+            id="weight"
+            className="col-span-2 text-center text-gray-800"
+            value={weight}
+            onChange={(e) => {
+              handleNumberInputChange(e, "weight", numberTargets);
+            }}
+          />
+        </div>
+      )}
       <div className="m-5 grid grid-cols-3">
         <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
           السعر

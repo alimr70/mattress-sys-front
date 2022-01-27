@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect } from "react";
 import generalTypesReducer from "./generalTypesReducer";
-import dbSample from "../dbSample.json";
+import dbCore from "../dbCore.json";
 
-const initialState = dbSample.generalTypes;
+const initialState = dbCore.generalTypes;
 
 const isDataSaved = localStorage.getItem("mattressSysGeneralTypes")
   ? JSON.parse(localStorage.getItem("mattressSysGeneralTypes"))

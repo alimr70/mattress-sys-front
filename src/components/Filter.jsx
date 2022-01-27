@@ -14,7 +14,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
   const { warehouseState } = useContext(WarehouseStore);
 
   const { generalTypesState } = useContext(GeneralTypesStore);
-  const productTypes = Object.values(generalTypesState.productTypes);
+  const { productTypes } = generalTypesState;
 
   const [filteredProductsArr, setFilteredProductsArr] = useState([]);
   const [typeFilter, setTypeFilter] = useState("");

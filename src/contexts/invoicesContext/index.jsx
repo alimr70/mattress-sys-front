@@ -1,8 +1,8 @@
 import { createContext, useReducer, useEffect } from "react";
 import invoicesReducer from "./invoicesReducer";
-import dbSample from "../dbSample.json";
+import dbCore from "../dbCore.json";
 
-const initialState = dbSample.invoices;
+const initialState = dbCore.invoices;
 
 const isDataSaved = localStorage.getItem("mattressSysInvoices")
   ? JSON.parse(localStorage.getItem("mattressSysInvoices"))
