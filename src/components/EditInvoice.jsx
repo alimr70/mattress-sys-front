@@ -59,7 +59,8 @@ const EditInvoice = ({ isEditMode }) => {
     // invoice cost on retail after shipment
     const invoiceCostOnRetail =
       invoiceCostAfterVisaDeduction -
-      invoiceItem.shipmentCharge.shipmentOnRetail;
+      (invoiceItem.shipmentCharge.shipmentOnRetail +
+        invoiceItem.shipmentCharge.shipmentOnCst);
     // Total invoice income/profit
     const invoiceIncome = invoiceCostOnRetail - totalProductsCostOnRetail;
 
