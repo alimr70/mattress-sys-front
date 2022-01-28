@@ -25,6 +25,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
   const [phoneFilter, setPhoneFilter] = useState("");
   const [dateFilter, setDateFilter] = useState("");
   const [cstNameFilter, setCstNameFilter] = useState("");
+  const [productNameFilter, setProductNameFilter] = useState("");
 
   const numberTargets = {
     idFilter: [idFilter, setIdFilter],
@@ -44,6 +45,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
     phoneFilter !== "" && filters.push({ phone: phoneFilter });
     dateFilter !== "" && filters.push({ invoiceDate: dateFilter });
     cstNameFilter !== "" && filters.push({ cutomerName: cstNameFilter });
+    productNameFilter !== "" && filters.push({ name: productNameFilter });
 
     let delay = setTimeout(() => {
       const filteredProductsArr = repeatedFilter(
@@ -67,12 +69,13 @@ const Filter = ({ toBeFilteredProductsArr }) => {
     phoneFilter,
     dateFilter,
     cstNameFilter,
+    productNameFilter,
   ]);
 
   return (
     <>
       {/* Filter */}
-      <div className="m-5 grid xs:grid-cols-4 gap-2">
+      <div className="m-5 grid xs:grid-cols-5 gap-2">
         {(pathname === "/products" || pathname === "/warehouse") && (
           <>
             <div className="col-span-1">
@@ -97,6 +100,19 @@ const Filter = ({ toBeFilteredProductsArr }) => {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="col-span-1 flex">
+              <label htmlFor="productNameFilter">الاسم:</label>
+              <input
+                type="text"
+                name="productNameFilter"
+                id="productNameFilter"
+                className="w-full text-center text-gray-800"
+                value={productNameFilter}
+                onChange={(e) => {
+                  setProductNameFilter(e.target.value);
+                }}
+              />
             </div>
             <div className="col-span-1 flex">
               <label htmlFor="thicknessFilter">العرض:</label>

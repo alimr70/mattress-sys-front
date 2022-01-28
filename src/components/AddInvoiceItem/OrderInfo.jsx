@@ -1,4 +1,4 @@
-import { PlusCircleIcon, TrashIcon } from "@heroicons/react/solid";
+import { TrashIcon } from "@heroicons/react/solid";
 import { useContext, useEffect, useState } from "react";
 import { GeneralTypesStore } from "../../contexts/generalTypesContext";
 import { ProductsStore } from "../../contexts/productsContext";
@@ -19,6 +19,7 @@ const OrderInfo = ({ order, setOrder }) => {
   const [quantity, setQuantity] = useState("1");
   const [retailOffer, setRetailOffer] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
+  const [productNameFilter, setProductNameFilter] = useState("");
   const [widthFilter, setWidthFilter] = useState("");
   const [heightFilter, setHeightFilter] = useState("");
   const [thicknessFilter, setThicknessFilter] = useState("");
@@ -28,6 +29,7 @@ const OrderInfo = ({ order, setOrder }) => {
 
   const filters = [];
   typeFilter !== "" && filters.push({ type: typeFilter });
+  productNameFilter !== "" && filters.push({ name: productNameFilter });
   widthFilter !== "" && filters.push({ width: widthFilter });
   heightFilter !== "" && filters.push({ height: heightFilter });
   thicknessFilter !== "" && filters.push({ thickness: thicknessFilter });
@@ -43,11 +45,11 @@ const OrderInfo = ({ order, setOrder }) => {
   };
 
   useEffect(() => {
-    let num = 0;
+    let totalPrice = 0;
     order.forEach((item) => {
-      num = num + item.totalQuantityPrice;
+      totalPrice = totalPrice + item.totalQuantityPrice;
     });
-    setTotalSelectedPrice(num);
+    setTotalSelectedPrice(totalPrice);
   }, [order]);
 
   return (
@@ -131,7 +133,7 @@ const OrderInfo = ({ order, setOrder }) => {
       </div>
 
       {/* Filter */}
-      <div className="m-5 grid xs:grid-cols-4 gap-2">
+      <div className="m-5 grid xs:grid-cols-5 gap-2">
         <div className="col-span-1">
           <select
             className="w-full text-gray-800"
@@ -151,6 +153,19 @@ const OrderInfo = ({ order, setOrder }) => {
               </option>
             ))}
           </select>
+        </div>
+        <div className="col-span-1 flex">
+          <label htmlFor="productNameFilter">الاسم:</label>
+          <input
+            type="text"
+            name="productNameFilter"
+            id="productNameFilter"
+            className="w-full text-center text-gray-800"
+            value={productNameFilter}
+            onChange={(e) => {
+              setProductNameFilter(e.target.value);
+            }}
+          />
         </div>
         <div className="col-span-1 flex">
           <label htmlFor="thicknessFilter">العرض:</label>
@@ -199,55 +214,217 @@ const OrderInfo = ({ order, setOrder }) => {
         </div>
       </div>
 
-      <div className="m-5">
-        <ul>
-          {filteredProductsArr.map((item, index) => {
-            return (
-              <div className="flex items-center justify-center" key={index}>
-                <ProductItem product={item} />
-                <PlusCircleIcon
-                  className="h-10 w-10 xs:h-7 xs:w-7 cursor-pointer"
-                  onClick={() => {
-                    setOrder([
-                      ...order,
-                      {
-                        productId: item.id,
-                        warehouseId: item.warehouseId,
-                        quantity: +quantity,
-                        retailOffer: retailOffer === "" ? 0 : +retailOffer,
-                        priceOnRetailOrOld: getOrderDetailsFromWarehouse(
-                          warehouseState[item.warehouseId] !== undefined
-                            ? warehouseState[item.warehouseId]
-                            : undefined,
-                          +quantity,
-                          item.price
-                        ).reduce(
-                          // I added the reduce func to convert order array to object like in dbSample.json file because I did't want to mess with getOrderDetailsFromWarehouse function
-                          (prev, current) => ({
-                            ...prev,
-                            [current.companyDiscount]: { ...current },
-                          }),
-                          {}
-                        ),
-                        totalQuantityPrice:
-                          retailOffer !== ""
-                            ? item.price * quantity -
-                              Math.ceil(
-                                (item.price * quantity * +retailOffer) / 100
-                              )
-                            : item.price * quantity,
-                      },
-                    ]);
-                    setQuantity(1);
-                    setRetailOffer("");
-                  }}
-                />
-              </div>
-            );
-          })}
-        </ul>
+      <div className="flex my-1">
+        <button
+          className=" px-5 py-2 bg-red-500 rounded-md"
+          onClick={() => {
+            setTypeFilter("");
+            setProductNameFilter("");
+            setWidthFilter("");
+            setHeightFilter("");
+            setThicknessFilter("");
+          }}>
+          مسح الفلاتر
+        </button>
       </div>
+
+      <SelectProductTypeAndName
+        typeFilter={typeFilter}
+        setTypeFilter={setTypeFilter}
+        productNameFilter={productNameFilter}
+        setProductNameFilter={setProductNameFilter}
+        numberTargets={numberTargets}>
+        <FilteredProductsList
+          filteredProductsArr={filteredProductsArr}
+          setOrder={setOrder}
+          order={order}
+          quantity={quantity}
+          retailOffer={retailOffer}
+          warehouseState={warehouseState}
+          setQuantity={setQuantity}
+          setRetailOffer={setRetailOffer}
+        />
+      </SelectProductTypeAndName>
     </>
+  );
+};
+
+const FilteredProductsList = ({
+  filteredProductsArr,
+  setOrder,
+  order,
+  quantity,
+  retailOffer,
+  warehouseState,
+  setQuantity,
+  setRetailOffer,
+}) => {
+  return (
+    <div className="m-5">
+      <ul>
+        {filteredProductsArr.map((item, index) => {
+          return (
+            <div
+              className="flex items-center justify-center cursor-pointer"
+              key={index}
+              onClick={() => {
+                setOrder([
+                  ...order,
+                  {
+                    productId: item.id,
+                    warehouseId: item.warehouseId,
+                    quantity: +quantity,
+                    retailOffer: retailOffer === "" ? 0 : +retailOffer,
+                    priceOnRetailOrOld: getOrderDetailsFromWarehouse(
+                      warehouseState[item.warehouseId] !== undefined
+                        ? warehouseState[item.warehouseId]
+                        : undefined,
+                      +quantity,
+                      item.price
+                    ).reduce(
+                      // I added the reduce func to convert order array to object like in dbSample.json file because I did't want to mess with getOrderDetailsFromWarehouse function
+                      (prev, current) => ({
+                        ...prev,
+                        [current.companyDiscount]: { ...current },
+                      }),
+                      {}
+                    ),
+                    totalQuantityPrice:
+                      retailOffer !== ""
+                        ? item.price * quantity -
+                          Math.ceil(
+                            (item.price * quantity * +retailOffer) / 100
+                          )
+                        : item.price * quantity,
+                  },
+                ]);
+                setQuantity(1);
+                setRetailOffer("");
+              }}>
+              <ProductItem product={item} />
+            </div>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+const SelectProductTypeAndName = ({
+  typeFilter,
+  setTypeFilter,
+  productNameFilter,
+  setProductNameFilter,
+  numberTargets,
+  children,
+}) => {
+  // const [type, setType] = useState("");
+  // const [name, setName] = useState("");
+
+  // useEffect(() => {
+  //   setTypeFilter(type);
+  // }, [type, setTypeFilter]);
+
+  if (typeFilter !== "" && productNameFilter !== "") {
+    return children;
+  }
+
+  return (
+    <div className="my-2 w-full max-w-lg mx-auto grid gap-4 grid-cols-1 xs:grid-cols-3 sm:grid-cols-3">
+      {typeFilter === "" && (
+        <>
+          <SelectProductTypeAndNameCell
+            title="مراتب"
+            selectedVal="مرتبة"
+            setFn={setTypeFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="مخدات"
+            selectedVal="مخدة"
+            setFn={setTypeFilter}
+          />
+        </>
+      )}
+      {typeFilter === "مرتبة" && (
+        <>
+          <SelectProductTypeAndNameCell
+            title="متصلة 20"
+            selectedVal="ريترو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="متصلة 26"
+            selectedVal="جولدن"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="متصلة 30"
+            selectedVal="دودو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="طبية 15"
+            selectedVal="ماريو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="طبية 20"
+            selectedVal="ماريو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="طبية 25"
+            selectedVal="ماريو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="منفصلة - سو - 25"
+            selectedVal="سو"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
+            title="بف"
+            selectedVal="بف"
+            setFn={setProductNameFilter}
+          />
+        </>
+      )}
+    </div>
+  );
+};
+
+const SelectProductTypeAndNameCell = ({
+  title,
+  selectedVal,
+  setFn,
+  numberTargets,
+}) => {
+  const possibleThickness = ["15", "20", "25", "26", "30"];
+  return (
+    <div
+      className="col-span-1 h-28 grid bg-gray-700 rounded-md w-full items-center justify-center cursor-pointer"
+      onClick={() => {
+        setFn(selectedVal);
+        numberTargets !== undefined &&
+          possibleThickness.forEach(
+            (thickness) =>
+              title.includes(thickness) &&
+              handleNumberInputChange(
+                { target: { value: thickness } },
+                "thicknessFilter",
+                numberTargets
+              )
+          );
+      }}>
+      <h1 className="text-3lg font-bold text-gray-300 select-none">{title}</h1>
+    </div>
   );
 };
 
