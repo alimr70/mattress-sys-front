@@ -15,8 +15,16 @@ export const repeatedFilter = (arr, filters) => {
   let filterKey = Object.keys(filterObj)[0];
   let filterVal = Object.values(filterObj)[0];
 
-  // arr = arr.filter((el) => el[filterKey] === filterVal);
-  arr = arr.filter((el) => el[filterKey].includes(filterVal));
+  if (filterVal === "all") return arr;
+  if (filterVal === "others") {
+    arr = arr.filter((el) => !["مرتبة",
+      "مخدة",
+      "ميلتون",
+      "توبر"
+    ].includes(el[filterKey]));
+  } else {
+    arr = arr.filter((el) => el[filterKey].includes(filterVal));
+  }
 
   filters.shift();
 

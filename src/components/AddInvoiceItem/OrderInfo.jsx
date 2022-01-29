@@ -142,7 +142,7 @@ const OrderInfo = ({ order, setOrder }) => {
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}>
             <option className="text-center text-gray-500" value="" defaultValue>
-              كل الأنواع
+              إختر النوع
             </option>
             {productTypes.map((el, index) => (
               <option
@@ -152,6 +152,9 @@ const OrderInfo = ({ order, setOrder }) => {
                 {el}
               </option>
             ))}
+            <option className="text-center text-gray-800" value="all">
+              كل الأنواع
+            </option>
           </select>
         </div>
         <div className="col-span-1 flex">
@@ -318,14 +321,16 @@ const SelectProductTypeAndName = ({
   numberTargets,
   children,
 }) => {
-  // const [type, setType] = useState("");
-  // const [name, setName] = useState("");
-
-  // useEffect(() => {
-  //   setTypeFilter(type);
-  // }, [type, setTypeFilter]);
-
   if (typeFilter !== "" && productNameFilter !== "") {
+    return children;
+  }
+
+  if (
+    typeFilter === "all" ||
+    typeFilter === "others" ||
+    typeFilter === "توبر" ||
+    typeFilter === "ميلتون"
+  ) {
     return children;
   }
 
@@ -341,6 +346,27 @@ const SelectProductTypeAndName = ({
           <SelectProductTypeAndNameCell
             title="مخدات"
             selectedVal="مخدة"
+            setFn={setTypeFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="ميلتون"
+            selectedVal="ميلتون"
+            setFn={setTypeFilter}
+          />
+
+          <SelectProductTypeAndNameCell
+            title="توبر ميموري"
+            selectedVal="توبر"
+            setFn={setTypeFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="منتجات أُخري"
+            selectedVal="others"
+            setFn={setTypeFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="كل المنتجات"
+            selectedVal="all"
             setFn={setTypeFilter}
           />
         </>
@@ -390,8 +416,33 @@ const SelectProductTypeAndName = ({
             numberTargets={numberTargets}
           />
           <SelectProductTypeAndNameCell
+            title="ميموري22"
+            selectedVal="ميموري22"
+            setFn={setProductNameFilter}
+            numberTargets={numberTargets}
+          />
+          <SelectProductTypeAndNameCell
             title="بف"
             selectedVal="بف"
+            setFn={setProductNameFilter}
+          />
+        </>
+      )}
+      {typeFilter === "مخدة" && (
+        <>
+          <SelectProductTypeAndNameCell
+            title="طبية"
+            selectedVal="طبية"
+            setFn={setProductNameFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="ريلاكس"
+            selectedVal="ريلاكس"
+            setFn={setProductNameFilter}
+          />
+          <SelectProductTypeAndNameCell
+            title="فيبر"
+            selectedVal="فيبر"
             setFn={setProductNameFilter}
           />
         </>
