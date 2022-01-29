@@ -8,7 +8,6 @@ const PaymentInfo = ({
   paidMoney,
   paymentMethod,
   setPaymentMethod,
-  cashAmount,
   cardAmount,
   shipmentOnCst,
   shipmentOnRetail,
@@ -85,25 +84,6 @@ const PaymentInfo = ({
       </div>
       {paymentMethod === "cashAndCard" && (
         <>
-          <div className="m-5 grid grid-cols-3">
-            <label
-              htmlFor="cashAmount"
-              className="m-2 col-span-1 justify-self-start">
-              قيمة الكاش*
-            </label>
-            <input
-              dir="ltr"
-              inputMode="numeric"
-              type="text"
-              name="cashAmount"
-              id="cashAmount"
-              className="col-span-2 text-center text-gray-800"
-              value={cashAmount}
-              onChange={(e) => {
-                handleNumberInputChange(e, "cashAmount", numberTargets);
-              }}
-            />
-          </div>
           <div className="m-5 grid grid-cols-3">
             <label
               htmlFor="cardAmount"

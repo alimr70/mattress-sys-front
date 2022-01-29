@@ -85,7 +85,7 @@ const AddInvoiceItem = () => {
       order: order,
       paymentMethod: {
         method: paymentMethod,
-        cashAmount: +cashAmount,
+        cashAmount: +totalInvoicePrice - +cardAmount,
         cardAmount: +cardAmount,
       },
       shipmentCharge: {
@@ -129,7 +129,6 @@ const AddInvoiceItem = () => {
         setReceiptDate={setReceiptDate}
         paymentMethod={paymentMethod}
         setPaymentMethod={setPaymentMethod}
-        cashAmount={cashAmount}
         cardAmount={cardAmount}
         shipmentOnCst={shipmentOnCst}
         shipmentOnRetail={shipmentOnRetail}

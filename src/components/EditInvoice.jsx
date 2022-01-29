@@ -135,7 +135,7 @@ const EditInvoice = ({ isEditMode }) => {
             علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
           </span>
           <span className="justify-self-start">
-            {isEditMode && "تعديل تكلفة النقل علي المعرض"}علي المعرض:{" "}
+            {isEditMode && "تعديل تكلفة النقل "}علي المعرض:{" "}
             {invoiceItem.shipmentCharge.shipmentOnRetail}
           </span>
           {isEditMode && (
@@ -148,8 +148,12 @@ const EditInvoice = ({ isEditMode }) => {
             {englishTypesToArabic[invoiceItem.paymentMethod.method]}
           </span>
           <span className="justify-self-end">
-            المدفوع اونلاين: {invoiceItem.paymentMethod.cardAmount}
+            {isEditMode && "تعديل "}المدفوع اونلاين:{" "}
+            {invoiceItem.paymentMethod.cardAmount}
           </span>
+          {isEditMode && (
+            <FinalProductSectionCostOrDiscount numTarget="cardAmount" />
+          )}
           <span className="justify-self-end">
             المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
           </span>
@@ -347,6 +351,23 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
     setNumInputVal("");
   };
 
+  const handleEditCardAmount = () => {
+    // {invoiceItem.paymentMethod.cardAmount}
+    let newPaymentMethod = {
+      ...invoiceItem.paymentMethod,
+      cashAmount: +invoiceItem.totalInvoicePrice - +numInputVal,
+      cardAmount: +numInputVal,
+    };
+
+    invoicesDispatch(
+      editInvoiceSections(invoiceItem, [
+        { key: "paymentMethod", value: newPaymentMethod },
+      ])
+    );
+
+    setNumInputVal("");
+  };
+
   return (
     <div className="flex">
       <input
@@ -380,6 +401,13 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
           className="px-3 bg-blue-500 justify-self-center rounded-md"
           onClick={() => handleEditShipmentOnRetail()}>
           تعديل تكلفة النقل
+        </button>
+      )}
+      {numTarget === "cardAmount" && (
+        <button
+          className="px-3 bg-blue-500 justify-self-center rounded-md"
+          onClick={() => handleEditCardAmount()}>
+          تعديل الأونلاين
         </button>
       )}
     </div>

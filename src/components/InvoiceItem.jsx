@@ -16,7 +16,7 @@ const InvoiceItem = ({ item }) => {
   } = item;
 
   return (
-    <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between lg:justify-around flex-row text-right">
+    <li className="m-2 mx-auto rounded-md bg-gray-700 flex flex-wrap items-center flex-col text-right">
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
           رقم الفاتورة: <span className="text-blue-500">{id}</span>

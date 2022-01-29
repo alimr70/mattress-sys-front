@@ -321,15 +321,21 @@ const SelectProductTypeAndName = ({
   numberTargets,
   children,
 }) => {
+  const { generalTypesState } = useContext(GeneralTypesStore);
+  const { productTypes } = generalTypesState;
+  const lessKnownProducts = productTypes.filter((el) => {
+    return el !== "مرتبة" && el !== "مخدة" && el !== "ميلتون" && el !== "توبر";
+  });
+
   if (typeFilter !== "" && productNameFilter !== "") {
     return children;
   }
 
   if (
     typeFilter === "all" ||
-    typeFilter === "others" ||
     typeFilter === "توبر" ||
-    typeFilter === "ميلتون"
+    typeFilter === "ميلتون" ||
+    typeof typeFilter !== "string"
   ) {
     return children;
   }
@@ -361,7 +367,7 @@ const SelectProductTypeAndName = ({
           />
           <SelectProductTypeAndNameCell
             title="منتجات أُخري"
-            selectedVal="others"
+            selectedVal={lessKnownProducts}
             setFn={setTypeFilter}
           />
           <SelectProductTypeAndNameCell
