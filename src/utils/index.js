@@ -139,3 +139,53 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
     return priceOnRetailOrOld;
   }
 };
+
+export const getTotalOrdersArr = (invoices, productsData) => {
+  let totalSoldInventory = {};
+
+  invoices.forEach((invoice) => {
+    invoice.order.forEach((orderItem) => {
+      if (totalSoldInventory[orderItem.productId] !== undefined) {
+        totalSoldInventory[orderItem.productId].quantity += orderItem.quantity
+      } else {
+        totalSoldInventory[orderItem.productId] = {
+          productId: orderItem.productId,
+          quantity: orderItem.quantity
+        }
+      }
+    })
+  })
+
+  // Object.values(productsData).forEach((productItem) => {
+  //   totalSoldInventory[productItem.id]?.name = productItem.name
+  // })
+
+  const totalSoldInventoryWithNames = Object.values(totalSoldInventory).map((inventoryItem) => {
+    inventoryItem.name = productsData[inventoryItem.productId].name
+    inventoryItem.type = productsData[inventoryItem.productId].type
+    inventoryItem.thickness = productsData[inventoryItem.productId].thickness
+    inventoryItem.width = productsData[inventoryItem.productId].width
+    inventoryItem.height = productsData[inventoryItem.productId].height
+    return inventoryItem
+  })
+
+  const totalSoldMattress = totalSoldInventoryWithNames.filter(product => product.type === "مرتبة")
+
+  // Get all soled mattress dimentions
+  let availabeDimentions = []
+
+  totalSoldMattress.forEach((item) => {
+    availabeDimentions.push(`${item.width} × ${item.height}`)
+  })
+
+  const arrangedAvailableDimentions = [...new Set(availabeDimentions)].sort((a, b) => {
+    if (+a.split(" ")[0] > +b.split(" ")[0]) return 1
+    if (+a.split(" ")[0] === +b.split(" ")[0]) {
+      if (+a.split(" ")[2] > +b.split(" ")[2]) { return 1 } else { return -1 }
+    }
+    return -1
+      // if (+a.split(" ")[0] < +b.split(" ")[0]) return -1
+  })
+
+  return { totalSoldMattress, arrangedAvailableDimentions }
+}

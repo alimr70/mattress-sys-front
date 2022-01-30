@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
 import { InvoicesStore } from "../contexts/invoicesContext";
+import { ProductsStore } from "../contexts/productsContext";
+import { getTotalOrdersArr } from "../utils";
 
 const CalculationCells = () => {
   const [startDate, setStartDate] = useState(
@@ -61,11 +63,11 @@ const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
 
 const CalcutalteNumbers = ({ startDate, endDate }) => {
   const [expenses, setExpenses] = useState(30000);
-
+  const { productsState } = useContext(ProductsStore);
   const { invoicesState } = useContext(InvoicesStore);
 
   const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
-  const timeFiltered = Object.values(invoicesState).filter(
+  const timeFilteredInvoices = Object.values(invoicesState).filter(
     (invoice) =>
       new Date(startDate).getTime() + userTimezoneOffset < invoice.time &&
       new Date(invoice.invoiceDate).getTime() <
@@ -73,10 +75,11 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
   );
   let totalSales = 0;
   let totalIncome = 0;
-  timeFiltered.forEach((el) => {
+  timeFilteredInvoices.forEach((el) => {
     totalSales += el.totalPriceOnRetail;
     totalIncome += el.totalProfit;
   });
+  console.log(getTotalOrdersArr(timeFilteredInvoices, productsState));
   return (
     <>
       <div className="col-span-full">
@@ -107,9 +110,16 @@ const NumberCellAndTitle = ({ title, number }) => {
       <h3 className="text-lg font-bold text-blue-500 justify-self-center">
         {title}
       </h3>
-      <h1 className="text-2xl justify-self-center">{number}</h1>
+      <h1 className="text-2xl justify-self-center">{Math.floor(number)}</h1>
     </div>
   );
 };
+
+// جرد الأصناف المباعة ومقاساتها بالترتيب
+// const SoldInventoryDetails = () => {
+//   const { invoicesState } = useContext(InvoicesStore);
+
+//   return <></>;
+// };
 
 export default CalculationCells;
