@@ -169,7 +169,7 @@ export const getTotalOrdersArr = (invoices, productsData) => {
     return inventoryItem
   })
 
-  const totalSoldMattress = totalSoldInventoryWithNames.filter(product => product.type === "مرتبة")
+  const totalSoldMattress = totalSoldInventoryWithNames.filter(product => product.type === "مرتبة" && !product.name.includes("بف"))
 
   // Get all soled mattress dimentions
   let availabeDimentions = []
