@@ -16,7 +16,7 @@ const CalculationCells = () => {
   );
 
   return (
-    <div className="w-full max-w-3xl mx-auto grid grid-cols-1 xs:grid-cols-3">
+    <div className="w-full max-w-3xl mx-auto grid grid-cols-1">
       <DateFilter
         startDate={startDate}
         setStartDate={setStartDate}
@@ -63,7 +63,6 @@ const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
 
 const CalcutalteNumbers = ({ startDate, endDate }) => {
   const [expenses, setExpenses] = useState(30000);
-  const { productsState } = useContext(ProductsStore);
   const { invoicesState } = useContext(InvoicesStore);
 
   const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
@@ -79,7 +78,6 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
     totalSales += el.totalPriceOnRetail;
     totalIncome += el.totalProfit;
   });
-  console.log(getTotalOrdersArr(timeFilteredInvoices, productsState));
   return (
     <>
       <div className="col-span-full">
@@ -94,12 +92,17 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
           }}
         />
       </div>
-      <NumberCellAndTitle title={"المبيعات"} number={totalSales} />
-      <NumberCellAndTitle title={"الإيرادات"} number={totalIncome} />
-      <NumberCellAndTitle
-        title={"صافي الأرباح"}
-        number={totalIncome - expenses}
-      />
+      <div className="col-span-1 grid grid-cols-3">
+        <NumberCellAndTitle title={"المبيعات"} number={totalSales} />
+        <NumberCellAndTitle title={"الإيرادات"} number={totalIncome} />
+        <NumberCellAndTitle
+          title={"صافي الأرباح"}
+          number={totalIncome - expenses}
+        />
+      </div>
+      <div className="col-span-1">
+        <SoldInventoryDetails timeFilteredInvoices={timeFilteredInvoices} />
+      </div>
     </>
   );
 };
@@ -116,10 +119,39 @@ const NumberCellAndTitle = ({ title, number }) => {
 };
 
 // جرد الأصناف المباعة ومقاساتها بالترتيب
-// const SoldInventoryDetails = () => {
-//   const { invoicesState } = useContext(InvoicesStore);
+const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
+  const { productsState } = useContext(ProductsStore);
+  const { totalSoldMattress, arrangedAvailableDimentions } = getTotalOrdersArr(
+    timeFilteredInvoices,
+    productsState
+  );
+  console.log({ totalSoldMattress, arrangedAvailableDimentions });
 
-//   return <></>;
-// };
+  return (
+    <>
+      {/* Dimentions */}
+      <div className="grid grid-cols-1 gap-2">
+        <div className="col-span-1 grid grid-cols-12">
+          <span className="p-1 col-span-3 justify-self-center">المقاسات</span>
+          <span className="p-1 col-span-1 justify-self-center">R</span>
+          <span className="p-1 col-span-1 justify-self-center">G</span>
+          <span className="p-1 col-span-1 justify-self-center">D</span>
+          <span className="p-1 col-span-1 justify-self-center">Sue</span>
+          <span className="p-1 col-span-1 justify-self-center">M15</span>
+          <span className="p-1 col-span-1 justify-self-center">M20</span>
+          <span className="p-1 col-span-1 justify-self-center">M25</span>
+          <span className="p-1 col-span-1 justify-self-center">Me22</span>
+        </div>
+        {arrangedAvailableDimentions.map((dimention, index) => {
+          return (
+            <div key={index} className="p-1 text-left bg-gray-700 col-span-1">
+              {dimention}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
 
 export default CalculationCells;
