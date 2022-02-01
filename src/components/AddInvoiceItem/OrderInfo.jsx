@@ -246,6 +246,11 @@ const OrderInfo = ({ order, setOrder }) => {
           warehouseState={warehouseState}
           setQuantity={setQuantity}
           setRetailOffer={setRetailOffer}
+          setTypeFilter={setTypeFilter}
+          setProductNameFilter={setProductNameFilter}
+          setWidthFilter={setWidthFilter}
+          setHeightFilter={setHeightFilter}
+          setThicknessFilter={setThicknessFilter}
         />
       </SelectProductTypeAndName>
     </>
@@ -261,6 +266,11 @@ const FilteredProductsList = ({
   warehouseState,
   setQuantity,
   setRetailOffer,
+  setTypeFilter,
+  setProductNameFilter,
+  setWidthFilter,
+  setHeightFilter,
+  setThicknessFilter,
 }) => {
   return (
     <div className="m-5">
@@ -303,6 +313,12 @@ const FilteredProductsList = ({
                 ]);
                 setQuantity(1);
                 setRetailOffer("");
+                // clear filters
+                setTypeFilter("");
+                setProductNameFilter("");
+                setWidthFilter("");
+                setHeightFilter("");
+                setThicknessFilter("");
               }}>
               <ProductItem product={item} />
             </div>

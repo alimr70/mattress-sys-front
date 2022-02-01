@@ -10,6 +10,8 @@ const DetailsAndEdit = () => {
   let location = useLocation();
 
   const [isEditMode, setIsEditMode] = useState(false);
+  const [askForDeleteMode, setAskForDeleteMode] = useState(false);
+  const [isDeleteMode, setIsDeleteMode] = useState(false);
 
   return (
     <>
@@ -32,7 +34,32 @@ const DetailsAndEdit = () => {
         )}
         {location.pathname.startsWith("/warehouse") && <DetailWarehouseItem />}
         {location.pathname.startsWith("/invoices") && (
-          <EditInvoice isEditMode={isEditMode} />
+          <>
+            <div>
+              <label htmlFor="isDeleteMode">تفعيل وضع الحذف</label>
+              <input
+                type="checkbox"
+                name="isDeleteMode"
+                id="isDeleteMode"
+                checked={isDeleteMode}
+                onChange={() => {
+                  if (!askForDeleteMode) {
+                    setAskForDeleteMode(true);
+                  } else {
+                    setIsDeleteMode(false);
+                    setAskForDeleteMode(false);
+                  }
+                }}
+              />
+            </div>
+            <EditInvoice
+              isEditMode={isEditMode}
+              askForDeleteMode={askForDeleteMode}
+              setAskForDeleteMode={setAskForDeleteMode}
+              isDeleteMode={isDeleteMode}
+              setIsDeleteMode={setIsDeleteMode}
+            />
+          </>
         )}
       </Container>
     </>

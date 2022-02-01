@@ -1,11 +1,18 @@
 import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
+import { AuthStore } from "../contexts/authContext";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import { editInvoiceSections } from "../contexts/invoicesContext/invoicesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { englishTypesToArabic, handleNumberInputChange } from "../utils";
 
-const EditInvoice = ({ isEditMode }) => {
+const EditInvoice = ({
+  isEditMode,
+  askForDeleteMode,
+  setAskForDeleteMode,
+  isDeleteMode,
+  setIsDeleteMode,
+}) => {
   const { invoiceId } = useParams();
   const { invoicesState, invoicesDispatch } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
@@ -74,122 +81,127 @@ const EditInvoice = ({ isEditMode }) => {
   };
 
   return (
-    <>
-      <div className="max-w-sm mx-auto grid grid-cols-1 gap-2">
-        <div className="col-span-1 justify-self-center text-2xl">
-          تفاصيل الفاتورة
-        </div>
-        <div className="col-span-1 justify-self-center text-2xl">
-          حالة الفاتورة: {englishTypesToArabic[invoiceItem.status]}
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">رقم الفاتورة: </span>
-          <span className="justify-self-start">{invoiceItem.id}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">الاسم: </span>
-          <span className="justify-self-start">{invoiceItem.cutomerName}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">العنوان: </span>
-          <span className="justify-self-start">{invoiceItem.address}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">رقم التليفون: </span>
-          <span className="justify-self-start">{invoiceItem.phone}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">تليفون آخر: </span>
-          <span className="justify-self-start">{invoiceItem.phoneTwo}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">تاريخ الفاتورة: </span>
-          <span className="justify-self-start">{invoiceItem.invoiceDate}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">تاريخ التسليم: </span>
-          <span className="justify-self-start">{invoiceItem.receiptDate}</span>
-        </div>
-        <div className="col-span-1 border-2 border-gray-400">
-          <span className="justify-self-end">الأوردر: </span>
-          <OrderDetailsAndEdit
-            order={invoiceItem.order}
-            isEditMode={isEditMode}
-          />
-        </div>
-        <div className="m-2 flex flex-col border-2 border-gray-400">
-          <span className="justify-self-end">خصم المعرض:- </span>
-          <span className="justify-self-start">
-            اسم الخصم: {invoiceItem.totalRetailOffer.name}
-          </span>
-          <span className="justify-self-start">
-            نسبة: {invoiceItem.totalRetailOffer.percentage}
-          </span>
-          <span className="justify-self-start">
-            قيمة محددة: {invoiceItem.totalRetailOffer.fixed}
-          </span>
-        </div>
-        <div className="m-2 flex flex-col border-2 border-gray-400">
-          <span className="justify-self-end">النقل:- </span>
-          <span className="justify-self-start">
-            علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
-          </span>
-          <span className="justify-self-start">
-            {isEditMode && "تعديل تكلفة النقل "}علي المعرض:{" "}
-            {invoiceItem.shipmentCharge.shipmentOnRetail}
-          </span>
-          {isEditMode && (
-            <FinalProductSectionCostOrDiscount numTarget="shipmentOnRetail" />
-          )}
-        </div>
-        <div className="m-2 flex flex-col border-2 border-gray-400">
-          <span className="justify-self-end">
-            طريقة الدفع:
-            {englishTypesToArabic[invoiceItem.paymentMethod.method]}
-          </span>
-          <span className="justify-self-end">
-            {isEditMode && "تعديل "}المدفوع اونلاين:{" "}
-            {invoiceItem.paymentMethod.cardAmount}
-          </span>
-          {isEditMode && (
-            <FinalProductSectionCostOrDiscount numTarget="cardAmount" />
-          )}
-          <span className="justify-self-end">
-            المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
-          </span>
-        </div>
-        <div className="m-2 flex flex-col border-2 border-gray-400">
-          <span className="justify-self-end">
-            الإجمالي: {invoiceItem.totalInvoicePrice}
-          </span>
-          <span className="justify-self-end">
-            المدفوع: {invoiceItem.paidMoney}
-          </span>
-          <span className="justify-self-end">
-            المتبقي: {invoiceItem.remainingMoney}
-          </span>
-        </div>
-        <div className="m-2 flex flex-col border-2 border-gray-400">
-          <span className="justify-self-end">تقفيل الفاتورة:- </span>
-          <span className="justify-self-start">
-            إجمالي الفاتورة: {invoiceItem.totalInvoicePrice}
-          </span>
-          <span className="justify-self-start">
-            تكلفة الفاتورة علي المعرض: {invoiceItem.totalPriceOnRetail}
-          </span>
-          <span className="justify-self-start">
-            صافي ربح الفاتورة: {invoiceItem.totalProfit}
-          </span>
-        </div>
-        <div className="m-2 grid">
-          <button
-            onClick={() => handleInvoiceCostCalc()}
-            className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
-            حساب تكلفة الفاتورة
-          </button>
-        </div>
+    <div className="relative max-w-sm mx-auto grid grid-cols-1 gap-2">
+      {askForDeleteMode && !isDeleteMode && (
+        <DeleteModeWarning
+          askForDeleteMode={askForDeleteMode}
+          setAskForDeleteMode={setAskForDeleteMode}
+          setIsDeleteMode={setIsDeleteMode}
+        />
+      )}
+      <div className="col-span-1 justify-self-center text-2xl">
+        تفاصيل الفاتورة
       </div>
-    </>
+      <div className="col-span-1 justify-self-center text-2xl">
+        حالة الفاتورة: {englishTypesToArabic[invoiceItem.status]}
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">رقم الفاتورة: </span>
+        <span className="justify-self-start">{invoiceItem.id}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">الاسم: </span>
+        <span className="justify-self-start">{invoiceItem.cutomerName}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">العنوان: </span>
+        <span className="justify-self-start">{invoiceItem.address}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">رقم التليفون: </span>
+        <span className="justify-self-start">{invoiceItem.phone}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">تليفون آخر: </span>
+        <span className="justify-self-start">{invoiceItem.phoneTwo}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">تاريخ الفاتورة: </span>
+        <span className="justify-self-start">{invoiceItem.invoiceDate}</span>
+      </div>
+      <div className="col-span-1 grid grid-cols-2 gap-2">
+        <span className="justify-self-end">تاريخ التسليم: </span>
+        <span className="justify-self-start">{invoiceItem.receiptDate}</span>
+      </div>
+      <div className="col-span-1 border-2 border-gray-400">
+        <span className="justify-self-end">الأوردر: </span>
+        <OrderDetailsAndEdit
+          order={invoiceItem.order}
+          isEditMode={isEditMode}
+        />
+      </div>
+      <div className="m-2 flex flex-col border-2 border-gray-400">
+        <span className="justify-self-end">خصم المعرض:- </span>
+        <span className="justify-self-start">
+          اسم الخصم: {invoiceItem.totalRetailOffer.name}
+        </span>
+        <span className="justify-self-start">
+          نسبة: {invoiceItem.totalRetailOffer.percentage}
+        </span>
+        <span className="justify-self-start">
+          قيمة محددة: {invoiceItem.totalRetailOffer.fixed}
+        </span>
+      </div>
+      <div className="m-2 flex flex-col border-2 border-gray-400">
+        <span className="justify-self-end">النقل:- </span>
+        <span className="justify-self-start">
+          علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
+        </span>
+        <span className="justify-self-start">
+          {isEditMode && "تعديل تكلفة النقل "}علي المعرض:{" "}
+          {invoiceItem.shipmentCharge.shipmentOnRetail}
+        </span>
+        {isEditMode && (
+          <FinalProductSectionCostOrDiscount numTarget="shipmentOnRetail" />
+        )}
+      </div>
+      <div className="m-2 flex flex-col border-2 border-gray-400">
+        <span className="justify-self-end">
+          طريقة الدفع:
+          {englishTypesToArabic[invoiceItem.paymentMethod.method]}
+        </span>
+        <span className="justify-self-end">
+          {isEditMode && "تعديل "}المدفوع اونلاين:{" "}
+          {invoiceItem.paymentMethod.cardAmount}
+        </span>
+        {isEditMode && (
+          <FinalProductSectionCostOrDiscount numTarget="cardAmount" />
+        )}
+        <span className="justify-self-end">
+          المدفوع نقدا: {invoiceItem.paymentMethod.cashAmount}
+        </span>
+      </div>
+      <div className="m-2 flex flex-col border-2 border-gray-400">
+        <span className="justify-self-end">
+          الإجمالي: {invoiceItem.totalInvoicePrice}
+        </span>
+        <span className="justify-self-end">
+          المدفوع: {invoiceItem.paidMoney}
+        </span>
+        <span className="justify-self-end">
+          المتبقي: {invoiceItem.remainingMoney}
+        </span>
+      </div>
+      <div className="m-2 flex flex-col border-2 border-gray-400">
+        <span className="justify-self-end">تقفيل الفاتورة:- </span>
+        <span className="justify-self-start">
+          إجمالي الفاتورة: {invoiceItem.totalInvoicePrice}
+        </span>
+        <span className="justify-self-start">
+          تكلفة الفاتورة علي المعرض: {invoiceItem.totalPriceOnRetail}
+        </span>
+        <span className="justify-self-start">
+          صافي ربح الفاتورة: {invoiceItem.totalProfit}
+        </span>
+      </div>
+      <div className="m-2 grid">
+        <button
+          onClick={() => handleInvoiceCostCalc()}
+          className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
+          حساب تكلفة الفاتورة
+        </button>
+      </div>
+    </div>
   );
 };
 
@@ -410,6 +422,59 @@ const FinalProductSectionCostOrDiscount = ({ item, orderIndex, numTarget }) => {
           تعديل الأونلاين
         </button>
       )}
+    </div>
+  );
+};
+
+const DeleteModeWarning = ({ setIsDeleteMode, setAskForDeleteMode }) => {
+  let { authState } = useContext(AuthStore);
+  const [password, setPassWord] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (
+      (authState.role === "programmer" &&
+        password === process.env.REACT_APP_PROGRAMMER_PS) ||
+      (authState.role === "manager" &&
+        password === process.env.REACT_APP_MANAGER_PS) ||
+      (authState.role === "accountant" &&
+        password === process.env.REACT_APP_ACCOUNTANT_PS)
+    ) {
+      setIsDeleteMode(true);
+    } else {
+      setIsDeleteMode(false);
+      setAskForDeleteMode(false);
+    }
+  }
+
+  return (
+    <div className="absolute top-0 left-0 w-full h-full grid bg-gray-800">
+      <form
+        autoComplete="off"
+        onSubmit={handleSubmit}
+        className="p-2 justify-self-center self-start grid grid-cols-3 gap-3 border-4 border-red-800">
+        <label className="col-span-1">
+          كلمة المرور الخاصة بالمستخدم الحالي:{" "}
+        </label>
+        <input
+          className="px-2 col-span-2 text-gray-900"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassWord(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="px-3 py-1 justify-self-center bg-red-600 rounded-md col-span-3">
+          تفعيل وضع الحذف
+        </button>
+        <button
+          className="px-3 py-1 justify-self-center bg-blue-600 rounded-md col-span-3"
+          onClick={() => setAskForDeleteMode(false)}>
+          العودة
+        </button>
+      </form>
     </div>
   );
 };
