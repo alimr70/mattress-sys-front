@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthStore } from "../contexts/authContext";
 import { InvoicesStore } from "../contexts/invoicesContext";
 import {
@@ -16,6 +16,7 @@ const EditInvoice = ({
   isDeleteMode,
   setIsDeleteMode,
 }) => {
+  const navigate = useNavigate();
   const { invoiceId } = useParams();
   const { invoicesState, invoicesDispatch } = useContext(InvoicesStore);
   const invoiceItem = invoicesState[invoiceId];
@@ -85,6 +86,7 @@ const EditInvoice = ({
 
   const handleDeleteInvoice = () => {
     invoicesDispatch(deleteInvoice(invoiceId));
+    navigate("/invoices", { replace: true });
   };
 
   return (
@@ -136,6 +138,7 @@ const EditInvoice = ({
           order={invoiceItem.order}
           isEditMode={isEditMode}
           isDeleteMode={isDeleteMode}
+          status={invoiceItem.status}
         />
       </div>
       <div className="m-2 flex flex-col border-2 border-gray-400">
@@ -156,10 +159,12 @@ const EditInvoice = ({
           علي العميل: {invoiceItem.shipmentCharge.shipmentOnCst}
         </span>
         <span className="justify-self-start">
-          {isEditMode && "تعديل تكلفة النقل "}علي المعرض:{" "}
-          {invoiceItem.shipmentCharge.shipmentOnRetail}
+          {invoiceItem.status !== "deleted" &&
+            isEditMode &&
+            "تعديل تكلفة النقل "}
+          علي المعرض: {invoiceItem.shipmentCharge.shipmentOnRetail}
         </span>
-        {isEditMode && (
+        {invoiceItem.status !== "deleted" && isEditMode && (
           <FinalProductSectionCostOrDiscount numTarget="shipmentOnRetail" />
         )}
       </div>
@@ -169,10 +174,10 @@ const EditInvoice = ({
           {englishTypesToArabic[invoiceItem.paymentMethod.method]}
         </span>
         <span className="justify-self-end">
-          {isEditMode && "تعديل "}المدفوع اونلاين:{" "}
-          {invoiceItem.paymentMethod.cardAmount}
+          {invoiceItem.status !== "deleted" && isEditMode && "تعديل "}المدفوع
+          اونلاين: {invoiceItem.paymentMethod.cardAmount}
         </span>
-        {isEditMode && (
+        {invoiceItem.status !== "deleted" && isEditMode && (
           <FinalProductSectionCostOrDiscount numTarget="cardAmount" />
         )}
         <span className="justify-self-end">
@@ -202,25 +207,27 @@ const EditInvoice = ({
           صافي ربح الفاتورة: {invoiceItem.totalProfit}
         </span>
       </div>
-      <div className="m-2 grid">
-        <button
-          onClick={() => handleInvoiceCostCalc()}
-          className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
-          حساب تكلفة الفاتورة
-        </button>
-        {isDeleteMode && (
+      {invoiceItem.status !== "deleted" && (
+        <div className="m-2 grid">
           <button
-            onClick={() => handleDeleteInvoice()}
-            className="my-1 px-5 py-2 mx-2 bg-red-500 rounded-md">
-            إلغاء الفاتورة
+            onClick={() => handleInvoiceCostCalc()}
+            className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
+            حساب تكلفة الفاتورة
           </button>
-        )}
-      </div>
+          {isDeleteMode && (
+            <button
+              onClick={() => handleDeleteInvoice()}
+              className="my-1 px-5 py-2 mx-2 bg-red-500 rounded-md">
+              إلغاء الفاتورة
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
-const OrderDetailsAndEdit = ({ isEditMode, order, isDeleteMode }) => {
+const OrderDetailsAndEdit = ({ isEditMode, order, status }) => {
   return (
     <>
       {order.map((orderItem, index) => {
@@ -230,7 +237,8 @@ const OrderDetailsAndEdit = ({ isEditMode, order, isDeleteMode }) => {
             isEditMode={isEditMode}
             orderItem={orderItem}
             orderIndex={index}
-            isDeleteMode={isDeleteMode}
+            // isDeleteMode={isDeleteMode}
+            status={status}
           />
         );
       })}
@@ -242,7 +250,8 @@ const OrderDetailsItem = ({
   isEditMode,
   orderItem,
   orderIndex,
-  isDeleteMode,
+  // isDeleteMode,
+  status,
 }) => {
   const { productsState } = useContext(ProductsStore);
   let productItem = productsState[orderItem.productId];
@@ -261,6 +270,7 @@ const OrderDetailsItem = ({
               item={item}
               isEditMode={isEditMode}
               orderIndex={orderIndex}
+              status={status}
             />
           );
         })}
@@ -293,18 +303,21 @@ const OrderDetailsItem = ({
   );
 };
 
-const PriceOnRetailItem = ({ item, isEditMode, orderIndex }) => {
+const PriceOnRetailItem = ({ item, isEditMode, orderIndex, status }) => {
   return (
     <div
       className={`m-1 flex ${
-        isEditMode ? "flex-col" : "justify-around flex-wrap"
+        status !== "deleted" && isEditMode
+          ? "flex-col"
+          : "justify-around flex-wrap"
       } border-2 border-gray-400`}>
       <span>سعر الوحدة: {item.price}</span>
       <span>الكمية: {item.quantity}</span>
       <span>
-        {isEditMode && "تعديل "}خصم الشركة: {item.companyDiscount}
+        {status !== "deleted" && isEditMode && "تعديل "}خصم الشركة:{" "}
+        {item.companyDiscount}
       </span>
-      {isEditMode && (
+      {status !== "deleted" && isEditMode && (
         <FinalProductSectionCostOrDiscount
           item={item}
           orderIndex={orderIndex}
@@ -312,10 +325,11 @@ const PriceOnRetailItem = ({ item, isEditMode, orderIndex }) => {
         />
       )}
       <span>
-        {isEditMode && "تعديل "}إجمالي سعر الوحدات قبل حساب خصم الشركة:
+        {status !== "deleted" && isEditMode && "تعديل "}إجمالي سعر الوحدات قبل
+        حساب خصم الشركة:
         {item.finalPriceBeforeDiscount}
       </span>
-      {isEditMode && (
+      {status !== "deleted" && isEditMode && (
         <FinalProductSectionCostOrDiscount
           item={item}
           orderIndex={orderIndex}
@@ -323,7 +337,8 @@ const PriceOnRetailItem = ({ item, isEditMode, orderIndex }) => {
         />
       )}
       <span className="bg-green-700">
-        {isEditMode && "تعديل "}إجمالي سعر الوحدات بعد حساب خصم الشركة:
+        {status !== "deleted" && isEditMode && "تعديل "}إجمالي سعر الوحدات بعد
+        حساب خصم الشركة:
         {item.finalPriceAfterDiscount}
       </span>
     </div>
