@@ -47,7 +47,8 @@ const Filter = ({ toBeFilteredProductsArr }) => {
     cstNameFilter !== "" && filters.push({ cutomerName: cstNameFilter });
     productNameFilter !== "" && filters.push({ name: productNameFilter });
     // Don't show deleted invoices
-    filters.push({ status: "pending" || "completed" });
+    pathname === "/invoices" &&
+      filters.push({ status: "pending" || "completed" });
 
     let delay = setTimeout(() => {
       const filteredProductsArr = repeatedFilter(
@@ -72,6 +73,7 @@ const Filter = ({ toBeFilteredProductsArr }) => {
     dateFilter,
     cstNameFilter,
     productNameFilter,
+    pathname,
   ]);
 
   return (
