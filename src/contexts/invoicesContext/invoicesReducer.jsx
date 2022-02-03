@@ -2,6 +2,7 @@ import {
   ADD_INVOICE_ITEM,
   INIT_INVOICES_DATA,
   EDIT_INVOICE_SECTIONS,
+  DELETE_INVOICE,
 } from "./invoicesActions";
 
 const invoicesReducer = (state, action) => {
@@ -22,6 +23,15 @@ const invoicesReducer = (state, action) => {
         [action.invoiceItem.id]: {
           ...action.invoiceItem,
           ...editedSections,
+        },
+      };
+
+    case DELETE_INVOICE:
+      return {
+        ...state,
+        [action.invoiceId]: {
+          ...state[action.invoiceId],
+          status: "deleted",
         },
       };
 

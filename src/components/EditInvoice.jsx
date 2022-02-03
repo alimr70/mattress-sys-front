@@ -2,7 +2,10 @@ import { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AuthStore } from "../contexts/authContext";
 import { InvoicesStore } from "../contexts/invoicesContext";
-import { editInvoiceSections } from "../contexts/invoicesContext/invoicesActions";
+import {
+  deleteInvoice,
+  editInvoiceSections,
+} from "../contexts/invoicesContext/invoicesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { englishTypesToArabic, handleNumberInputChange } from "../utils";
 
@@ -80,6 +83,10 @@ const EditInvoice = ({
     );
   };
 
+  const handleDeleteInvoice = () => {
+    invoicesDispatch(deleteInvoice(invoiceId));
+  };
+
   return (
     <div className="relative max-w-sm mx-auto grid grid-cols-1 gap-2">
       {askForDeleteMode && !isDeleteMode && (
@@ -128,6 +135,7 @@ const EditInvoice = ({
         <OrderDetailsAndEdit
           order={invoiceItem.order}
           isEditMode={isEditMode}
+          isDeleteMode={isDeleteMode}
         />
       </div>
       <div className="m-2 flex flex-col border-2 border-gray-400">
@@ -200,12 +208,19 @@ const EditInvoice = ({
           className="px-5 py-2 mx-2 bg-blue-500 rounded-md">
           حساب تكلفة الفاتورة
         </button>
+        {isDeleteMode && (
+          <button
+            onClick={() => handleDeleteInvoice()}
+            className="my-1 px-5 py-2 mx-2 bg-red-500 rounded-md">
+            إلغاء الفاتورة
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-const OrderDetailsAndEdit = ({ isEditMode, order }) => {
+const OrderDetailsAndEdit = ({ isEditMode, order, isDeleteMode }) => {
   return (
     <>
       {order.map((orderItem, index) => {
@@ -215,6 +230,7 @@ const OrderDetailsAndEdit = ({ isEditMode, order }) => {
             isEditMode={isEditMode}
             orderItem={orderItem}
             orderIndex={index}
+            isDeleteMode={isDeleteMode}
           />
         );
       })}
@@ -222,7 +238,12 @@ const OrderDetailsAndEdit = ({ isEditMode, order }) => {
   );
 };
 
-const OrderDetailsItem = ({ isEditMode, orderItem, orderIndex }) => {
+const OrderDetailsItem = ({
+  isEditMode,
+  orderItem,
+  orderIndex,
+  isDeleteMode,
+}) => {
   const { productsState } = useContext(ProductsStore);
   let productItem = productsState[orderItem.productId];
   return (
@@ -243,6 +264,30 @@ const OrderDetailsItem = ({ isEditMode, orderItem, orderIndex }) => {
             />
           );
         })}
+        {/* {isDeleteMode && (
+          <>
+            <div>
+              <button
+                className="m-1 p-1 bg-red-500 rounded-md"
+                onClick={() => {
+                  console.log(orderItem);
+                }}>
+                مسح المنتج بالكامل{" "}
+              </button>
+            </div>
+            {orderItem.quantity > 1 && (
+              <div>
+                <button
+                  className="m-1 p-1 bg-red-500 rounded-md"
+                  onClick={() => {
+                    console.log(orderItem);
+                  }}>
+                  مسح وحدة فقط{" "}
+                </button>
+              </div>
+            )}
+          </>
+        )} */}
       </div>
     </div>
   );
