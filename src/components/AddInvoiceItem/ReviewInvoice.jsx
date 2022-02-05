@@ -24,6 +24,7 @@ const ReviewInvoice = ({
   paidMoney,
   remainingMoney,
   setRemainingMoney,
+  isShipment,
 }) => {
   const { generalTypesState } = useContext(GeneralTypesStore);
   const { serialNumbers } = generalTypesState;
@@ -254,9 +255,10 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  {(shipmentOnCst === "0" ||
-                    shipmentOnCst === "" ||
-                    shipmentOnCst === 0) &&
+                  {isShipment &&
+                    (shipmentOnCst === "0" ||
+                      shipmentOnCst === "" ||
+                      shipmentOnCst === 0) &&
                     (shipmentOnRetail !== "" || shipmentOnRetail !== 0) && (
                       <div className="flex">
                         <div className="w-[100%] flex">
@@ -461,9 +463,10 @@ const ReviewInvoice = ({
                     </div>
                   )}
 
-                  {(shipmentOnCst === "0" ||
-                    shipmentOnCst === "" ||
-                    shipmentOnCst === 0) &&
+                  {isShipment &&
+                    (shipmentOnCst === "0" ||
+                      shipmentOnCst === "" ||
+                      shipmentOnCst === 0) &&
                     (shipmentOnRetail !== "" || shipmentOnRetail !== 0) && (
                       <div className="flex">
                         <div className="w-[100%] flex">

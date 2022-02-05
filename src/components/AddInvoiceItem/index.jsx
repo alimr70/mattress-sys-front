@@ -104,6 +104,74 @@ const AddInvoiceItem = () => {
       totalProfit: 0,
       status: "pending",
     };
+
+    // TEST AREA
+    let totalProductsCostOnRetail = 0;
+    invoice.order.forEach((orderItem, index) => {
+      Object.values(orderItem.priceOnRetailOrOld).map((item) => {
+        let finalItemCostOnRtail =
+          item.finalPriceAfterDiscount === 0
+            ? item.price * item.quantity -
+              (item.price * item.quantity * item.companyDiscount) / 100
+            : item.finalPriceAfterDiscount;
+
+        totalProductsCostOnRetail += finalItemCostOnRtail;
+
+        let newPriceOnRetailOrOld = {
+          ...orderItem.priceOnRetailOrOld,
+          [item.companyDiscount]: {
+            ...item,
+            finalPriceBeforeDiscount:
+              item.finalPriceBeforeDiscount === 0
+                ? item.price * item.quantity
+                : item.finalPriceBeforeDiscount,
+            finalPriceAfterDiscount: finalItemCostOnRtail,
+          },
+        };
+        orderItem.priceOnRetailOrOld = newPriceOnRetailOrOld;
+
+        let newOrder = invoice.order;
+        newOrder.splice(index, 1, orderItem);
+
+        invoice.order = newOrder;
+        return invoice;
+        // invoicesDispatch(
+        //   editInvoiceSections(invoice, [{ key: "order", value: newOrder }])
+        // );
+      });
+    });
+
+    // Payment method cahsAndCard else if card else cash
+    let invoiceCostAfterVisaDeduction = 0;
+    // invoice.totalInvoicePric
+    if (invoice.paymentMethod.method === "cashAndCard") {
+      invoiceCostAfterVisaDeduction =
+        invoice.paymentMethod.cardAmount * 0.98 +
+        invoice.paymentMethod.cashAmount;
+    } else if (invoice.paymentMethod.method === "card") {
+      invoiceCostAfterVisaDeduction = invoice.totalInvoicePrice * 0.98;
+    } else {
+      invoiceCostAfterVisaDeduction = invoice.totalInvoicePrice;
+    }
+    // invoice cost on retail after shipment
+    const invoiceCostOnRetail =
+      invoiceCostAfterVisaDeduction -
+      (invoice.shipmentCharge.shipmentOnRetail +
+        invoice.shipmentCharge.shipmentOnCst);
+    // Total invoice income/profit
+    const invoiceIncome = invoiceCostOnRetail - totalProductsCostOnRetail;
+
+    // Edit invoice
+    invoice.totalPriceOnRetail = invoiceCostOnRetail;
+    invoice.totalProfit = invoiceIncome;
+    // invoicesDispatch(
+    //   editInvoiceSections(invoice, [
+    //     { key: "totalPriceOnRetail", value: invoiceCostOnRetail },
+    //     { key: "totalProfit", value: invoiceIncome },
+    //   ])
+    // )
+    // END TEST AREA
+
     generalTypesDispatch(addSerialNumber(`${serialNum}`, "invoicesSerials"));
     invoicesDispatch(addInvoiceItem(invoice));
     order.forEach((item) => {
@@ -183,6 +251,7 @@ const AddInvoiceItem = () => {
         paidMoney={paidMoney}
         remainingMoney={remainingMoney}
         setRemainingMoney={setRemainingMoney}
+        isShipment={isShipment}
       />
     ),
   };
