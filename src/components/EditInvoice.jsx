@@ -78,7 +78,7 @@ const EditInvoice = ({
     // Edit invoice
     invoicesDispatch(
       editInvoiceSections(invoiceItem, [
-        { key: "totalPriceOnRetail", value: invoiceCostOnRetail },
+        { key: "totalPriceOnRetail", value: totalProductsCostOnRetail },
         { key: "totalProfit", value: invoiceIncome },
       ])
     );

@@ -162,7 +162,7 @@ const AddInvoiceItem = () => {
     const invoiceIncome = invoiceCostOnRetail - totalProductsCostOnRetail;
 
     // Edit invoice
-    invoice.totalPriceOnRetail = invoiceCostOnRetail;
+    invoice.totalPriceOnRetail = totalProductsCostOnRetail;
     invoice.totalProfit = invoiceIncome;
     // invoicesDispatch(
     //   editInvoiceSections(invoice, [
