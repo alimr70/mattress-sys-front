@@ -60,6 +60,11 @@ export const englishTypesToArabic = {
   cash: "كاش",
   card: "كارت أونلاين",
   cashAndCard: "جزء كاش وجزء أونلاين",
+  width: "العرض",
+  height: "الطول",
+  thickness: "الارتفاع",
+  weight: "الوزن",
+  price: "السعر"
 }
 
 export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, productPrice) => {

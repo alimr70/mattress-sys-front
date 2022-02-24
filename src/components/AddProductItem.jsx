@@ -73,6 +73,7 @@ const AddProductItem = () => {
     setWeight("");
   };
 
+  // Generate serialnumber
   useEffect(() => {
     setWarehouseSerialNum(
       generateSerialNumber(
@@ -146,96 +147,49 @@ const AddProductItem = () => {
           required
         />
       </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="width" className="m-2 col-span-1 justify-self-start">
-          العرض
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="width"
-          id="width"
-          className="col-span-2 text-center text-gray-800"
-          value={width}
-          onChange={(e) => {
-            handleNumberInputChange(e, "width", numberTargets);
-          }}
+      <AddProductPropertyCell>
+        <AddProductPropertyLabel forName={"width"} title={"العرض"} />
+        <AddProductPropertyNumericalInput
+          numberTargetProperty={"width"}
+          numberTargetValue={width}
+          numberTargets={numberTargets}
         />
-      </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="height" className="m-2 col-span-1 justify-self-start">
-          الطول
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="height"
-          id="height"
-          className="col-span-2 text-center text-gray-800"
-          value={height}
-          onChange={(e) => {
-            handleNumberInputChange(e, "height", numberTargets);
-          }}
+      </AddProductPropertyCell>
+      <AddProductPropertyCell>
+        <AddProductPropertyLabel forName={"height"} title={"الطول"} />
+        <AddProductPropertyNumericalInput
+          numberTargetProperty={"height"}
+          numberTargetValue={height}
+          numberTargets={numberTargets}
         />
-      </div>
-      <div className="m-5 grid grid-cols-3">
-        <label
-          htmlFor="thickness"
-          className="m-2 col-span-1 justify-self-start">
-          الارتفاع
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="thickness"
-          id="thickness"
-          className="col-span-2 text-center text-gray-800"
-          value={thickness}
-          onChange={(e) => {
-            handleNumberInputChange(e, "thickness", numberTargets);
-          }}
+      </AddProductPropertyCell>
+      <AddProductPropertyCell>
+        <AddProductPropertyLabel forName={"thickness"} title={"الارتفاع"} />
+        <AddProductPropertyNumericalInput
+          numberTargetProperty={"thickness"}
+          numberTargetValue={thickness}
+          numberTargets={numberTargets}
         />
-      </div>
+      </AddProductPropertyCell>
       {type === "مخدة" && (
-        <div className="m-5 grid grid-cols-3">
-          <label htmlFor="weight" className="m-2 col-span-1 justify-self-start">
-            الوزن
-          </label>
-          <input
-            dir="ltr"
-            inputMode="numeric"
-            type="text"
-            name="weight"
-            id="weight"
-            className="col-span-2 text-center text-gray-800"
-            value={weight}
-            onChange={(e) => {
-              handleNumberInputChange(e, "weight", numberTargets);
-            }}
+        <AddProductPropertyCell>
+          <AddProductPropertyLabel forName={"weight"} title={"الوزن"} />
+          <AddProductPropertyNumericalInput
+            numberTargetProperty={"weight"}
+            numberTargetValue={weight}
+            numberTargets={numberTargets}
           />
-        </div>
+        </AddProductPropertyCell>
       )}
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
-          السعر
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="width"
-          id="width"
-          className="col-span-2 text-center text-gray-800"
-          value={price}
-          onChange={(e) => {
-            handleNumberInputChange(e, "price", numberTargets);
-          }}
-          required
+      <AddProductPropertyCell>
+        <AddProductPropertyLabel forName={"price"} title={"السعر"} />
+        <AddProductPropertyNumericalInput
+          numberTargetProperty={"price"}
+          numberTargetValue={price}
+          numberTargets={numberTargets}
+          required={true}
         />
-      </div>
+      </AddProductPropertyCell>
       <div className="flex justify-center">
         <button type="submit" className="px-5 py-2 bg-blue-500 rounded-md">
           إضافة
@@ -245,48 +199,39 @@ const AddProductItem = () => {
   );
 };
 
+const AddProductPropertyCell = ({ children }) => {
+  return <div className="m-5 grid grid-cols-3">{children}</div>;
+};
+
+const AddProductPropertyLabel = ({ title, forName }) => {
+  return (
+    <label htmlFor={forName} className="m-2 col-span-1 justify-self-start">
+      {title}
+    </label>
+  );
+};
+
+const AddProductPropertyNumericalInput = ({
+  numberTargetProperty,
+  numberTargetValue,
+  numberTargets,
+  required,
+}) => {
+  return (
+    <input
+      dir="ltr"
+      inputMode="numeric"
+      type="text"
+      name={numberTargetProperty}
+      id={numberTargetProperty}
+      className="col-span-2 text-center text-gray-800"
+      value={numberTargetValue}
+      onChange={(e) => {
+        handleNumberInputChange(e, numberTargetProperty, numberTargets);
+      }}
+      required={required}
+    />
+  );
+};
+
 export default AddProductItem;
-/* 
-const whichName = {
-    مرتبة: mattressNames,
-    مخدة: pillowNames,
-  };
-<select
-          name="type"
-          id="selectType"
-          className="col-span-2 text-gray-800"
-          onChange={(e) => {
-            handleNameChange(e);
-          }}>
-          {type !== "" ? (
-            whichName[type] ? (
-              Object.values(whichName[type]).map(
-                (mattressNameOption, index) => {
-                  return (
-                    <option
-                      key={index}
-                      value={mattressNameOption}
-                      className="text-center text-gray-800">
-                      {mattressNameOption}
-                    </option>
-                  );
-                }
-              )
-            ) : (
-              Object.values(otherNames).map((mattressNameOption, index) => {
-                return (
-                  <option
-                    key={index}
-                    value={mattressNameOption}
-                    className="text-center text-gray-800">
-                    {mattressNameOption}
-                  </option>
-                );
-              })
-            )
-          ) : (
-            <option className="text-center" value="" defaultValue>
-              أدخل نوع المنتج أولا
-            </option>
-          )}
-        </select> */
