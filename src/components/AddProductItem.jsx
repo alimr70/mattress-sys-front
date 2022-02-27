@@ -4,7 +4,12 @@ import { GeneralTypesStore } from "../contexts/generalTypesContext";
 import { addSerialNumber } from "../contexts/generalTypesContext/generalTypesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { addProduct } from "../contexts/productsContext/productsActions";
-import { generateSerialNumber, handleNumberInputChange } from "../utils";
+import { generateSerialNumber } from "../utils";
+import {
+  PropertyCell,
+  PropertyLabel,
+  PropertyNumericalInput,
+} from "./SharedComponents";
 
 const AddProductItem = () => {
   const { productsDispatch } = useContext(ProductsStore);
@@ -147,49 +152,49 @@ const AddProductItem = () => {
           required
         />
       </div>
-      <AddProductPropertyCell>
-        <AddProductPropertyLabel forName={"width"} title={"العرض"} />
-        <AddProductPropertyNumericalInput
+      <PropertyCell>
+        <PropertyLabel forName={"width"} title={"العرض"} />
+        <PropertyNumericalInput
           numberTargetProperty={"width"}
           numberTargetValue={width}
           numberTargets={numberTargets}
         />
-      </AddProductPropertyCell>
-      <AddProductPropertyCell>
-        <AddProductPropertyLabel forName={"height"} title={"الطول"} />
-        <AddProductPropertyNumericalInput
+      </PropertyCell>
+      <PropertyCell>
+        <PropertyLabel forName={"height"} title={"الطول"} />
+        <PropertyNumericalInput
           numberTargetProperty={"height"}
           numberTargetValue={height}
           numberTargets={numberTargets}
         />
-      </AddProductPropertyCell>
-      <AddProductPropertyCell>
-        <AddProductPropertyLabel forName={"thickness"} title={"الارتفاع"} />
-        <AddProductPropertyNumericalInput
+      </PropertyCell>
+      <PropertyCell>
+        <PropertyLabel forName={"thickness"} title={"الارتفاع"} />
+        <PropertyNumericalInput
           numberTargetProperty={"thickness"}
           numberTargetValue={thickness}
           numberTargets={numberTargets}
         />
-      </AddProductPropertyCell>
+      </PropertyCell>
       {type === "مخدة" && (
-        <AddProductPropertyCell>
-          <AddProductPropertyLabel forName={"weight"} title={"الوزن"} />
-          <AddProductPropertyNumericalInput
+        <PropertyCell>
+          <PropertyLabel forName={"weight"} title={"الوزن"} />
+          <PropertyNumericalInput
             numberTargetProperty={"weight"}
             numberTargetValue={weight}
             numberTargets={numberTargets}
           />
-        </AddProductPropertyCell>
+        </PropertyCell>
       )}
-      <AddProductPropertyCell>
-        <AddProductPropertyLabel forName={"price"} title={"السعر"} />
-        <AddProductPropertyNumericalInput
+      <PropertyCell>
+        <PropertyLabel forName={"price"} title={"السعر"} />
+        <PropertyNumericalInput
           numberTargetProperty={"price"}
           numberTargetValue={price}
           numberTargets={numberTargets}
           required={true}
         />
-      </AddProductPropertyCell>
+      </PropertyCell>
       <div className="flex justify-center">
         <button type="submit" className="px-5 py-2 bg-blue-500 rounded-md">
           إضافة
@@ -199,39 +204,39 @@ const AddProductItem = () => {
   );
 };
 
-const AddProductPropertyCell = ({ children }) => {
-  return <div className="m-5 grid grid-cols-3">{children}</div>;
-};
+// const PropertyCell = ({ children }) => {
+//   return <div className="m-5 grid grid-cols-3">{children}</div>;
+// };
 
-const AddProductPropertyLabel = ({ title, forName }) => {
-  return (
-    <label htmlFor={forName} className="m-2 col-span-1 justify-self-start">
-      {title}
-    </label>
-  );
-};
+// const PropertyLabel = ({ title, forName }) => {
+//   return (
+//     <label htmlFor={forName} className="m-2 col-span-1 justify-self-start">
+//       {title}
+//     </label>
+//   );
+// };
 
-const AddProductPropertyNumericalInput = ({
-  numberTargetProperty,
-  numberTargetValue,
-  numberTargets,
-  required,
-}) => {
-  return (
-    <input
-      dir="ltr"
-      inputMode="numeric"
-      type="text"
-      name={numberTargetProperty}
-      id={numberTargetProperty}
-      className="col-span-2 text-center text-gray-800"
-      value={numberTargetValue}
-      onChange={(e) => {
-        handleNumberInputChange(e, numberTargetProperty, numberTargets);
-      }}
-      required={required}
-    />
-  );
-};
+// const PropertyNumericalInput = ({
+//   numberTargetProperty,
+//   numberTargetValue,
+//   numberTargets,
+//   required,
+// }) => {
+//   return (
+//     <input
+//       dir="ltr"
+//       inputMode="numeric"
+//       type="text"
+//       name={numberTargetProperty}
+//       id={numberTargetProperty}
+//       className="col-span-2 text-center text-gray-800"
+//       value={numberTargetValue}
+//       onChange={(e) => {
+//         handleNumberInputChange(e, numberTargetProperty, numberTargets);
+//       }}
+//       required={required}
+//     />
+//   );
+// };
 
 export default AddProductItem;

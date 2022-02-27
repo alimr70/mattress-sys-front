@@ -5,7 +5,11 @@ import {
   addExistingWarehouseItem,
   addNewWarehouseItem,
 } from "../contexts/warehouseContext/warehouseActions";
-import { handleNumberInputChange } from "../utils";
+import {
+  PropertyCell,
+  PropertyLabel,
+  PropertyNumericalInput,
+} from "./SharedComponents";
 
 const AddWarehouseItem = () => {
   const { productsState } = useContext(ProductsStore);
@@ -105,41 +109,23 @@ const AddWarehouseItem = () => {
           })}
         </select>
       </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="quantity" className="m-2 col-span-1 justify-self-start">
-          العدد
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="quantity"
-          id="quantity"
-          className="col-span-2 text-center text-gray-800"
-          value={quantity}
-          onChange={(e) => {
-            handleNumberInputChange(e, "quantity", numberTargets);
-          }}
-          required
+      <PropertyCell>
+        <PropertyLabel forName={"quantity"} title={"العدد"} />
+        <PropertyNumericalInput
+          numberTargetProperty={"quantity"}
+          numberTargetValue={quantity}
+          numberTargets={numberTargets}
+          required={true}
         />
-      </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="quantity" className="m-2 col-span-1 justify-self-start">
-          خصم الشركة
-        </label>
-        <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="companyDiscount"
-          id="companyDiscount"
-          className="col-span-2 text-center text-gray-800"
-          value={companyDiscount}
-          onChange={(e) => {
-            handleNumberInputChange(e, "companyDiscount", numberTargets);
-          }}
+      </PropertyCell>
+      <PropertyCell>
+        <PropertyLabel forName={"companyDiscount"} title={"خصم الشركة"} />
+        <PropertyNumericalInput
+          numberTargetProperty={"companyDiscount"}
+          numberTargetValue={companyDiscount}
+          numberTargets={numberTargets}
         />
-      </div>
+      </PropertyCell>
       <div className="flex justify-center">
         <button type="submit" className="px-5 py-2 bg-blue-500 rounded-md">
           إضافة مخزون
