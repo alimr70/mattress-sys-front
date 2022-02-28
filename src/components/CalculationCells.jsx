@@ -125,7 +125,30 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
     timeFilteredInvoices,
     productsState
   );
-  // console.log({ totalSoldMattress, arrangedAvailableDimentions });
+
+  const MattressTypes = ["R", "G", "D", "Sue", "M15", "M20", "M25", "Me22"];
+  const MattressTypesAr = [
+    "ريترو 20",
+    "جولدن 26",
+    "دودو 30",
+    "سو 25",
+    "ماريو 15",
+    "ماريو 20",
+    "ماريو 25",
+    "ميموري 35",
+  ];
+
+  const QuantityCell = ({ targetDimentionItems, title, thickness }) => {
+    return (
+      <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
+        {
+          targetDimentionItems.filter(
+            (item) => item.name.includes(title) && item.thickness === thickness
+          )[0]?.quantity
+        }
+      </span>
+    );
+  };
 
   return (
     <>
@@ -134,14 +157,11 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
         <div className="m-2 grid grid-cols-1 w-[760px] max-w-3xl overflow-auto">
           <div className="col-span-1 grid grid-cols-10">
             <span className="p-1 col-span-2 justify-self-center">المقاسات</span>
-            <span className="p-1 col-span-1 justify-self-center">R</span>
-            <span className="p-1 col-span-1 justify-self-center">G</span>
-            <span className="p-1 col-span-1 justify-self-center">D</span>
-            <span className="p-1 col-span-1 justify-self-center">Sue</span>
-            <span className="p-1 col-span-1 justify-self-center">M15</span>
-            <span className="p-1 col-span-1 justify-self-center">M20</span>
-            <span className="p-1 col-span-1 justify-self-center">M25</span>
-            <span className="p-1 col-span-1 justify-self-center">Me22</span>
+            {MattressTypes.map((type, index) => (
+              <span key={index} className="p-1 col-span-1 justify-self-center">
+                {type}
+              </span>
+            ))}
           </div>
           {arrangedAvailableDimentions.map((dimention, index) => {
             const targetDimentionItems = totalSoldMattress.filter((item) => {
@@ -152,65 +172,17 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
                 <span className="w-full text-center border-2 border-gray-600 p-1 col-span-2">
                   {dimention}
                 </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter((item) =>
-                      item.name.includes("ريترو")
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter((item) =>
-                      item.name.includes("جولدن")
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter((item) =>
-                      item.name.includes("دودو")
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter((item) =>
-                      item.name.includes("سو")
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter(
-                      (item) =>
-                        item.name.includes("ماريو") && item.thickness === "15"
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter(
-                      (item) =>
-                        item.name.includes("ماريو") && item.thickness === "20"
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter(
-                      (item) =>
-                        item.name.includes("ماريو") && item.thickness === "25"
-                    )[0]?.quantity
-                  }
-                </span>
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
-                  {
-                    targetDimentionItems.filter((item) =>
-                      item.name.includes("ميموري22")
-                    )[0]?.quantity
-                  }
-                </span>
+                {MattressTypesAr.map((type, index) => {
+                  let typeDetails = type.split(" ");
+                  return (
+                    <QuantityCell
+                      key={index}
+                      targetDimentionItems={targetDimentionItems}
+                      title={typeDetails[0]}
+                      thickness={typeDetails[1]}
+                    />
+                  );
+                })}
               </div>
             );
           })}
