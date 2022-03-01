@@ -19,33 +19,36 @@ const DetailWarehouseItem = () => {
         <div className="col-span-1 justify-self-center text-2xl">
           تفاصيل المنتج بالمخزن
         </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">النوع: </span>
-          <span className="justify-self-start">{product.type}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">الاسم: </span>
-          <span className="justify-self-start">{product.name}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-end">العدد الكلي: </span>
-          <span className="justify-self-start">{numberOfAvailableItems}</span>
-        </div>
-        <div className="col-span-1 grid grid-cols-2 gap-2">
-          <span className="justify-self-start">
-            الاعداد تفصيلا حسب نسبة الخصم:
-          </span>
-        </div>
+        <DetailsProperty title={"النوع"} property={product.type} />
+        <DetailsProperty title={"الاسم"} property={product.name} />
+        <DetailsProperty
+          title={"العدد الكلي"}
+          property={numberOfAvailableItems}
+        />
+        <DetailsProperty
+          title={"الاعداد تفصيلا حسب نسبة الخصم"}
+          property={""}
+        />
         {availableItems.map((item, index) => {
           return (
-            <div key={index} className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">%{item.companyDiscount}:</span>
-              <span className="justify-self-start">{item.quantity}</span>
-            </div>
+            <DetailsProperty
+              key={index}
+              title={`%${item.companyDiscount}`}
+              property={item.quantity}
+            />
           );
         })}
       </div>
     </>
+  );
+};
+
+const DetailsProperty = ({ title, property }) => {
+  return (
+    <div className="col-span-1 grid grid-cols-2 gap-2">
+      <span className="justify-self-end">{title}: </span>
+      <span className="justify-self-start">{property}</span>
+    </div>
   );
 };
 
