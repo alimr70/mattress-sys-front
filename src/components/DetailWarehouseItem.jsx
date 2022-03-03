@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ProductsStore } from "../contexts/productsContext";
 import { WarehouseStore } from "../contexts/warehouseContext";
 import { getTotalAvailableItems } from "../utils";
+import { DetailsProperty } from "./SharedComponents";
 
 const DetailWarehouseItem = () => {
   const { warehouseItemId } = useParams();
@@ -40,15 +41,6 @@ const DetailWarehouseItem = () => {
         })}
       </div>
     </>
-  );
-};
-
-const DetailsProperty = ({ title, property }) => {
-  return (
-    <div className="col-span-1 grid grid-cols-2 gap-2">
-      <span className="justify-self-end">{title}: </span>
-      <span className="justify-self-start">{property}</span>
-    </div>
   );
 };
 

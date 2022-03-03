@@ -8,6 +8,7 @@ import {
 } from "../contexts/invoicesContext/invoicesActions";
 import { ProductsStore } from "../contexts/productsContext";
 import { englishTypesToArabic, handleNumberInputChange } from "../utils";
+import { DetailsProperty } from "./SharedComponents";
 
 const EditInvoice = ({
   isEditMode,
@@ -104,34 +105,19 @@ const EditInvoice = ({
       <div className="col-span-1 justify-self-center text-2xl">
         حالة الفاتورة: {englishTypesToArabic[invoiceItem.status]}
       </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">رقم الفاتورة: </span>
-        <span className="justify-self-start">{invoiceItem.id}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">الاسم: </span>
-        <span className="justify-self-start">{invoiceItem.cutomerName}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">العنوان: </span>
-        <span className="justify-self-start">{invoiceItem.address}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">رقم التليفون: </span>
-        <span className="justify-self-start">{invoiceItem.phone}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">تليفون آخر: </span>
-        <span className="justify-self-start">{invoiceItem.phoneTwo}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">تاريخ الفاتورة: </span>
-        <span className="justify-self-start">{invoiceItem.invoiceDate}</span>
-      </div>
-      <div className="col-span-1 grid grid-cols-2 gap-2">
-        <span className="justify-self-end">تاريخ التسليم: </span>
-        <span className="justify-self-start">{invoiceItem.receiptDate}</span>
-      </div>
+      <DetailsProperty title={"رقم الفاتورة"} property={invoiceItem.id} />
+      <DetailsProperty title={"الاسم"} property={invoiceItem.cutomerName} />
+      <DetailsProperty title={"العنوان"} property={invoiceItem.address} />
+      <DetailsProperty title={"رقم التليفون"} property={invoiceItem.phone} />
+      <DetailsProperty title={"تليفون آخر"} property={invoiceItem.phoneTwo} />
+      <DetailsProperty
+        title={"تاريخ الفاتورة"}
+        property={invoiceItem.invoiceDate}
+      />
+      <DetailsProperty
+        title={"تاريخ التسليم"}
+        property={invoiceItem.receiptDate}
+      />
       <div className="col-span-1 border-2 border-gray-400">
         <span className="justify-self-end">الأوردر: </span>
         <OrderDetailsAndEdit

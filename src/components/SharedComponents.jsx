@@ -34,3 +34,12 @@ export const PropertyNumericalInput = ({
     />
   );
 };
+
+export const DetailsProperty = ({ title, property }) => {
+  return (
+    <div className="col-span-1 grid grid-cols-2 gap-2">
+      <span className="justify-self-end">{title}: </span>
+      <span className="justify-self-start">{property}</span>
+    </div>
+  );
+};
