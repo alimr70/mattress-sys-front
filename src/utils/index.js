@@ -48,7 +48,7 @@ export const handleNumberInputChange = (e, numberTarget, targetsArr) => {
 export const getTotalAvailableItems = (arr) => {
   let number = 0;
   arr.forEach((el) => {
-    number += el.quantity;
+    number += +el.quantity;
   });
   return number;
 };
