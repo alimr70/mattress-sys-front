@@ -165,7 +165,7 @@
       "thickness": "20",
       "width": "80",
       "height": "195",
-      "price": 1506,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1506 }],
       "warehouseId": "000001"
     },
     "DSmQah1iP5": {
@@ -175,7 +175,7 @@
       "thickness": "20",
       "width": "90",
       "height": "195",
-      "price": 1617,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1617 }],
       "warehouseId": "000002"
     },
     "wVoo2awCD5": {
@@ -185,7 +185,7 @@
       "thickness": "20",
       "width": "100",
       "height": "195",
-      "price": 1795,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1795 }],
       "warehouseId": "000003"
     },
     "5mCsptzuk5": {
@@ -195,7 +195,7 @@
       "thickness": "20",
       "width": "120",
       "height": "195",
-      "price": 2152,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2152 }],
       "warehouseId": "000004"
     },
     "0Pks6XbvMg": {
@@ -205,7 +205,7 @@
       "thickness": "20",
       "width": "140",
       "height": "195",
-      "price": 2507,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2507 }],
       "warehouseId": "000005"
     },
     "iq-lfz9yo6": {
@@ -215,7 +215,7 @@
       "thickness": "20",
       "width": "150",
       "height": "195",
-      "price": 2685,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2685 }],
       "warehouseId": "000006"
     },
     "gmkaEFelo4": {
@@ -225,7 +225,7 @@
       "thickness": "20",
       "width": "160",
       "height": "195",
-      "price": 2864,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2864 }],
       "warehouseId": "000007"
     },
     "gvbDV_Rsfy": {
@@ -235,7 +235,7 @@
       "thickness": "20",
       "width": "180",
       "height": "195",
-      "price": 3221,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3221 }],
       "warehouseId": "000008"
     },
     "TjyWPsRfFB": {
@@ -245,7 +245,7 @@
       "thickness": "26",
       "width": "90",
       "height": "195",
-      "price": 2276,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2276 }],
       "warehouseId": "000009"
     },
     "OCdrlud2c5": {
@@ -255,7 +255,7 @@
       "thickness": "26",
       "width": "100",
       "height": "195",
-      "price": 2516,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2516 }],
       "warehouseId": "000010"
     },
     "Nbc8FuP9lU": {
@@ -265,7 +265,7 @@
       "thickness": "26",
       "width": "120",
       "height": "195",
-      "price": 2999,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2999 }],
       "warehouseId": "000011"
     },
     "KhYw3h76v-": {
@@ -275,7 +275,7 @@
       "thickness": "26",
       "width": "140",
       "height": "195",
-      "price": 3495,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3495 }],
       "warehouseId": "000012"
     },
     "ipuvpSCGtU": {
@@ -285,7 +285,7 @@
       "thickness": "26",
       "width": "150",
       "height": "195",
-      "price": 3736,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3736 }],
       "warehouseId": "000013"
     },
     "yksj4idok9": {
@@ -295,7 +295,7 @@
       "thickness": "26",
       "width": "160",
       "height": "195",
-      "price": 3978,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3978 }],
       "warehouseId": "000014"
     },
     "3cAgA8ANP6": {
@@ -305,7 +305,7 @@
       "thickness": "26",
       "width": "160",
       "height": "200",
-      "price": 4122,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4122 }],
       "warehouseId": "000015"
     },
     "o8VwFPSRQi": {
@@ -315,7 +315,7 @@
       "thickness": "26",
       "width": "170",
       "height": "195",
-      "price": 4224,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4224 }],
       "warehouseId": "000016"
     },
     "c-9cbjbfZ2": {
@@ -325,7 +325,7 @@
       "thickness": "26",
       "width": "180",
       "height": "195",
-      "price": 4462,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4462 }],
       "warehouseId": "000017"
     },
     "JG2P6fSrNk": {
@@ -335,7 +335,7 @@
       "thickness": "26",
       "width": "180",
       "height": "200",
-      "price": 4619,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4619 }],
       "warehouseId": "000018"
     },
     "dgjQxyKnUN": {
@@ -345,7 +345,7 @@
       "thickness": "30",
       "width": "90",
       "height": "195",
-      "price": 3370,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3370 }],
       "warehouseId": "000019"
     },
     "6DwqIdQdjq": {
@@ -355,7 +355,7 @@
       "thickness": "30",
       "width": "100",
       "height": "195",
-      "price": 3751,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3751 }],
       "warehouseId": "000020"
     },
     "1nHHf_ualL": {
@@ -365,7 +365,7 @@
       "thickness": "30",
       "width": "120",
       "height": "195",
-      "price": 4477,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4477 }],
       "warehouseId": "000021"
     },
     "Y7E4qYhs6n": {
@@ -375,7 +375,7 @@
       "thickness": "30",
       "width": "140",
       "height": "195",
-      "price": 5216,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5216 }],
       "warehouseId": "000022"
     },
     "4DnYAfGhTX": {
@@ -385,7 +385,7 @@
       "thickness": "30",
       "width": "150",
       "height": "195",
-      "price": 5581,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5581 }],
       "warehouseId": "000023"
     },
     "8MmlNqmdrC": {
@@ -395,7 +395,7 @@
       "thickness": "30",
       "width": "160",
       "height": "195",
-      "price": 5947,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5947 }],
       "warehouseId": "000024"
     },
     "wZAVCN2oDc": {
@@ -405,7 +405,7 @@
       "thickness": "30",
       "width": "160",
       "height": "200",
-      "price": 6094,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6094 }],
       "warehouseId": "000025"
     },
     "xpD8gGuyG0": {
@@ -415,7 +415,7 @@
       "thickness": "30",
       "width": "170",
       "height": "195",
-      "price": 6313,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6313 }],
       "warehouseId": "000026"
     },
     "dZv95gmNts": {
@@ -425,7 +425,7 @@
       "thickness": "30",
       "width": "180",
       "height": "195",
-      "price": "6677",
+      "priceHistory": [{ "date": "2022-01-01", "price": 6677 }],
       "warehouseId": "000027"
     },
     "BjHmQSKwlS": {
@@ -435,7 +435,7 @@
       "thickness": "30",
       "width": "180",
       "height": "200",
-      "price": 6846,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6846 }],
       "warehouseId": "000028"
     },
     "nf9hVxYuzM": {
@@ -445,7 +445,7 @@
       "thickness": "25",
       "width": "90",
       "height": "195",
-      "price": 3602,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3602 }],
       "warehouseId": "000029"
     },
     "0T-FjuK7P3": {
@@ -455,7 +455,7 @@
       "thickness": "25",
       "width": "100",
       "height": "195",
-      "price": 3984,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3984 }],
       "warehouseId": "000030"
     },
     "a3FKkxTQbl": {
@@ -465,7 +465,7 @@
       "thickness": "25",
       "width": "120",
       "height": "195",
-      "price": 4769,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4769 }],
       "warehouseId": "000031"
     },
     "VrVfbIZzhZ": {
@@ -475,7 +475,7 @@
       "thickness": "25",
       "width": "140",
       "height": "195",
-      "price": 5547,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5547 }],
       "warehouseId": "000032"
     },
     "aS0PpdY7-o": {
@@ -485,7 +485,7 @@
       "thickness": "25",
       "width": "150",
       "height": "195",
-      "price": 5941,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5941 }],
       "warehouseId": "000033"
     },
     "LP8tFjtU1Q": {
@@ -495,7 +495,7 @@
       "thickness": "25",
       "width": "160",
       "height": "195",
-      "price": 6331,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6331 }],
       "warehouseId": "000034"
     },
     "0yT-AU_xIP": {
@@ -505,7 +505,7 @@
       "thickness": "25",
       "width": "160",
       "height": "200",
-      "price": 6486,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6486 }],
       "warehouseId": "000035"
     },
     "1Uw16cuf_n": {
@@ -515,7 +515,7 @@
       "thickness": "25",
       "width": "170",
       "height": "195",
-      "price": 6718,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6718 }],
       "warehouseId": "000036"
     },
     "XgmdSGNYNO": {
@@ -525,7 +525,7 @@
       "thickness": "25",
       "width": "180",
       "height": "195",
-      "price": 7108,
+      "priceHistory": [{ "date": "2022-01-01", "price": 7108 }],
       "warehouseId": "000037"
     },
     "1D_apePQU0": {
@@ -535,7 +535,7 @@
       "thickness": "25",
       "width": "180",
       "height": "200",
-      "price": 7294,
+      "priceHistory": [{ "date": "2022-01-01", "price": 7294 }],
       "warehouseId": "000038"
     },
     "tTZ7HpVozW": {
@@ -545,7 +545,7 @@
       "thickness": "35",
       "width": "120",
       "height": "195",
-      "price": 5298,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5298 }],
       "warehouseId": "000039"
     },
     "JlkwCWboN2": {
@@ -555,7 +555,7 @@
       "thickness": "35",
       "width": "160",
       "height": "195",
-      "price": 7125,
+      "priceHistory": [{ "date": "2022-01-01", "price": 7125 }],
       "warehouseId": "000040"
     },
     "qnEUPQz_m4": {
@@ -565,7 +565,7 @@
       "thickness": "35",
       "width": "180",
       "height": "195",
-      "price": 8016,
+      "priceHistory": [{ "date": "2022-01-01", "price": 8016 }],
       "warehouseId": "000041"
     },
     "Uzzvehh7wS": {
@@ -575,7 +575,7 @@
       "thickness": "15",
       "width": "90",
       "height": "195",
-      "price": 2128,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2128 }],
       "warehouseId": "000042"
     },
     "EzS0hJVPm5": {
@@ -585,7 +585,7 @@
       "thickness": "15",
       "width": "100",
       "height": "195",
-      "price": 2356,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2356 }],
       "warehouseId": "000043"
     },
     "QxgJkvuPv-": {
@@ -595,7 +595,7 @@
       "thickness": "15",
       "width": "120",
       "height": "195",
-      "price": 2800,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2800 }],
       "warehouseId": "000044"
     },
     "FsFTnxd3Li": {
@@ -605,7 +605,7 @@
       "thickness": "15",
       "width": "140",
       "height": "195",
-      "price": 3256,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3256 }],
       "warehouseId": "000045"
     },
     "55A8Fk5gm8": {
@@ -615,7 +615,7 @@
       "thickness": "15",
       "width": "150",
       "height": "195",
-      "price": 3490,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3490 }],
       "warehouseId": "000046"
     },
     "9770rR1Wuv": {
@@ -625,7 +625,7 @@
       "thickness": "15",
       "width": "160",
       "height": "195",
-      "price": 3708,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3708 }],
       "warehouseId": "000047"
     },
     "DzSme72BWZ": {
@@ -635,7 +635,7 @@
       "thickness": "15",
       "width": "160",
       "height": "200",
-      "price": 3809,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3809 }],
       "warehouseId": "000048"
     },
     "7UUNfwGYsP": {
@@ -645,7 +645,7 @@
       "thickness": "15",
       "width": "180",
       "height": "195",
-      "price": 4164,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4164 }],
       "warehouseId": "000049"
     },
     "K1zKknBEsk": {
@@ -655,7 +655,7 @@
       "thickness": "15",
       "width": "180",
       "height": "200",
-      "price": 4271,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4271 }],
       "warehouseId": "000050"
     },
     "5PnCNqvfqs": {
@@ -665,7 +665,7 @@
       "thickness": "20",
       "width": "90",
       "height": "195",
-      "price": 3038,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3038 }],
       "warehouseId": "000051"
     },
     "PzbvcJ9cEN": {
@@ -675,7 +675,7 @@
       "thickness": "20",
       "width": "100",
       "height": "195",
-      "price": 3369,
+      "priceHistory": [{ "date": "2022-01-01", "price": 3369 }],
       "warehouseId": "000052"
     },
     "fyi699qPy0": {
@@ -685,7 +685,7 @@
       "thickness": "20",
       "width": "120",
       "height": "195",
-      "price": 4025,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4025 }],
       "warehouseId": "000053"
     },
     "oDbirv_UR1": {
@@ -695,7 +695,7 @@
       "thickness": "20",
       "width": "140",
       "height": "195",
-      "price": 4683,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4683 }],
       "warehouseId": "000054"
     },
     "Vxo2uoL4rp": {
@@ -705,7 +705,7 @@
       "thickness": "20",
       "width": "150",
       "height": "195",
-      "price": 5013,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5013 }],
       "warehouseId": "000055"
     },
     "YN9rEWLScY": {
@@ -715,7 +715,7 @@
       "thickness": "20",
       "width": "160",
       "height": "195",
-      "price": 5337,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5337 }],
       "warehouseId": "000056"
     },
     "RY077PAmgg": {
@@ -725,7 +725,7 @@
       "thickness": "20",
       "width": "160",
       "height": "200",
-      "price": 5475,
+      "priceHistory": [{ "date": "2022-01-01", "price": 5475 }],
       "warehouseId": "000057"
     },
     "PefKZA1rQ_": {
@@ -735,7 +735,7 @@
       "thickness": "20",
       "width": "180",
       "height": "195",
-      "price": 6001,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6001 }],
       "warehouseId": "000058"
     },
     "bKFioNlT42": {
@@ -745,7 +745,7 @@
       "thickness": "20",
       "width": "180",
       "height": "200",
-      "price": 6151,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6151 }],
       "warehouseId": "000059"
     },
     "3s26qS9xB2": {
@@ -755,7 +755,7 @@
       "thickness": "25",
       "width": "100",
       "height": "195",
-      "price": 4041,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4041 }],
       "warehouseId": "000060"
     },
     "tU-RdNyBR6": {
@@ -765,7 +765,7 @@
       "thickness": "25",
       "width": "120",
       "height": "195",
-      "price": 4827,
+      "priceHistory": [{ "date": "2022-01-01", "price": 4827 }],
       "warehouseId": "000061"
     },
     "TBdmgNfswJ": {
@@ -775,7 +775,7 @@
       "thickness": "25",
       "width": "150",
       "height": "195",
-      "price": 6014,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6014 }],
       "warehouseId": "000062"
     },
     "fEanDv7Jpi": {
@@ -785,7 +785,7 @@
       "thickness": "25",
       "width": "160",
       "height": "195",
-      "price": 6402,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6402 }],
       "warehouseId": "000063"
     },
     "m0TZM7p1-d": {
@@ -795,7 +795,7 @@
       "thickness": "25",
       "width": "160",
       "height": "200",
-      "price": 6631,
+      "priceHistory": [{ "date": "2022-01-01", "price": 6631 }],
       "warehouseId": "000064"
     },
     "qo1f6N-g7W": {
@@ -805,7 +805,7 @@
       "thickness": "25",
       "width": "180",
       "height": "195",
-      "price": 7200,
+      "priceHistory": [{ "date": "2022-01-01", "price": 7200 }],
       "warehouseId": "000065"
     },
     "9m2IuOZ_Lj": {
@@ -815,7 +815,7 @@
       "thickness": "25",
       "width": "180",
       "height": "200",
-      "price": 7460,
+      "priceHistory": [{ "date": "2022-01-01", "price": 7460 }],
       "warehouseId": "000066"
     },
     "Q6zOmW0xVO": {
@@ -825,7 +825,7 @@
       "thickness": "",
       "width": "40",
       "height": "60",
-      "price": 105,
+      "priceHistory": [{ "date": "2022-01-01", "price": 105 }],
       "warehouseId": "000067"
     },
     "9P4hqNyi6p": {
@@ -835,7 +835,7 @@
       "thickness": "",
       "width": "40",
       "height": "60",
-      "price": 110,
+      "priceHistory": [{ "date": "2022-01-01", "price": 110 }],
       "warehouseId": "000068"
     },
     "bhuFO15xdO": {
@@ -845,7 +845,7 @@
       "thickness": "",
       "width": "40",
       "height": "60",
-      "price": 122,
+      "priceHistory": [{ "date": "2022-01-01", "price": 122 }],
       "warehouseId": "000069"
     },
     "MInnWAUrrk": {
@@ -855,7 +855,7 @@
       "thickness": "",
       "width": "40",
       "height": "100",
-      "price": 170,
+      "priceHistory": [{ "date": "2022-01-01", "price": 170 }],
       "warehouseId": "000070"
     },
     "IHZ1DIcr1i": {
@@ -865,7 +865,7 @@
       "thickness": "",
       "width": "40",
       "height": "120",
-      "price": 220,
+      "priceHistory": [{ "date": "2022-01-01", "price": 220 }],
       "warehouseId": "000071"
     },
     "Nsv57rFTr5": {
@@ -875,7 +875,7 @@
       "thickness": "",
       "width": "40",
       "height": "160",
-      "price": 280,
+      "priceHistory": [{ "date": "2022-01-01", "price": 280 }],
       "warehouseId": "000072"
     },
     "bOpYLBHumt": {
@@ -885,7 +885,7 @@
       "thickness": "",
       "width": "40",
       "height": "180",
-      "price": "305",
+      "priceHistory": [{ "date": "2022-01-01", "price": 305 }],
       "warehouseId": "000073"
     },
     "Lx9nkQt7Dg": {
@@ -895,7 +895,7 @@
       "thickness": "",
       "width": "50",
       "height": "70",
-      "price": 155,
+      "priceHistory": [{ "date": "2022-01-01", "price": 155 }],
       "warehouseId": "000074"
     },
     "ol0UMsRl2o": {
@@ -905,7 +905,7 @@
       "thickness": "",
       "width": "",
       "height": "",
-      "price": 150,
+      "priceHistory": [{ "date": "2022-01-01", "price": 150 }],
       "warehouseId": "000075"
     },
     "c779Vpwoy1": {
@@ -915,7 +915,7 @@
       "thickness": "",
       "width": "",
       "height": "",
-      "price": 190,
+      "priceHistory": [{ "date": "2022-01-01", "price": 190 }],
       "warehouseId": "000076"
     },
     "M_zsqUdGDN": {
@@ -925,7 +925,7 @@
       "thickness": "",
       "width": "",
       "height": "",
-      "price": 200,
+      "priceHistory": [{ "date": "2022-01-01", "price": 200 }],
       "warehouseId": "000077"
     },
     "d9vo35v2mj": {
@@ -935,7 +935,7 @@
       "thickness": "12",
       "width": "59",
       "height": "23",
-      "price": 561,
+      "priceHistory": [{ "date": "2022-01-01", "price": 561 }],
       "warehouseId": "000078"
     },
     "HB2uwd3sE1": {
@@ -945,7 +945,7 @@
       "thickness": "13",
       "width": "90",
       "height": "65",
-      "price": 995,
+      "priceHistory": [{ "date": "2022-01-01", "price": 995 }],
       "warehouseId": "000079"
     },
     "auEfxBcOiT": {
@@ -955,7 +955,7 @@
       "thickness": "",
       "width": "90",
       "height": "190",
-      "price": "4049",
+      "priceHistory": [{ "date": "2022-01-01", "price": 4049 }],
       "warehouseId": "000080"
     },
     "BPQsngvWp0": {
@@ -965,7 +965,7 @@
       "thickness": "",
       "width": "80",
       "height": "190",
-      "price": 1774,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1774 }],
       "warehouseId": "000081"
     },
     "cEbOF3yJXJ": {
@@ -975,7 +975,7 @@
       "thickness": "",
       "width": "",
       "height": "",
-      "price": 230,
+      "priceHistory": [{ "date": "2022-01-01", "price": 230 }],
       "warehouseId": "000082"
     },
     "DzscAM_zpn": {
@@ -985,7 +985,7 @@
       "thickness": "",
       "width": "",
       "height": "",
-      "price": 190,
+      "priceHistory": [{ "date": "2022-01-01", "price": 190 }],
       "warehouseId": "000083"
     },
     "mM3a0fh_-_": {
@@ -995,7 +995,7 @@
       "thickness": "",
       "width": "60",
       "height": "120",
-      "price": 243,
+      "priceHistory": [{ "date": "2022-01-01", "price": 243 }],
       "warehouseId": "000084"
     },
     "vi5yOo8KTO": {
@@ -1005,7 +1005,7 @@
       "thickness": "",
       "width": "70",
       "height": "140",
-      "price": 267,
+      "priceHistory": [{ "date": "2022-01-01", "price": 267 }],
       "warehouseId": "000085"
     },
     "msgzGc_NML": {
@@ -1015,7 +1015,7 @@
       "thickness": "",
       "width": "90",
       "height": "200",
-      "price": 672,
+      "priceHistory": [{ "date": "2022-01-01", "price": 672 }],
       "warehouseId": "000086"
     },
     "GFVRpsuUzt": {
@@ -1025,7 +1025,7 @@
       "thickness": "",
       "width": "100",
       "height": "200",
-      "price": 715,
+      "priceHistory": [{ "date": "2022-01-01", "price": 715 }],
       "warehouseId": "000087"
     },
     "2YanR5dxKo": {
@@ -1035,7 +1035,7 @@
       "thickness": "",
       "width": "120",
       "height": "200",
-      "price": 808,
+      "priceHistory": [{ "date": "2022-01-01", "price": 808 }],
       "warehouseId": "000088"
     },
     "eXrvJgQI8K": {
@@ -1045,7 +1045,7 @@
       "thickness": "",
       "width": "140",
       "height": "200",
-      "price": 907,
+      "priceHistory": [{ "date": "2022-01-01", "price": 907 }],
       "warehouseId": "000089"
     },
     "mjrzZfjL-R": {
@@ -1055,7 +1055,7 @@
       "thickness": "",
       "width": "150",
       "height": "200",
-      "price": 1006,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1006 }],
       "warehouseId": "000090"
     },
     "b-Y4bHO6ct": {
@@ -1065,7 +1065,7 @@
       "thickness": "",
       "width": "160",
       "height": "200",
-      "price": 1076,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1076 }],
       "warehouseId": "000091"
     },
     "15G6D4FGPV": {
@@ -1075,7 +1075,7 @@
       "thickness": "",
       "width": "170",
       "height": "200",
-      "price": 1151,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1151 }],
       "warehouseId": "000092"
     },
     "5YTXgzbzCn": {
@@ -1085,7 +1085,7 @@
       "thickness": "",
       "width": "180",
       "height": "200",
-      "price": 1204,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1204 }],
       "warehouseId": "000093"
     },
     "1X9mus6rGK": {
@@ -1095,7 +1095,7 @@
       "thickness": "",
       "width": "200",
       "height": "200",
-      "price": 1337,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1337 }],
       "warehouseId": "000094"
     },
     "Xj-cyI2RlR": {
@@ -1105,7 +1105,7 @@
       "thickness": "",
       "width": "100",
       "height": "200",
-      "price": 524,
+      "priceHistory": [{ "date": "2022-01-01", "price": 524 }],
       "warehouseId": "000095"
     },
     "QEQenh_t83": {
@@ -1115,7 +1115,7 @@
       "thickness": "",
       "width": "120",
       "height": "200",
-      "price": 559,
+      "priceHistory": [{ "date": "2022-01-01", "price": 559 }],
       "warehouseId": "000096"
     },
     "lrid_zxuP_": {
@@ -1125,7 +1125,7 @@
       "thickness": "",
       "width": "150",
       "height": "200",
-      "price": 609,
+      "priceHistory": [{ "date": "2022-01-01", "price": 609 }],
       "warehouseId": "000097"
     },
     "v8Hznlv2CQ": {
@@ -1135,7 +1135,7 @@
       "thickness": "",
       "width": "160",
       "height": "200",
-      "price": 642,
+      "priceHistory": [{ "date": "2022-01-01", "price": 642 }],
       "warehouseId": "000098"
     },
     "KIglum4yeL": {
@@ -1145,7 +1145,7 @@
       "thickness": "",
       "width": "170",
       "height": "200",
-      "price": 674,
+      "priceHistory": [{ "date": "2022-01-01", "price": 674 }],
       "warehouseId": "000099"
     },
     "HOdYR7UTh7": {
@@ -1155,7 +1155,7 @@
       "thickness": "",
       "width": "180",
       "height": "200",
-      "price": 711,
+      "priceHistory": [{ "date": "2022-01-01", "price": 711 }],
       "warehouseId": "000100"
     },
     "nK7lbhrIwm": {
@@ -1165,7 +1165,7 @@
       "thickness": "",
       "width": "140",
       "height": "115",
-      "price": 227,
+      "priceHistory": [{ "date": "2022-01-01", "price": 227 }],
       "warehouseId": "000101"
     },
     "juk4FHxsUt": {
@@ -1175,7 +1175,7 @@
       "thickness": "",
       "width": "160",
       "height": "220",
-      "price": 674,
+      "priceHistory": [{ "date": "2022-01-01", "price": 674 }],
       "warehouseId": "000102"
     },
     "K3RelJcS23": {
@@ -1185,7 +1185,7 @@
       "thickness": "",
       "width": "160",
       "height": "220",
-      "price": 696,
+      "priceHistory": [{ "date": "2022-01-01", "price": 696 }],
       "warehouseId": "000103"
     },
     "ArObRkWSUE": {
@@ -1195,7 +1195,7 @@
       "thickness": "",
       "width": "220",
       "height": "230",
-      "price": 895,
+      "priceHistory": [{ "date": "2022-01-01", "price": 895 }],
       "warehouseId": "000104"
     },
     "PRSOp-gnhP": {
@@ -1205,7 +1205,7 @@
       "thickness": "",
       "width": "220",
       "height": "230",
-      "price": 952,
+      "priceHistory": [{ "date": "2022-01-01", "price": 952 }],
       "warehouseId": "000105"
     },
     "6VoVOmEAiO": {
@@ -1215,7 +1215,7 @@
       "thickness": "5",
       "width": "120",
       "height": "195",
-      "price": 1796,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1796 }],
       "warehouseId": "000106"
     },
     "a2RCU6Z4uJ": {
@@ -1225,7 +1225,7 @@
       "thickness": "5",
       "width": "140",
       "height": "195",
-      "price": 2083,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2083 }],
       "warehouseId": "000107"
     },
     "L6ZjMcrGRi": {
@@ -1235,7 +1235,7 @@
       "thickness": "5",
       "width": "150",
       "height": "195",
-      "price": 2230,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2230 }],
       "warehouseId": "000108"
     },
     "PFaTZeRgBx": {
@@ -1245,7 +1245,7 @@
       "thickness": "5",
       "width": "160",
       "height": "195",
-      "price": 2379,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2379 }],
       "warehouseId": "000109"
     },
     "EBXVUlOfkn": {
@@ -1255,7 +1255,7 @@
       "thickness": "5",
       "width": "180",
       "height": "195",
-      "price": 2676,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2676 }],
       "warehouseId": "000110"
     },
     "ChupIbsMGP": {
@@ -1265,7 +1265,7 @@
       "thickness": "5",
       "width": "120",
       "height": "200",
-      "price": 1832,
+      "priceHistory": [{ "date": "2022-01-01", "price": 1832 }],
       "warehouseId": "000111"
     },
     "umJd4qTWNu": {
@@ -1275,7 +1275,7 @@
       "thickness": "5",
       "width": "140",
       "height": "200",
-      "price": 2137,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2137 }],
       "warehouseId": "000112"
     },
     "luIc2CqXMC": {
@@ -1285,7 +1285,7 @@
       "thickness": "5",
       "width": "150",
       "height": "200",
-      "price": 2288,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2288 }],
       "warehouseId": "000113"
     },
     "FUAW0gNyWb": {
@@ -1295,7 +1295,7 @@
       "thickness": "5",
       "width": "160",
       "height": "200",
-      "price": 2440,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2440 }],
       "warehouseId": "000114"
     },
     "VEE5ftlaSF": {
@@ -1305,7 +1305,7 @@
       "thickness": "5",
       "width": "180",
       "height": "200",
-      "price": 2743,
+      "priceHistory": [{ "date": "2022-01-01", "price": 2743 }],
       "warehouseId": "000115"
     }
   },

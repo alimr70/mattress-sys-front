@@ -1,5 +1,5 @@
 const ProductItem = ({ product }) => {
-  const { type, name, price } = product;
+  const { type, name, priceHistory } = product;
   return (
     <li className="m-2 rounded-md bg-gray-700 flex flex-wrap items-center justify-evenly md:justify-between flex-row text-right">
       <div className="p-2 ti:flex flex-row">
@@ -12,7 +12,10 @@ const ProductItem = ({ product }) => {
       </div>
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
-          السعر: <span className="text-green-500">{price}</span>
+          السعر:{" "}
+          <span className="text-green-500">
+            {priceHistory[priceHistory.length - 1].price}
+          </span>
         </p>
       </div>
     </li>

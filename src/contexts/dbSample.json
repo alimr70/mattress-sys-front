@@ -100,30 +100,72 @@
       "id": "18949841648",
       "productId": "Tadzn6pils",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25 },
-        "30": { "quantity": 0, "companyDiscount": 30 },
-        "35": { "quantity": 0, "companyDiscount": 35 },
-        "40": { "quantity": 0, "companyDiscount": 40 }
+        "25": {
+          "quantities": [
+            { "priceHistoryDate": "2022-01-01", "quantity": 3 },
+            { "priceHistoryDate": "2022-02-01", "quantity": 4 }
+          ],
+          "companyDiscount": 25
+        },
+        "30": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 30
+        },
+        "35": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 35
+        },
+        "40": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 40
+        }
       }
     },
     "618946188": {
       "id": "618946188",
       "productId": "U4O9suEFJr",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25 },
-        "30": { "quantity": 1, "companyDiscount": 30 },
-        "35": { "quantity": 0, "companyDiscount": 35 },
-        "40": { "quantity": 0, "companyDiscount": 40 }
+        "25": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 3 }],
+          "companyDiscount": 25
+        },
+        "30": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 1 }],
+          "companyDiscount": 30
+        },
+        "35": {
+          "quantities": [
+            { "priceHistoryDate": "2022-01-01", "quantity": 6 },
+            { "priceHistoryDate": "2022-02-01", "quantity": 4 }
+          ],
+          "companyDiscount": 35
+        },
+        "40": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 40
+        }
       }
     },
     "169841869": {
       "id": "169841869",
       "productId": "U4QG5mpfkB",
       "availability": {
-        "25": { "quantity": 3, "companyDiscount": 25 },
-        "30": { "quantity": 1, "companyDiscount": 30 },
-        "35": { "quantity": 0, "companyDiscount": 35 },
-        "40": { "quantity": 0, "companyDiscount": 40 }
+        "25": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 3 }],
+          "companyDiscount": 25
+        },
+        "30": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 1 }],
+          "companyDiscount": 30
+        },
+        "35": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 35
+        },
+        "40": {
+          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "companyDiscount": 40
+        }
       }
     }
   },

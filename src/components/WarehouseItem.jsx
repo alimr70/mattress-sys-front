@@ -20,7 +20,10 @@ const WarehouseItem = ({ item }) => {
       </div>
       <div className="p-2 ti:flex flex-row">
         <p className="m-1">
-          السعر: <span className="text-green-500">{product.price}</span>
+          السعر:{" "}
+          <span className="text-green-500">
+            {product.priceHistory[product.priceHistory.length - 1].price}
+          </span>
         </p>
         <p className="m-1">
           العدد: <span className="text-blue-500">{numberOfAvailableItems}</span>

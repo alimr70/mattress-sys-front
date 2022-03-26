@@ -24,7 +24,11 @@ const DetailWarehouseItem = () => {
         <DetailsProperty title={"الاسم"} property={product.name} />
         <DetailsProperty
           title={"العدد الكلي"}
-          property={numberOfAvailableItems}
+          property={
+            <span className="text-green-400 font-bold">
+              {numberOfAvailableItems}
+            </span>
+          }
         />
         <DetailsProperty
           title={"الاعداد تفصيلا حسب نسبة الخصم"}
@@ -35,7 +39,11 @@ const DetailWarehouseItem = () => {
             <DetailsProperty
               key={index}
               title={`%${item.companyDiscount}`}
-              property={item.quantity}
+              property={
+                <span className="text-green-400 font-bold">
+                  {item.quantity}
+                </span>
+              }
             />
           );
         })}
