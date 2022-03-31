@@ -11,13 +11,16 @@ const EditProductItem = ({ isEditMode }) => {
   const product = productsState[productId];
   const [price, setPrice] = useState("");
   const numberTarget = { price: [price, setPrice] };
+  const [date, setDate] = useState(
+    new Date(Date.now()).toISOString().split("T")[0]
+  );
 
   const handleEdit = () => {
     if (price === "") return;
 
     const editedProduct = {
       ...product,
-      price: price,
+      priceHistory: [...product.priceHistory, { date, price }],
     };
 
     productsDispatch(addProduct(editedProduct));
@@ -38,11 +41,13 @@ const EditProductItem = ({ isEditMode }) => {
           <span className="justify-self-end">الاسم: </span>
           <span className="justify-self-start">{product.name}</span>
         </div>
-        {isEditMode ? (
+        {isEditMode && (
           <>
             <div className="col-span-1 grid grid-cols-2 gap-2">
-              <span className="justify-self-end">القديم السعر: </span>
-              <span className="justify-self-start">{product.price}</span>
+              <span className="justify-self-end">أخر سعر: </span>
+              <span className="justify-self-start">
+                {product.priceHistory[product.priceHistory.length - 1].price}
+              </span>
             </div>
             <div className="col-span-1 grid grid-cols-2 gap-2">
               <span className="justify-self-end">تعديل السعر: </span>
@@ -59,6 +64,19 @@ const EditProductItem = ({ isEditMode }) => {
                 }
               />
             </div>
+            <div className="col-span-1 flex xs:justify-self-end">
+              <label htmlFor="startDate">تاريخ تغير السعر:</label>
+              <input
+                type="date"
+                name="startDate"
+                id="startDate"
+                className="text-center text-gray-800"
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+              />
+            </div>
             <div className="col-span-1 grid">
               <button
                 className="px-3 py-1 bg-blue-500 justify-self-center rounded-md"
@@ -67,12 +85,16 @@ const EditProductItem = ({ isEditMode }) => {
               </button>
             </div>
           </>
-        ) : (
-          <div className="col-span-1 grid grid-cols-2 gap-2">
-            <span className="justify-self-end">السعر: </span>
-            <span className="justify-self-start">{product.price}</span>
-          </div>
         )}
+        <div className="col-span-1">تاريخ الأسعار</div>
+        {product.priceHistory.map((price, index) => {
+          return (
+            <div key={index} className="col-span-1 grid grid-cols-2 gap-2">
+              <span className="justify-self-end">{price.date}: </span>
+              <span className="justify-self-start">{price.price}</span>
+            </div>
+          );
+        })}
       </div>
     </>
   );
