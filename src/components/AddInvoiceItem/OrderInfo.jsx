@@ -276,7 +276,8 @@ const FilteredProductsList = ({
     <div className="m-5">
       <ul>
         {filteredProductsArr.map((item, index) => {
-          console.log(warehouseState[item.warehouseId]);
+          const itemLastPrice =
+            item.priceHistory[item.priceHistory.length - 1].price;
           return (
             <div
               className="flex items-center justify-center cursor-pointer"
@@ -294,7 +295,7 @@ const FilteredProductsList = ({
                         ? warehouseState[item.warehouseId]
                         : undefined,
                       +quantity,
-                      item.price
+                      itemLastPrice
                     ).reduce(
                       // I added the reduce func to convert order array to object like in dbSample.json file because I did't want to mess with getOrderDetailsFromWarehouse function
                       (prev, current) => ({
@@ -305,11 +306,11 @@ const FilteredProductsList = ({
                     ),
                     totalQuantityPrice:
                       retailOffer !== ""
-                        ? item.price * quantity -
+                        ? itemLastPrice * quantity -
                           Math.ceil(
-                            (item.price * quantity * +retailOffer) / 100
+                            (itemLastPrice * quantity * +retailOffer) / 100
                           )
-                        : item.price * quantity,
+                        : itemLastPrice * quantity,
                   },
                 ]);
                 setQuantity(1);

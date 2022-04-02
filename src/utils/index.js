@@ -68,39 +68,44 @@ export const englishTypesToArabic = {
 }
 
 export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, productPrice) => {
-  // {"price": 4250, "quantity": 3, "companyDiscount": 25},{"price": 4250, "quantity": 1, "companyDiscount": 30}
   if (warehouseItem === undefined) {
-    // alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
+    console.log(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
     return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }]
   }
 
   const priceOnRetailOrOld = [];
 
-  const countFromFoundAvalability = (availabilitySection, soldQuantity) => {
-    return availabilitySection.quantity < soldQuantity ?
-      availabilitySection.quantity === 0 ? { remaining: soldQuantity - availabilitySection.quantity } :
+  const getTotalAvailableQuantitiesForDiscountSection = (discountSection) => {
+    return Object.values(discountSection.quantities).reduce((accumulator, curr) => accumulator + curr)
+  }
+
+  const countAvalabilityOfDiscountSection = (availabileDiscountSection, soldQuantity) => {
+    const TotalSectionAvailablity = getTotalAvailableQuantitiesForDiscountSection(availabileDiscountSection);
+
+    return TotalSectionAvailablity < soldQuantity ?
+      TotalSectionAvailablity === 0 ? { remaining: soldQuantity - TotalSectionAvailablity } :
       priceOnRetailOrOld.push({
         price: productPrice,
-        quantity: availabilitySection.quantity,
-        companyDiscount: availabilitySection.companyDiscount,
+        quantity: TotalSectionAvailablity,
+        companyDiscount: availabileDiscountSection.companyDiscount,
         finalPriceBeforeDiscount: 0,
         finalPriceAfterDiscount: 0
-      }) && { remaining: soldQuantity - availabilitySection.quantity } :
+      }) && { remaining: soldQuantity - TotalSectionAvailablity } :
       priceOnRetailOrOld.push({
         price: productPrice,
         quantity: soldQuantity,
-        companyDiscount: availabilitySection.companyDiscount,
+        companyDiscount: availabileDiscountSection.companyDiscount,
         finalPriceBeforeDiscount: 0,
         finalPriceAfterDiscount: 0
       });
   };
 
-  const cycleThroughAvailability = (availability, sectionNum, soldQuantity) => {
-    if (sectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity)) return;
+  const cycleThroughAvailability = (availability, DiscountSectionNum, soldQuantity) => {
+    if (DiscountSectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity)) return;
 
-    if (availability[sectionNum] !== undefined) {
-      const countOperation = countFromFoundAvalability(
-        availability[sectionNum],
+    if (availability[DiscountSectionNum] !== undefined) {
+      const countOperation = countAvalabilityOfDiscountSection(
+        availability[DiscountSectionNum],
         soldQuantity
       );
       if (
@@ -109,14 +114,14 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
       ) {
         return cycleThroughAvailability(
           availability,
-          sectionNum + 5,
+          DiscountSectionNum + 5,
           countOperation.remaining
         );
       }
     } else {
       return cycleThroughAvailability(
         availability,
-        sectionNum + 5,
+        DiscountSectionNum + 5,
         soldQuantity
       );
     }
@@ -143,7 +148,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
   } else {
     return priceOnRetailOrOld;
   }
-};
+}
 
 export const getTotalOrdersArr = (invoices, productsData) => {
   let totalSoldInventory = {};
