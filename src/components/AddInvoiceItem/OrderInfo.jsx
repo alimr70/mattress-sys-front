@@ -276,6 +276,7 @@ const FilteredProductsList = ({
     <div className="m-5">
       <ul>
         {filteredProductsArr.map((item, index) => {
+          console.log(warehouseState[item.warehouseId]);
           return (
             <div
               className="flex items-center justify-center cursor-pointer"

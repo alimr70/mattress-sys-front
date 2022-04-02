@@ -101,23 +101,15 @@
       "productId": "Tadzn6pils",
       "availability": {
         "25": {
-          "quantities": [
-            { "priceHistoryDate": "2022-01-01", "quantity": 3 },
-            { "priceHistoryDate": "2022-02-01", "quantity": 4 }
-          ],
+          "quantities": {
+            "2022-01-01": 3,
+            "2022-02-01": 4
+          },
           "companyDiscount": 25
         },
-        "30": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
-          "companyDiscount": 30
-        },
         "35": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "quantities": { "2022-01-01": 1 },
           "companyDiscount": 35
-        },
-        "40": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
-          "companyDiscount": 40
         }
       }
     },
@@ -126,22 +118,22 @@
       "productId": "U4O9suEFJr",
       "availability": {
         "25": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 3 }],
+          "quantities": { "2022-01-01": 3 },
           "companyDiscount": 25
         },
         "30": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 1 }],
+          "quantities": { "2022-01-01": 1 },
           "companyDiscount": 30
         },
         "35": {
-          "quantities": [
-            { "priceHistoryDate": "2022-01-01", "quantity": 6 },
-            { "priceHistoryDate": "2022-02-01", "quantity": 4 }
-          ],
+          "quantities": {
+            "2022-01-01": 6,
+            "2022-02-01": 4
+          },
           "companyDiscount": 35
         },
         "40": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "quantities": { "2022-01-01": 0 },
           "companyDiscount": 40
         }
       }
@@ -151,19 +143,19 @@
       "productId": "U4QG5mpfkB",
       "availability": {
         "25": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 3 }],
+          "quantities": { "2022-01-01": 3 },
           "companyDiscount": 25
         },
         "30": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 1 }],
+          "quantities": { "2022-01-01": 1 },
           "companyDiscount": 30
         },
         "35": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "quantities": { "2022-01-01": 0 },
           "companyDiscount": 35
         },
         "40": {
-          "quantities": [{ "priceHistoryDate": "2022-01-01", "quantity": 0 }],
+          "quantities": { "2022-01-01": 0 },
           "companyDiscount": 40
         }
       }

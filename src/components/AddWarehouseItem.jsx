@@ -19,6 +19,7 @@ const AddWarehouseItem = () => {
   const [companyDiscount, setCompanyDiscount] = useState("25");
 
   const products = Object.values(productsState);
+  const product = productsState[productId];
   const productWarehouseId = productsState[productId]?.warehouseId;
 
   const numberTargets = {
@@ -29,19 +30,34 @@ const AddWarehouseItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const productLastPriceHistoryDate =
+      product.priceHistory[product.priceHistory.length - 1].date;
     const foundTargetWarehouseItem = warehouseState[productWarehouseId];
     if (foundTargetWarehouseItem) {
       const targetCompanyDiscount =
         foundTargetWarehouseItem.availability[companyDiscount];
 
       if (targetCompanyDiscount) {
+        const foundPriceRecordQuantity =
+          targetCompanyDiscount.quantities[productLastPriceHistoryDate];
+        console.log(foundPriceRecordQuantity);
         const item = {
           ...foundTargetWarehouseItem,
           availability: {
             ...foundTargetWarehouseItem.availability,
             [targetCompanyDiscount.companyDiscount]: {
               ...targetCompanyDiscount,
-              quantity: targetCompanyDiscount.quantity + +quantity,
+              // quantity: targetCompanyDiscount.quantity + +quantity,
+              quantities: foundPriceRecordQuantity
+                ? {
+                    ...targetCompanyDiscount.quantities,
+                    [productLastPriceHistoryDate]:
+                      foundPriceRecordQuantity + +quantity,
+                  }
+                : {
+                    ...targetCompanyDiscount.quantities,
+                    [productLastPriceHistoryDate]: +quantity,
+                  },
             },
           },
         };
@@ -52,8 +68,8 @@ const AddWarehouseItem = () => {
           availability: {
             ...foundTargetWarehouseItem.availability,
             [companyDiscount]: {
-              quantity,
-              companyDiscount,
+              quantities: { [productLastPriceHistoryDate]: +quantity },
+              companyDiscount: +companyDiscount,
             },
           },
         };
@@ -62,7 +78,7 @@ const AddWarehouseItem = () => {
     } else {
       let availability = {
         [companyDiscount]: {
-          quantity: +quantity,
+          quantities: { [productLastPriceHistoryDate]: +quantity },
           companyDiscount: +companyDiscount,
         },
       };
