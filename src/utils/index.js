@@ -48,7 +48,7 @@ export const handleNumberInputChange = (e, numberTarget, targetsArr) => {
 export const getTotalAvailableItems = (arr) => {
     let number = 0;
     arr.forEach((el) => {
-        number += +el.quantity;
+        Object.values(el.quantities).forEach((quantity) => number += +quantity)
     });
     return number;
 };
@@ -71,7 +71,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
     if (warehouseItem === undefined) {
         alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
         return [{
-            // price: productPrice, 
+            price: productPrice,
             quantity: soldQuantity,
             priceHistoryAndQuantity: [`{"date":"${productPriceHistory[productPriceHistory.length-1].date}","price":${productPriceHistory[productPriceHistory.length-1].price},"quantity":${soldQuantity}}`],
             companyDiscount: 25,
@@ -115,6 +115,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
         return TotalSectionAvailablity < soldQuantity ?
             TotalSectionAvailablity === 0 ? { remaining: soldQuantity - TotalSectionAvailablity } :
             priceOnRetailOrOld.push({
+                price: productPrice,
                 quantity: TotalSectionAvailablity,
                 priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
                 companyDiscount: availabileDiscountSection.companyDiscount,
@@ -122,6 +123,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
                 finalPriceAfterDiscount: 0
             }) && { remaining: soldQuantity - TotalSectionAvailablity } :
             priceOnRetailOrOld.push({
+                price: productPrice,
                 quantity: soldQuantity,
                 priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
                 companyDiscount: availabileDiscountSection.companyDiscount,
@@ -186,6 +188,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
             return [modified, ...priceOnRetailOrOld]
         } else {
             return [{
+                    price: productPrice,
                     quantity: soldQuantity - totalAvailable,
                     priceHistoryAndQuantity: [`{"date":"${productPriceHistory[productPriceHistory.length-1].date}","price":${productPriceHistory[productPriceHistory.length-1].price},"quantity":${soldQuantity - totalAvailable}}`],
                     companyDiscount: 25,

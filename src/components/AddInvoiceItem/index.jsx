@@ -109,11 +109,19 @@ const AddInvoiceItem = () => {
     let totalProductsCostOnRetail = 0;
     invoice.order.forEach((orderItem, index) => {
       Object.values(orderItem.priceOnRetailOrOld).map((item) => {
-        let finalItemCostOnRtail =
-          item.finalPriceAfterDiscount === 0
-            ? item.price * item.quantity -
-              (item.price * item.quantity * item.companyDiscount) / 100
-            : item.finalPriceAfterDiscount;
+        // let finalItemCostOnRtail =
+        //   item.finalPriceAfterDiscount === 0
+        //     ? item.price * item.quantity -
+        //       (item.price * item.quantity * item.companyDiscount) / 100
+        //     : item.finalPriceAfterDiscount;
+        let finalItemCostOnRtail = 0;
+        item.priceHistoryAndQuantity.forEach((jsonPriceRecord) => {
+          let priceRecord = JSON.parse(jsonPriceRecord);
+          finalItemCostOnRtail +=
+            priceRecord.price * priceRecord.quantity -
+            (priceRecord.price * priceRecord.quantity * item.companyDiscount) /
+              100;
+        });
 
         totalProductsCostOnRetail += finalItemCostOnRtail;
 

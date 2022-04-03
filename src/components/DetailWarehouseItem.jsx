@@ -35,16 +35,27 @@ const DetailWarehouseItem = () => {
           property={""}
         />
         {availableItems.map((item, index) => {
+          let quantityDates = Object.keys(item.quantities);
           return (
-            <DetailsProperty
-              key={index}
-              title={`%${item.companyDiscount}`}
-              property={
-                <span className="text-green-400 font-bold">
-                  {item.quantity}
-                </span>
-              }
-            />
+            <div key={index}>
+              <DetailsProperty
+                title={`%${item.companyDiscount}`}
+                property={""}
+              />
+              {quantityDates.map((date, index) => {
+                return (
+                  <DetailsProperty
+                    key={index}
+                    title={date}
+                    property={
+                      <span className="text-green-500 font-bold">
+                        {item.quantities[date]}
+                      </span>
+                    }
+                  />
+                );
+              })}
+            </div>
           );
         })}
       </div>
