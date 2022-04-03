@@ -177,15 +177,18 @@
           "retailOffer": 0,
           "priceOnRetailOrOld": {
             "25": {
-              "price": 4250,
-              "quantity": 1,
+              "priceHistoryAndQuantity": [
+                { "date": "2022-01-01", "price": 2440, "quantity": 1 },
+                { "date": "2022-03-01", "price": 2562, "quantity": 1 }
+              ],
               "companyDiscount": 25,
               "finalPriceBeforeDiscount": 0,
               "finalPriceAfterDiscount": 0
             },
             "30": {
-              "price": 4250,
-              "quantity": 1,
+              "priceHistoryAndQuantity": [
+                { "date": "2022-01-01", "price": 4250, "quantity": 1 }
+              ],
               "companyDiscount": 30,
               "finalPriceBeforeDiscount": 0,
               "finalPriceAfterDiscount": 0
@@ -199,8 +202,9 @@
           "retailOffer": 0,
           "priceOnRetailOrOld": {
             "25": {
-              "price": 100,
-              "quantity": 3,
+              "priceHistoryAndQuantity": [
+                { "date": "2022-01-01", "price": 100, "quantity": 3 }
+              ],
               "companyDiscount": 25,
               "finalPriceBeforeDiscount": 0,
               "finalPriceAfterDiscount": 0

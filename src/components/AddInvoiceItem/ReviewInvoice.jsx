@@ -197,7 +197,11 @@ const ReviewInvoice = ({
                             {item.totalQuantityPrice}
                           </div>
                           <div className="w-[30%] text-center">
-                            {productDetails.price}
+                            {
+                              productDetails.priceHistory[
+                                productDetails.priceHistory.length - 1
+                              ].price
+                            }
                           </div>
                           <div className="w-[20%] text-center">
                             {item.quantity}
@@ -404,7 +408,11 @@ const ReviewInvoice = ({
                             {item.totalQuantityPrice}
                           </div>
                           <div className="w-[30%] text-center">
-                            {productDetails.price}
+                            {
+                              productDetails.priceHistory[
+                                productDetails.priceHistory.length - 1
+                              ].price
+                            }
                           </div>
                           <div className="w-[20%] text-center">
                             {item.quantity}

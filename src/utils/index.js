@@ -69,7 +69,7 @@ export const englishTypesToArabic = {
 
 export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, productPrice) => {
   if (warehouseItem === undefined) {
-    console.log(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
+    alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
     return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }]
   }
 

@@ -68,10 +68,6 @@ const AddInvoiceItem = () => {
     remainingMoney: [remainingMoney, setRemainingMoney],
   };
 
-  useEffect(() => {
-    console.log(order);
-  }, [order]);
-
   const handleSaveInvoice = () => {
     // {
     //   "status": ["pending", "completed", "deleted"]
