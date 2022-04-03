@@ -4,8 +4,15 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
   // { "date": "2022-02-01", "price": 1924 }
   // ],
   if (warehouseItem === undefined) {
-    alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
-    return [{ price: productPrice, quantity: soldQuantity, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }]
+    // alert(`غير متوفر في المخزن عدد ${soldQuantity} من هذا المنتج وسيتم إضافته لقسم الطلبيات`);
+    return [{
+      // price: productPrice, 
+      quantity: soldQuantity,
+      priceHistoryAndQuantity: [`{"date":"${productPriceHistory[productPriceHistory.length-1].date}","price":${productPriceHistory[productPriceHistory.length-1].price},"quantity":${soldQuantity}}`],
+      companyDiscount: 25,
+      finalPriceBeforeDiscount: 0,
+      finalPriceAfterDiscount: 0
+    }]
   }
 
   const priceOnRetailOrOld = [];
@@ -24,11 +31,11 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
       if (availabilityCount === 0) return;
       const quantity = discountSectionQuantities[discountSectionQuantitiesDatesArr[i]];
       if (availabilityCount >= quantity) {
-        priceHistoryAndQuantityArr.push({
+        priceHistoryAndQuantityArr.push(JSON.stringify({
           date: discountSectionQuantitiesDatesArr[i],
           price: productPriceHistory.find(priceRecord => priceRecord.date === discountSectionQuantitiesDatesArr[i]).price,
           quantity: quantity
-        })
+        }))
 
         availabilityCount = availabilityCount - quantity
       }
@@ -44,15 +51,16 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
       TotalSectionAvailablity === 0 ? { remaining: soldQuantity - TotalSectionAvailablity } :
       priceOnRetailOrOld.push({
         // price: productPrice,
-        // quantity: TotalSectionAvailablity,
+        quantity: TotalSectionAvailablity,
         priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
         companyDiscount: availabileDiscountSection.companyDiscount,
         finalPriceBeforeDiscount: 0,
         finalPriceAfterDiscount: 0
       }) && { remaining: soldQuantity - TotalSectionAvailablity } :
       priceOnRetailOrOld.push({
-        price: productPrice,
+        // price: productPrice,
         quantity: soldQuantity,
+        priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
         companyDiscount: availabileDiscountSection.companyDiscount,
         finalPriceBeforeDiscount: 0,
         finalPriceAfterDiscount: 0
@@ -97,10 +105,25 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
   let totalAvailable = 0;
   priceOnRetailOrOld.forEach((el) => totalAvailable += el.quantity)
   if (totalAvailable < soldQuantity) {
-    alert(`غير متوفر في المخزن عدد ${soldQuantity-totalAvailable} من هذا المنتج وسيتم إضافته لقسم الطلبيات`)
+    // alert(`غير متوفر في المخزن عدد ${soldQuantity-totalAvailable} من هذا المنتج وسيتم إضافته لقسم الطلبيات`)
     if (priceOnRetailOrOld.find(el => el.companyDiscount === 25) !== undefined) {
+      // let modified = priceOnRetailOrOld.shift();
+      // return [{ price: productPrice, quantity: soldQuantity - totalAvailable + modified.quantity, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }, ...priceOnRetailOrOld]
       let modified = priceOnRetailOrOld.shift();
-      return [{ price: productPrice, quantity: soldQuantity - totalAvailable + modified.quantity, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }, ...priceOnRetailOrOld]
+
+      let lastPriceRecordOnDiscount = JSON.parse(modified.priceHistoryAndQuantity[modified.priceHistoryAndQuantity.length - 1]);
+
+      modified.quantity = soldQuantity - totalAvailable + modified.quantity
+
+      modified.priceHistoryAndQuantity.pop();
+
+      let totalPreviousQuantity = 0;
+      modified.priceHistoryAndQuantity.forEach(el => totalPreviousQuantity += JSON.parse(el).quantity)
+      lastPriceRecordOnDiscount.quantity = modified.quantity - totalPreviousQuantity;
+      modified.priceHistoryAndQuantity.push(JSON.stringify(lastPriceRecordOnDiscount))
+
+      console.log(modified)
+      return [modified, ...priceOnRetailOrOld]
     } else {
       return [{ price: productPrice, quantity: soldQuantity - totalAvailable, companyDiscount: 25, finalPriceBeforeDiscount: 0, finalPriceAfterDiscount: 0 }, ...priceOnRetailOrOld]
     }
@@ -115,6 +138,7 @@ let whItem = {
   "availability": {
     "25": {
       "quantities": {
+        "2021-12-01": 1,
         "2022-01-01": 1,
         "2022-02-01": 1
       },
@@ -148,6 +172,6 @@ let whItem = {
 //   }
 // }
 
-let priceHistory = [{ "date": "2022-01-01", "price": 1832 }, { "date": "2022-02-01", "price": 1924 }];
+let priceHistory = [{ "date": "2021-12-01", "price": 1775 }, { "date": "2022-01-01", "price": 1832 }, { "date": "2022-02-01", "price": 1924 }];
 
-console.log(getOrderDetailsFromWarehouse(whItem, 3, 1924, priceHistory))
+console.log(getOrderDetailsFromWarehouse(whItem, 10, 1924, priceHistory))
