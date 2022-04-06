@@ -183,9 +183,7 @@ const AddInvoiceItem = () => {
     generalTypesDispatch(addSerialNumber(`${serialNum}`, "invoicesSerials"));
     invoicesDispatch(addInvoiceItem(invoice));
     order.forEach((item) => {
-      warehouseDispatch(
-        removeSoldWarehouseItem(item.warehouseId, item.quantity)
-      );
+      warehouseDispatch(removeSoldWarehouseItem(item));
     });
     navigate("/");
   };

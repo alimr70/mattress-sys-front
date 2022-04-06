@@ -86,26 +86,28 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
         return Object.values(discountSection.quantities).reduce((accumulator, curr) => accumulator + curr)
     }
 
-    const getPriceHistoryAndQuantityOfDiscountSection = (productPriceHistory, discountSectionQuantities, totalSectionAvailablity) => {
+    const getPriceHistoryAndQuantityOfDiscountSection = (productPriceHistory, discountSectionQuantities, totalSectionAvailablity, totalSoldQuantity) => {
         let priceHistoryAndQuantityArr = [];
         let discountSectionQuantitiesDatesArr = Object.keys(discountSectionQuantities);
 
         let availabilityCount = totalSectionAvailablity;
+        let soldQuantity = totalSoldQuantity
 
-        for (let i = 0; i <= discountSectionQuantitiesDatesArr.length - 1; i++) {
-            if (availabilityCount === 0) return;
-            const quantity = discountSectionQuantities[discountSectionQuantitiesDatesArr[i]];
+        discountSectionQuantitiesDatesArr.forEach((date) => {
+            if (availabilityCount === 0 || soldQuantity === 0) return;
+            const quantity = discountSectionQuantities[date];
             if (availabilityCount >= quantity) {
                 priceHistoryAndQuantityArr.push(JSON.stringify({
-                    date: discountSectionQuantitiesDatesArr[i],
-                    price: productPriceHistory.find(priceRecord => priceRecord.date === discountSectionQuantitiesDatesArr[i]).price,
+                    date: date,
+                    price: productPriceHistory.find(priceRecord => priceRecord.date === date).price,
                     quantity: quantity
                 }))
 
                 availabilityCount = availabilityCount - quantity
+                soldQuantity = soldQuantity - quantity
             }
+        })
 
-        }
         return priceHistoryAndQuantityArr
     }
 
@@ -117,7 +119,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
             priceOnRetailOrOld.push({
                 price: productPrice,
                 quantity: TotalSectionAvailablity,
-                priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
+                priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity, soldQuantity),
                 companyDiscount: availabileDiscountSection.companyDiscount,
                 finalPriceBeforeDiscount: 0,
                 finalPriceAfterDiscount: 0
@@ -125,7 +127,7 @@ export const getOrderDetailsFromWarehouse = (warehouseItem, soldQuantity, produc
             priceOnRetailOrOld.push({
                 price: productPrice,
                 quantity: soldQuantity,
-                priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity),
+                priceHistoryAndQuantity: getPriceHistoryAndQuantityOfDiscountSection(productPriceHistory, availabileDiscountSection.quantities, TotalSectionAvailablity, soldQuantity),
                 companyDiscount: availabileDiscountSection.companyDiscount,
                 finalPriceBeforeDiscount: 0,
                 finalPriceAfterDiscount: 0

@@ -295,7 +295,7 @@ const FilteredProductsList = ({
                         ? warehouseState[item.warehouseId]
                         : undefined,
                       +quantity,
-                      itemLastPrice,
+                      +itemLastPrice,
                       item.priceHistory
                     ).reduce(
                       // I added the reduce func to convert order array to object like in dbSample.json file because I did't want to mess with getOrderDetailsFromWarehouse function

@@ -17,90 +17,112 @@ const warehouseReducer = (state, action) => {
       return { ...state, [action.item.id]: { ...action.item } };
 
     case REMOVE_SOLD_WAREHOUSE_ITEM:
-      const foundItem = state[action.id];
-      const modifiedItem = removeSoldItemAcending(foundItem, action.quantity);
-      return modifiedItem !== undefined
-        ? { ...state, [modifiedItem.id]: { ...modifiedItem } }
-        : state;
+      const foundItem = state[action.item.warehouseId];
+      const priceOnRetailOrOldArr = Object.values(
+        action.item.priceOnRetailOrOld
+      );
+
+      let newAvailability = foundItem.availability;
+
+      priceOnRetailOrOldArr.forEach((el) => {
+        el.priceHistoryAndQuantity.forEach((recordItem) => {
+          let record = JSON.parse(recordItem);
+
+          newAvailability[el.companyDiscount].quantities[record.date] =
+            newAvailability[el.companyDiscount].quantities[record.date] -
+              record.quantity <
+            0
+              ? 0
+              : newAvailability[el.companyDiscount].quantities[record.date] -
+                record.quantity;
+        });
+      });
+
+      return { ...state, [foundItem.id]: { ...foundItem } };
+
+    // const modifiedItem = removeSoldItemAcending(foundItem, action.quantity);
+    // return modifiedItem !== undefined
+    //   ? { ...state, [modifiedItem.id]: { ...modifiedItem } }
+    //   : state;
 
     default:
       return state;
   }
 };
 
-const removeSoldItemAcending = (warehouseItem, soldQuantity) => {
-  if (warehouseItem === undefined) return;
+// const removeSoldItemAcending = (warehouseItem, soldQuantity) => {
+//   if (warehouseItem === undefined) return;
 
-  const removeFromFoundAvalability = (availabilitySection, soldQuantity) => {
-    return availabilitySection.quantity < soldQuantity
-      ? {
-          remaining: soldQuantity - availabilitySection.quantity,
-          modifiedSection: { ...availabilitySection, quantity: 0 },
-        }
-      : {
-          modifiedSection: {
-            ...availabilitySection,
-            quantity: availabilitySection.quantity - soldQuantity,
-          },
-        };
-  };
+//   const removeFromFoundAvalability = (availabilitySection, soldQuantity) => {
+//     return availabilitySection.quantity < soldQuantity
+//       ? {
+//           remaining: soldQuantity - availabilitySection.quantity,
+//           modifiedSection: { ...availabilitySection, quantity: 0 },
+//         }
+//       : {
+//           modifiedSection: {
+//             ...availabilitySection,
+//             quantity: availabilitySection.quantity - soldQuantity,
+//           },
+//         };
+//   };
 
-  const cycleThroughAvailability = (availability, sectionNum, soldQuantity) => {
-    if (sectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity))
-      return availability;
+//   const cycleThroughAvailability = (availability, sectionNum, soldQuantity) => {
+//     if (sectionNum === 100 || soldQuantity === 0 || isNaN(soldQuantity))
+//       return availability;
 
-    if (availability[sectionNum] !== undefined) {
-      const removeOperation = removeFromFoundAvalability(
-        availability[sectionNum],
-        soldQuantity
-      );
-      if (
-        removeOperation.remaining !== undefined &&
-        removeOperation.remaining > 0
-      ) {
-        availability = {
-          ...availability,
-          [removeOperation.modifiedSection.companyDiscount]: {
-            ...removeOperation.modifiedSection,
-          },
-        };
-        return cycleThroughAvailability(
-          availability,
-          sectionNum + 5,
-          removeOperation.remaining
-        );
-      } else {
-        availability = {
-          ...availability,
-          [removeOperation.modifiedSection.companyDiscount]: {
-            ...removeOperation.modifiedSection,
-          },
-        };
-        return availability;
-      }
-    } else {
-      return cycleThroughAvailability(
-        availability,
-        sectionNum + 5,
-        soldQuantity
-      );
-    }
-  };
+//     if (availability[sectionNum] !== undefined) {
+//       const removeOperation = removeFromFoundAvalability(
+//         availability[sectionNum],
+//         soldQuantity
+//       );
+//       if (
+//         removeOperation.remaining !== undefined &&
+//         removeOperation.remaining > 0
+//       ) {
+//         availability = {
+//           ...availability,
+//           [removeOperation.modifiedSection.companyDiscount]: {
+//             ...removeOperation.modifiedSection,
+//           },
+//         };
+//         return cycleThroughAvailability(
+//           availability,
+//           sectionNum + 5,
+//           removeOperation.remaining
+//         );
+//       } else {
+//         availability = {
+//           ...availability,
+//           [removeOperation.modifiedSection.companyDiscount]: {
+//             ...removeOperation.modifiedSection,
+//           },
+//         };
+//         return availability;
+//       }
+//     } else {
+//       return cycleThroughAvailability(
+//         availability,
+//         sectionNum + 5,
+//         soldQuantity
+//       );
+//     }
+//   };
 
-  const { availability } = warehouseItem;
+//   const { availability } = warehouseItem;
 
-  const newAvailability = cycleThroughAvailability(
-    availability,
-    5,
-    soldQuantity
-  );
+//   const newAvailability = cycleThroughAvailability(
+//     availability,
+//     5,
+//     soldQuantity
+//   );
 
-  warehouseItem = {
-    ...warehouseItem,
-    availability: { ...newAvailability },
-  };
+//   warehouseItem = {
+//     ...warehouseItem,
+//     availability: { ...newAvailability },
+//   };
 
-  return warehouseItem;
-};
+//   return warehouseItem;
+// };
 
 export default warehouseReducer;

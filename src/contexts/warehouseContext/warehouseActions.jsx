@@ -17,10 +17,9 @@ export const addExistingWarehouseItem = (item) => {
   };
 };
 
-export const removeSoldWarehouseItem = (id, quantity) => {
+export const removeSoldWarehouseItem = (item) => {
   return {
     type: REMOVE_SOLD_WAREHOUSE_ITEM,
-    id,
-    quantity,
+    item,
   };
 };
