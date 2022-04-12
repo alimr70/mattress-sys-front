@@ -20,7 +20,11 @@ const EditProductItem = ({ isEditMode }) => {
 
     const editedProduct = {
       ...product,
-      priceHistory: [...product.priceHistory, { date, price: +price }],
+      priceHistory: [...product.priceHistory, { date, price: +price }].sort(
+        (a, b) => {
+          return new Date(a).getTime() > new Date(b).getTime() ? 1 : -1;
+        }
+      ),
     };
 
     productsDispatch(addProduct(editedProduct));
