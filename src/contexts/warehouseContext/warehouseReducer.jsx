@@ -22,7 +22,9 @@ const warehouseReducer = (state, action) => {
         action.item.priceOnRetailOrOld
       );
 
-      let newAvailability = foundItem.availability;
+      let newAvailability = foundItem?.availability;
+
+      if (newAvailability === undefined) return state;
 
       priceOnRetailOrOldArr.forEach((el) => {
         el.priceHistoryAndQuantity.forEach((recordItem) => {
