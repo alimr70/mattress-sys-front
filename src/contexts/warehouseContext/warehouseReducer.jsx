@@ -30,6 +30,8 @@ const warehouseReducer = (state, action) => {
         el.priceHistoryAndQuantity.forEach((recordItem) => {
           let record = JSON.parse(recordItem);
 
+          if (newAvailability[el.companyDiscount] === undefined) return;
+
           newAvailability[el.companyDiscount].quantities[record.date] =
             newAvailability[el.companyDiscount].quantities[record.date] -
               record.quantity <
