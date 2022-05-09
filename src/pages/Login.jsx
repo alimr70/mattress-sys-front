@@ -10,22 +10,12 @@ const Login = () => {
 
   let from = location.state?.from?.pathname || "/";
 
-  const [username, setUserName] = useState("");
-  const [password, setPassWord] = useState("");
+  const [username, setUserName] = useState("user");
+  const [password, setPassWord] = useState("mattress");
   const [role, setRole] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    // if (password === process.env.REACT_APP_PROGRAMMER_PS) {
-    //   setRole("programmer");
-    // }
-    // if (password === process.env.REACT_APP_MANAGER_PS) {
-    //   setRole("manager");
-    // }
-    // if (password === process.env.REACT_APP_ACCOUNTANT_PS) {
-    //   setRole("accountant");
-    // }
 
     if (username !== "" && role !== "") {
       authDispatch(login({ username, role }));
