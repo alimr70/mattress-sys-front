@@ -1,237 +1,344 @@
 {
-  "auth": {
-    "username": "",
-    "role": ""
-  },
-  "generalTypes": {
-    "serialNumbers": {
-      "warehouseSerials": ["0000"],
-      "invoicesSerials": ["0000"]
+    "auth": {
+        "username": "",
+        "role": ""
     },
-    "productTypes": [
-      "مرتبة",
-      "مخدة",
-      "مسند",
-      "بروتكتور",
-      "ميلتون",
-      "لحاف",
-      "شلتة",
-      "سرير",
-      "توبر"
-    ],
-    "mattressNames": {
-      "1": "ريترو",
-      "2": "جولدن",
-      "3": "دودو",
-      "4": "سو",
-      "5": "ماريو",
-      "6": "ميموري"
-    },
-    "pillowNames": {
-      "1": "ريلاكس",
-      "2": "طبية سوفت",
-      "3": "طبية سوبر سوفت",
-      "4": "طبية سوبر اورانج",
-      "5": "ميموري فوم",
-      "6": "فيبر",
-      "7": "فيبر 625جم",
-      "8": "فيبر 750جم",
-      "9": "فيبر 900جم"
-    },
-    "otherNames": {
-      "1": "ميلتون",
-      "2": "ميلتون بشكير"
-    }
-  },
-  "products": {
-    "Tadzn6pils": {
-      "id": "Tadzn6pils",
-      "type": "مرتبة",
-      "name": "ريترو 80×195×20",
-      "thickness": "20",
-      "width": "80",
-      "height": "195",
-      "price": 1506,
-      "warehouseId": "18949841648"
-    },
-    "U4QG5mpfkB": {
-      "id": "U4QG5mpfkB",
-      "type": "مرتبة",
-      "name": "ريترو 90×195×20",
-      "thickness": "20",
-      "width": "90",
-      "height": "195",
-      "price": 1617,
-      "warehouseId": "169841869"
-    },
-    "_NHkm7ooPB": {
-      "id": "_NHkm7ooPB",
-      "type": "مخدة",
-      "name": "فيبر 40×60 625جم",
-      "thickness": "",
-      "width": "40",
-      "height": "60",
-      "price": 99,
-      "warehouseId": "111648"
-    },
-    "PdoNUfd8Gv": {
-      "id": "PdoNUfd8Gv",
-      "type": "مخدة",
-      "name": "فيبر 40×60 750جم",
-      "thickness": "",
-      "width": "40",
-      "height": "60",
-      "price": 104,
-      "warehouseId": "1556984362"
-    },
-    "U4O9suEFJr": {
-      "id": "U4O9suEFJr",
-      "type": "مخدة",
-      "name": "فيبر 40×60 900جم",
-      "thickness": "",
-      "width": "40",
-      "height": "60",
-      "price": 116,
-      "warehouseId": "618946188"
-    }
-  },
-  "warehouse": {
-    "18949841648": {
-      "id": "18949841648",
-      "productId": "Tadzn6pils",
-      "availability": {
-        "25": {
-          "quantities": {
-            "2022-01-01": 3,
-            "2022-02-01": 4
-          },
-          "companyDiscount": 25
+    "generalTypes": {
+        "serialNumbers": {
+            "warehouseSerials": ["0000"],
+            "invoicesSerials": ["0000"]
         },
-        "35": {
-          "quantities": { "2022-01-01": 1 },
-          "companyDiscount": 35
+        "productTypes": [
+            "مرتبة",
+            "مخدة",
+            "مسند",
+            "بروتكتور",
+            "ميلتون",
+            "لحاف",
+            "شلتة",
+            "سرير",
+            "توبر"
+        ],
+        "mattressNames": {
+            "1": "ريترو",
+            "2": "جولدن",
+            "3": "دودو",
+            "4": "سو",
+            "5": "ماريو",
+            "6": "ميموري"
+        },
+        "pillowNames": {
+            "1": "ريلاكس",
+            "2": "طبية سوفت",
+            "3": "طبية سوبر سوفت",
+            "4": "طبية سوبر اورانج",
+            "5": "ميموري فوم",
+            "6": "فيبر",
+            "7": "فيبر 625جم",
+            "8": "فيبر 750جم",
+            "9": "فيبر 900جم"
+        },
+        "otherNames": {
+            "1": "ميلتون",
+            "2": "ميلتون بشكير"
         }
-      }
     },
-    "618946188": {
-      "id": "618946188",
-      "productId": "U4O9suEFJr",
-      "availability": {
-        "25": {
-          "quantities": { "2022-01-01": 3 },
-          "companyDiscount": 25
+    "products": {
+        "Tadzn6pils": {
+            "id": "Tadzn6pils",
+            "type": "مرتبة",
+            "name": "ريترو 80×195×20",
+            "thickness": "20",
+            "width": "80",
+            "height": "195",
+            "price": 1506,
+            "warehouseId": "18949841648"
         },
-        "30": {
-          "quantities": { "2022-01-01": 1 },
-          "companyDiscount": 30
+        "U4QG5mpfkB": {
+            "id": "U4QG5mpfkB",
+            "type": "مرتبة",
+            "name": "ريترو 90×195×20",
+            "thickness": "20",
+            "width": "90",
+            "height": "195",
+            "price": 1617,
+            "warehouseId": "169841869"
         },
-        "35": {
-          "quantities": {
-            "2022-01-01": 6,
-            "2022-02-01": 4
-          },
-          "companyDiscount": 35
+        "_NHkm7ooPB": {
+            "id": "_NHkm7ooPB",
+            "type": "مخدة",
+            "name": "فيبر 40×60 625جم",
+            "thickness": "",
+            "width": "40",
+            "height": "60",
+            "price": 99,
+            "warehouseId": "111648"
         },
-        "40": {
-          "quantities": { "2022-01-01": 0 },
-          "companyDiscount": 40
+        "PdoNUfd8Gv": {
+            "id": "PdoNUfd8Gv",
+            "type": "مخدة",
+            "name": "فيبر 40×60 750جم",
+            "thickness": "",
+            "width": "40",
+            "height": "60",
+            "price": 104,
+            "warehouseId": "1556984362"
+        },
+        "U4O9suEFJr": {
+            "id": "U4O9suEFJr",
+            "type": "مخدة",
+            "name": "فيبر 40×60 900جم",
+            "thickness": "",
+            "width": "40",
+            "height": "60",
+            "price": 116,
+            "warehouseId": "618946188"
         }
-      }
     },
-    "169841869": {
-      "id": "169841869",
-      "productId": "U4QG5mpfkB",
-      "availability": {
-        "25": {
-          "quantities": { "2022-01-01": 3 },
-          "companyDiscount": 25
+    "warehouse": {
+        "18949841648": {
+            "id": "18949841648",
+            "productId": "Tadzn6pils",
+            "availability": {
+                "25": {
+                    "quantities": {
+                        "2022-01-01": 3,
+                        "2022-02-01": 4
+                    },
+                    "companyDiscount": 25
+                },
+                "35": {
+                    "quantities": { "2022-01-01": 1 },
+                    "companyDiscount": 35
+                }
+            }
         },
-        "30": {
-          "quantities": { "2022-01-01": 1 },
-          "companyDiscount": 30
+        "618946188": {
+            "id": "618946188",
+            "productId": "U4O9suEFJr",
+            "availability": {
+                "25": {
+                    "quantities": { "2022-01-01": 3 },
+                    "companyDiscount": 25
+                },
+                "30": {
+                    "quantities": { "2022-01-01": 1 },
+                    "companyDiscount": 30
+                },
+                "35": {
+                    "quantities": {
+                        "2022-01-01": 6,
+                        "2022-02-01": 4
+                    },
+                    "companyDiscount": 35
+                },
+                "40": {
+                    "quantities": { "2022-01-01": 0 },
+                    "companyDiscount": 40
+                }
+            }
         },
-        "35": {
-          "quantities": { "2022-01-01": 0 },
-          "companyDiscount": 35
-        },
-        "40": {
-          "quantities": { "2022-01-01": 0 },
-          "companyDiscount": 40
+        "169841869": {
+            "id": "169841869",
+            "productId": "U4QG5mpfkB",
+            "availability": {
+                "25": {
+                    "quantities": { "2022-01-01": 3 },
+                    "companyDiscount": 25
+                },
+                "30": {
+                    "quantities": { "2022-01-01": 1 },
+                    "companyDiscount": 30
+                },
+                "35": {
+                    "quantities": { "2022-01-01": 0 },
+                    "companyDiscount": 35
+                },
+                "40": {
+                    "quantities": { "2022-01-01": 0 },
+                    "companyDiscount": 40
+                }
+            }
         }
-      }
-    }
-  },
-  "invoices": {
-    "519848916": {
-      "status": "pending",
-      "id": "519848916",
-      "cutomerName": "مروان بابلو",
-      "address": "بالم هيلز فيلا رقم 300",
-      "phone": "01022233344",
-      "phoneTwo": "01252697945",
-      "invoiceDate": "2022-01-02",
-      "receiptDate": "2022-01-03",
-      "order": [{
-          "productId": "Tadzn6pils",
-          "quantity": 2,
-          "retailOffer": 0,
-          "priceOnRetailOrOld": {
-            "25": {
-              "priceHistoryAndQuantity": [
-                { "date": "2022-01-01", "price": 2440, "quantity": 1 },
-                { "date": "2022-03-01", "price": 2562, "quantity": 1 }
-              ],
-              "companyDiscount": 25,
-              "finalPriceBeforeDiscount": 0,
-              "finalPriceAfterDiscount": 0
+    },
+    "invoices": {
+        "519848916": {
+            "status": "pending",
+            "id": "519848916",
+            "cutomerName": "مروان بابلو",
+            "address": "بالم هيلز فيلا رقم 300",
+            "phone": "01022233344",
+            "phoneTwo": "01252697945",
+            "invoiceDate": "2022-01-02",
+            "receiptDate": "2022-01-03",
+            "order": [{
+                    "productId": "Tadzn6pils",
+                    "quantity": 2,
+                    "retailOffer": 0,
+                    "priceOnRetailOrOld": {
+                        "25": {
+                            "priceHistoryAndQuantity": [
+                                { "date": "2022-01-01", "price": 2440, "quantity": 1 },
+                                { "date": "2022-03-01", "price": 2562, "quantity": 1 }
+                            ],
+                            "companyDiscount": 25,
+                            "finalPriceBeforeDiscount": 0,
+                            "finalPriceAfterDiscount": 0
+                        },
+                        "30": {
+                            "priceHistoryAndQuantity": [
+                                { "date": "2022-01-01", "price": 4250, "quantity": 1 }
+                            ],
+                            "companyDiscount": 30,
+                            "finalPriceBeforeDiscount": 0,
+                            "finalPriceAfterDiscount": 0
+                        }
+                    },
+                    "totalQuantityPrice": 8500
+                },
+                {
+                    "productId": "U4O9suEFJr",
+                    "quantity": 3,
+                    "retailOffer": 0,
+                    "priceOnRetailOrOld": {
+                        "25": {
+                            "priceHistoryAndQuantity": [
+                                { "date": "2022-01-01", "price": 100, "quantity": 3 }
+                            ],
+                            "companyDiscount": 25,
+                            "finalPriceBeforeDiscount": 0,
+                            "finalPriceAfterDiscount": 0
+                        }
+                    },
+                    "totalQuantityPrice": 300
+                }
+            ],
+            "paymentMethod": {
+                "method": "cashAndCard",
+                "cashAmount": 7750,
+                "cardAmount": 1000
             },
-            "30": {
-              "priceHistoryAndQuantity": [
-                { "date": "2022-01-01", "price": 4250, "quantity": 1 }
-              ],
-              "companyDiscount": 30,
-              "finalPriceBeforeDiscount": 0,
-              "finalPriceAfterDiscount": 0
-            }
-          },
-          "totalQuantityPrice": 8500
-        },
-        {
-          "productId": "U4O9suEFJr",
-          "quantity": 3,
-          "retailOffer": 0,
-          "priceOnRetailOrOld": {
-            "25": {
-              "priceHistoryAndQuantity": [
-                { "date": "2022-01-01", "price": 100, "quantity": 3 }
-              ],
-              "companyDiscount": 25,
-              "finalPriceBeforeDiscount": 0,
-              "finalPriceAfterDiscount": 0
-            }
-          },
-          "totalQuantityPrice": 300
+            "shipmentCharge": {
+                "shipmentOnCst": 100,
+                "shipmentOnRetail": 150
+            },
+            "totalRetailOffer": {
+                "name": "خصم خاص",
+                "percentage": 15,
+                "fixed": 0
+            },
+            "totalInvoicePrice": 17750,
+            "paidMoney": 10000,
+            "remainingMoney": 7750,
+            "totalPriceOnRetail": 13400,
+            "totalProfit": 4350
         }
-      ],
-      "paymentMethod": {
-        "method": "cashAndCard",
-        "cashAmount": 7750,
-        "cardAmount": 1000
-      },
-      "shipmentCharge": {
-        "shipmentOnCst": 100,
-        "shipmentOnRetail": 150
-      },
-      "totalRetailOffer": {
-        "name": "خصم خاص",
-        "percentage": 15,
-        "fixed": 0
-      },
-      "totalInvoicePrice": 17750,
-      "paidMoney": 10000,
-      "remainingMoney": 7750,
-      "totalPriceOnRetail": 13400,
-      "totalProfit": 4350
+    },
+    "customDimension": {
+        "m2Golden": {
+            "id": "m2Golden",
+            "name": "مرتبة جولدن",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1815 }]
+        },
+        "m2GoldenForm": {
+            "id": "m2GoldenForm",
+            "name": "مرتبة جولدن الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2033 }]
+        },
+        "m2GoldenFormRound": {
+            "id": "m2GoldenFormRound",
+            "name": "مرتبة جولدن الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2236 }]
+        },
+        "m2Doudo": {
+            "id": "m2Doudo",
+            "name": "مرتبة دودو",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2692 }]
+        },
+        "m2DoudoForm": {
+            "id": "m2DoudoForm",
+            "name": "مرتبة دودو الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2911 }]
+        },
+        "m2DoudoFormRound": {
+            "id": "m2DoudoFormRound",
+            "name": "مرتبة دودو الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3202 }]
+        },
+        "m2Sue": {
+            "id": "m2Sue",
+            "name": "مرتبة سو",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2874 }]
+        },
+        "m2SueForm": {
+            "id": "m2SueForm",
+            "name": "مرتبة سو الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3085 }]
+        },
+        "m2SueFormRound": {
+            "id": "m2SueFormRound",
+            "name": "مرتبة سو الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3394 }]
+        },
+        "m2Mario15": {
+            "id": "m2Mario15",
+            "name": "مرتبة ماريو15",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1700 }]
+        },
+        "m2Mario15Form": {
+            "id": "m2Mario15Form",
+            "name": "مرتبة ماريو15 الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1916 }]
+        },
+        "m2Mario15FormRound": {
+            "id": "m2Mario15FormRound",
+            "name": "مرتبة ماريو15 الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2107 }]
+        },
+        "m2Mario20": {
+            "id": "m2Mario20",
+            "name": "مرتبة ماريو20",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2424 }]
+        },
+        "m2Mario20Form": {
+            "id": "m2Mario20Form",
+            "name": "مرتبة ماريو20 الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2642 }]
+        },
+        "m2Mario20FormRound": {
+            "id": "m2Mario20FormRound",
+            "name": "مرتبة ماريو20 الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 2906 }]
+        },
+        "m2Mario25": {
+            "id": "m2Mario25",
+            "name": "مرتبة ماريو25",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3159 }]
+        },
+        "m2Mario25Form": {
+            "id": "m2Mario25Form",
+            "name": "مرتبة ماريو25 الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3376 }]
+        },
+        "m2Mario25FormRound": {
+            "id": "m2Mario25FormRound",
+            "name": "مرتبة ماريو25 الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 3714 }]
+        },
+        "m2NewDelux15": {
+            "id": "m2NewDelux15",
+            "name": "مرتبة نيو ديلوكس15",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1140 }]
+        },
+        "m2NewDelux15Form": {
+            "id": "m2NewDelux15Form",
+            "name": "مرتبة نيو ديلوكس15 الفارمة",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1391 }]
+        },
+        "m2NewDelux15FormRound": {
+            "id": "m2NewDelux15FormRound",
+            "name": "مرتبة نيو ديلوكس15 الفارمة الدائرية",
+            "priceHistory": [{ "date": "2022-03-30", "price": 1530 }]
+        }
     }
-  }
 }
