@@ -14,19 +14,20 @@ import Logout from "./pages/Logout";
 import DetailsAndEdit from "./pages/DetailsAndEdit";
 import Calculations from "./pages/Calculations";
 import Home from "./pages/Home";
+import AddCustomDimension from "./pages/AddCustomDimension";
 function App() {
   return (
-    <div className="App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents">
+    <div className='App h-screen overflow-auto bg-gray-900 text-gray-300 print:contents'>
       <Routes>
         <Route
-          path="/"
+          path='/'
           element={
             <RequireAuth>
               <Home />
             </RequireAuth>
           }
         />
-        <Route path="products">
+        <Route path='products'>
           <Route
             index
             element={
@@ -36,7 +37,7 @@ function App() {
             }
           />
           <Route
-            path="/products/:productId"
+            path='/products/:productId'
             element={
               <RequireAuth>
                 <RequireRole roles={["programmer", "manager"]}>
@@ -47,7 +48,7 @@ function App() {
           />
         </Route>
         <Route
-          path="addproduct"
+          path='addproduct'
           element={
             <RequireAuth>
               <RequireRole roles={["programmer"]}>
@@ -56,7 +57,17 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="warehouse">
+        <Route
+          path='custom'
+          element={
+            <RequireAuth>
+              <RequireRole roles={["programmer"]}>
+                <AddCustomDimension />
+              </RequireRole>
+            </RequireAuth>
+          }
+        />
+        <Route path='warehouse'>
           <Route
             index
             element={
@@ -66,7 +77,7 @@ function App() {
             }
           />
           <Route
-            path="/warehouse/:warehouseItemId"
+            path='/warehouse/:warehouseItemId'
             element={
               <RequireAuth>
                 <RequireRole roles={["programmer", "manager"]}>
@@ -76,7 +87,7 @@ function App() {
             }
           />
         </Route>
-        <Route path="invoices">
+        <Route path='invoices'>
           <Route
             index
             element={
@@ -86,7 +97,7 @@ function App() {
             }
           />
           <Route
-            path="/invoices/:invoiceId"
+            path='/invoices/:invoiceId'
             element={
               <RequireAuth>
                 <RequireRole roles={["programmer", "manager"]}>
@@ -97,7 +108,7 @@ function App() {
           />
         </Route>
         <Route
-          path="addtowarehouse"
+          path='addtowarehouse'
           element={
             <RequireAuth>
               <RequireRole roles={["programmer", "manager"]}>
@@ -107,7 +118,7 @@ function App() {
           }
         />
         <Route
-          path="addinvoice"
+          path='addinvoice'
           element={
             <RequireAuth>
               <RequireRole roles={["programmer", "manager"]}>
@@ -117,7 +128,7 @@ function App() {
           }
         />
         <Route
-          path="calculations"
+          path='calculations'
           element={
             <RequireAuth>
               <RequireRole roles={["programmer", "manager", "accountant"]}>
@@ -126,10 +137,10 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="login" element={<Login />} />
-        <Route path="logout" element={<Logout />} />
-        <Route path="notauth" element={<NotAuth />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path='login' element={<Login />} />
+        <Route path='logout' element={<Logout />} />
+        <Route path='notauth' element={<NotAuth />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   );

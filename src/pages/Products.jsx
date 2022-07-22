@@ -12,12 +12,15 @@ const Products = () => {
   return (
     <>
       <Header />
-      <div className="p-5 flex flex-row">
-        <Link to="/addproduct" className="px-5 py-2 bg-blue-500">
+      <div className='p-5 flex flex-row'>
+        <Link to='/addproduct' className='px-5 py-2 bg-blue-500'>
           <button>إضافة منتج</button>
         </Link>
+        <Link to='/custom' className='mr-2 px-5 py-2 bg-blue-500'>
+          <button>إضافة مقاس خاص</button>
+        </Link>
       </div>
-      <Container title="المنتجات">
+      <Container title='المنتجات'>
         <Filter toBeFilteredProductsArr={products} />
         {/* <div>
           <ul className="flex justify-end flex-col">

@@ -9,6 +9,7 @@ import { ProductsStoreProvider } from "./contexts/productsContext";
 import { WarehouseStoreProvider } from "./contexts/warehouseContext";
 import { InvoicesStoreProvider } from "./contexts/invoicesContext";
 import { AuthStoreProvider } from "./contexts/authContext";
+import { CustomDimensionStoreProvider } from "./contexts/customDimensionContext";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,9 @@ ReactDOM.render(
           <ProductsStoreProvider>
             <WarehouseStoreProvider>
               <InvoicesStoreProvider>
-                <App />
+                <CustomDimensionStoreProvider>
+                  <App />
+                </CustomDimensionStoreProvider>
               </InvoicesStoreProvider>
             </WarehouseStoreProvider>
           </ProductsStoreProvider>
