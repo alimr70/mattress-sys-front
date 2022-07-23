@@ -18,6 +18,9 @@ const AddProductItem = () => {
   const { productTypes, serialNumbers } = generalTypesState;
   const { warehouseSerials } = serialNumbers;
 
+  const [date, setDate] = useState(
+    new Date(Date.now()).toISOString().split("T")[0]
+  );
   const [type, setType] = useState("");
   const [warehouseSerialNum, setWarehouseSerialNum] = useState("");
   const [name, setName] = useState("");
@@ -62,7 +65,7 @@ const AddProductItem = () => {
       thickness,
       width,
       height,
-      price: +price,
+      priceHistory: [{ date, price: +price }],
       warehouseId: warehouseSerialNum,
     };
     generalTypesDispatch(
@@ -90,20 +93,37 @@ const AddProductItem = () => {
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
-      className="max-w-sm mx-auto"
-      autoComplete="off">
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="type" className="m-2 col-span-1 justify-self-start">
+      className='max-w-sm mx-auto'
+      autoComplete='off'>
+      <div className='m-5 grid grid-cols-3'>
+        <label
+          htmlFor='startDate'
+          className='m-2 col-span-1 justify-self-start'>
+          تاريخ ليستة السعر:
+        </label>
+        <input
+          type='date'
+          name='startDate'
+          id='startDate'
+          className='col-span-2 text-gray-800 text-center'
+          value={date}
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
+      </div>
+      <div className='m-5 grid grid-cols-3'>
+        <label htmlFor='type' className='m-2 col-span-1 justify-self-start'>
           نوع المنتج
         </label>
         <select
-          name="type"
-          id="type"
-          className="col-span-2 text-gray-800"
+          name='type'
+          id='type'
+          className='col-span-2 text-gray-800'
           value={type}
           onChange={(e) => handleTypeChange(e)}
           required>
-          <option className="text-center text-gray-500" value="" defaultValue>
+          <option className='text-center text-gray-500' value='' defaultValue>
             إختر نوع المنتج
           </option>
           {productTypes.map((itemType, index) => {
@@ -111,40 +131,40 @@ const AddProductItem = () => {
               <option
                 key={index}
                 value={itemType}
-                className="text-center text-gray-800">
+                className='text-center text-gray-800'>
                 {itemType}
               </option>
             );
           })}
         </select>
       </div>
-      <div className="m-5 grid grid-cols-3">
+      <div className='m-5 grid grid-cols-3'>
         <label
-          htmlFor="warehouseId"
-          className="m-2 col-span-1 justify-self-start">
+          htmlFor='warehouseId'
+          className='m-2 col-span-1 justify-self-start'>
           رقم المخزن
         </label>
         <input
-          dir="ltr"
-          inputMode="numeric"
-          type="text"
-          name="warehouseId"
-          id="warehouseId"
-          className="col-span-2 text-center text-gray-800"
+          dir='ltr'
+          inputMode='numeric'
+          type='text'
+          name='warehouseId'
+          id='warehouseId'
+          className='col-span-2 text-center text-gray-800'
           defaultValue={warehouseSerialNum}
           disabled
         />
       </div>
-      <div className="m-5 grid grid-cols-3">
-        <label htmlFor="name" className="m-2 col-span-1 justify-self-start">
+      <div className='m-5 grid grid-cols-3'>
+        <label htmlFor='name' className='m-2 col-span-1 justify-self-start'>
           الاسم
         </label>
         <input
-          inputMode="numeric"
-          type="text"
-          name="name"
-          id="name"
-          className="col-span-2 text-center text-gray-800"
+          inputMode='numeric'
+          type='text'
+          name='name'
+          id='name'
+          className='col-span-2 text-center text-gray-800'
           value={name}
           onChange={(e) => {
             handleNameChange(e);
@@ -195,8 +215,8 @@ const AddProductItem = () => {
           required={true}
         />
       </PropertyCell>
-      <div className="flex justify-center">
-        <button type="submit" className="px-5 py-2 bg-blue-500 rounded-md">
+      <div className='flex justify-center'>
+        <button type='submit' className='px-5 py-2 bg-blue-500 rounded-md'>
           إضافة
         </button>
       </div>

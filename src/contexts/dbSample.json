@@ -237,107 +237,128 @@
     "customDimension": {
         "m2Golden": {
             "id": "m2Golden",
-            "name": "مرتبة جولدن",
+            "name": "جولدن",
+            "thickness": "26",
             "priceHistory": [{ "date": "2022-03-30", "price": 1815 }]
         },
         "m2GoldenForm": {
             "id": "m2GoldenForm",
-            "name": "مرتبة جولدن الفارمة",
+            "name": "جولدن فارمة",
+            "thickness": "26",
             "priceHistory": [{ "date": "2022-03-30", "price": 2033 }]
         },
         "m2GoldenFormRound": {
             "id": "m2GoldenFormRound",
-            "name": "مرتبة جولدن الفارمة الدائرية",
+            "name": "جولدن فارمة دائرية",
+            "thickness": "26",
             "priceHistory": [{ "date": "2022-03-30", "price": 2236 }]
         },
         "m2Doudo": {
             "id": "m2Doudo",
-            "name": "مرتبة دودو",
+            "name": "دودو",
+            "thickness": "30",
             "priceHistory": [{ "date": "2022-03-30", "price": 2692 }]
         },
         "m2DoudoForm": {
             "id": "m2DoudoForm",
-            "name": "مرتبة دودو الفارمة",
+            "name": "دودو فارمة",
+            "thickness": "30",
             "priceHistory": [{ "date": "2022-03-30", "price": 2911 }]
         },
         "m2DoudoFormRound": {
             "id": "m2DoudoFormRound",
-            "name": "مرتبة دودو الفارمة الدائرية",
+            "name": "دودو فارمة دائرية",
+            "thickness": "30",
             "priceHistory": [{ "date": "2022-03-30", "price": 3202 }]
         },
         "m2Sue": {
             "id": "m2Sue",
-            "name": "مرتبة سو",
+            "name": "سو",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 2874 }]
         },
         "m2SueForm": {
             "id": "m2SueForm",
-            "name": "مرتبة سو الفارمة",
+            "name": "سو فارمة",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3085 }]
         },
         "m2SueFormRound": {
             "id": "m2SueFormRound",
-            "name": "مرتبة سو الفارمة الدائرية",
+            "name": "سو فارمة دائرية",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3394 }]
         },
         "m2Mario15": {
             "id": "m2Mario15",
-            "name": "مرتبة ماريو15",
+            "name": "ماريو15",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1700 }]
         },
         "m2Mario15Form": {
             "id": "m2Mario15Form",
-            "name": "مرتبة ماريو15 الفارمة",
+            "name": "ماريو15 فارمة",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1916 }]
         },
         "m2Mario15FormRound": {
             "id": "m2Mario15FormRound",
-            "name": "مرتبة ماريو15 الفارمة الدائرية",
+            "name": "ماريو15 فارمة دائرية",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 2107 }]
         },
         "m2Mario20": {
             "id": "m2Mario20",
-            "name": "مرتبة ماريو20",
+            "name": "ماريو20",
+            "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2424 }]
         },
         "m2Mario20Form": {
             "id": "m2Mario20Form",
-            "name": "مرتبة ماريو20 الفارمة",
+            "name": "ماريو20 فارمة",
+            "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2642 }]
         },
         "m2Mario20FormRound": {
             "id": "m2Mario20FormRound",
-            "name": "مرتبة ماريو20 الفارمة الدائرية",
+            "name": "ماريو20 فارمة دائرية",
+            "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2906 }]
         },
         "m2Mario25": {
             "id": "m2Mario25",
-            "name": "مرتبة ماريو25",
+            "name": "ماريو25",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3159 }]
         },
         "m2Mario25Form": {
             "id": "m2Mario25Form",
-            "name": "مرتبة ماريو25 الفارمة",
+            "name": "ماريو25 فارمة",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3376 }]
         },
         "m2Mario25FormRound": {
             "id": "m2Mario25FormRound",
-            "name": "مرتبة ماريو25 الفارمة الدائرية",
+            "name": "ماريو25 فارمة دائرية",
+            "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3714 }]
         },
         "m2NewDelux15": {
             "id": "m2NewDelux15",
-            "name": "مرتبة نيو ديلوكس15",
+            "name": "نيو ديلوكس15",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1140 }]
         },
         "m2NewDelux15Form": {
             "id": "m2NewDelux15Form",
-            "name": "مرتبة نيو ديلوكس15 الفارمة",
+            "name": "نيو ديلوكس15 فارمة",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1391 }]
         },
         "m2NewDelux15FormRound": {
             "id": "m2NewDelux15FormRound",
-            "name": "مرتبة نيو ديلوكس15 الفارمة الدائرية",
+            "name": "نيو ديلوكس15 فارمة دائرية",
+            "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1530 }]
         }
     }
