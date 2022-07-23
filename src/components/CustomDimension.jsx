@@ -134,7 +134,11 @@ const CustomDimension = () => {
                 key={product.id}
                 value={product.id}
                 className='text-center text-gray-800'>
-                {product.name}
+                {product.name +
+                  (product.name.includes("ماريو") ||
+                  product.name.includes("نيو")
+                    ? " " + product.thickness
+                    : "")}
               </option>
             );
           })}

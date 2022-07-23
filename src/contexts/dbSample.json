@@ -291,73 +291,73 @@
         },
         "m2Mario15": {
             "id": "m2Mario15",
-            "name": "ماريو15",
+            "name": "ماريو",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1700 }]
         },
         "m2Mario15Form": {
             "id": "m2Mario15Form",
-            "name": "ماريو15 فارمة",
+            "name": "ماريو فارمة",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1916 }]
         },
         "m2Mario15FormRound": {
             "id": "m2Mario15FormRound",
-            "name": "ماريو15 فارمة دائرية",
+            "name": "ماريو فارمة دائرية",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 2107 }]
         },
         "m2Mario20": {
             "id": "m2Mario20",
-            "name": "ماريو20",
+            "name": "ماريو",
             "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2424 }]
         },
         "m2Mario20Form": {
             "id": "m2Mario20Form",
-            "name": "ماريو20 فارمة",
+            "name": "ماريو فارمة",
             "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2642 }]
         },
         "m2Mario20FormRound": {
             "id": "m2Mario20FormRound",
-            "name": "ماريو20 فارمة دائرية",
+            "name": "ماريو فارمة دائرية",
             "thickness": "20",
             "priceHistory": [{ "date": "2022-03-30", "price": 2906 }]
         },
         "m2Mario25": {
             "id": "m2Mario25",
-            "name": "ماريو25",
+            "name": "ماريو",
             "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3159 }]
         },
         "m2Mario25Form": {
             "id": "m2Mario25Form",
-            "name": "ماريو25 فارمة",
+            "name": "ماريو فارمة",
             "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3376 }]
         },
         "m2Mario25FormRound": {
             "id": "m2Mario25FormRound",
-            "name": "ماريو25 فارمة دائرية",
+            "name": "ماريو فارمة دائرية",
             "thickness": "25",
             "priceHistory": [{ "date": "2022-03-30", "price": 3714 }]
         },
         "m2NewDelux15": {
             "id": "m2NewDelux15",
-            "name": "نيو ديلوكس15",
+            "name": "نيو ديلوكس",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1140 }]
         },
         "m2NewDelux15Form": {
             "id": "m2NewDelux15Form",
-            "name": "نيو ديلوكس15 فارمة",
+            "name": "نيو ديلوكس فارمة",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1391 }]
         },
         "m2NewDelux15FormRound": {
             "id": "m2NewDelux15FormRound",
-            "name": "نيو ديلوكس15 فارمة دائرية",
+            "name": "نيو ديلوكس فارمة دائرية",
             "thickness": "15",
             "priceHistory": [{ "date": "2022-03-30", "price": 1530 }]
         }
