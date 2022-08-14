@@ -16,7 +16,7 @@ const CalculationCells = () => {
   );
 
   return (
-    <div className="w-full max-w-3xl mx-auto grid grid-cols-1">
+    <div className='w-full max-w-3xl mx-auto grid grid-cols-1'>
       <DateFilter
         startDate={startDate}
         setStartDate={setStartDate}
@@ -30,27 +30,27 @@ const CalculationCells = () => {
 
 const DateFilter = ({ startDate, setStartDate, endDate, setEndDate }) => {
   return (
-    <div className="m-5 col-span-full grid xs:grid-cols-2 gap-2">
-      <div className="col-span-1 flex xs:justify-self-end">
-        <label htmlFor="startDate">تاريخ البدء:</label>
+    <div className='m-5 col-span-full grid xs:grid-cols-2 gap-2'>
+      <div className='col-span-1 flex xs:justify-self-end'>
+        <label htmlFor='startDate'>تاريخ البدء:</label>
         <input
-          type="date"
-          name="startDate"
-          id="startDate"
-          className="text-center text-gray-800"
+          type='date'
+          name='startDate'
+          id='startDate'
+          className='text-center text-gray-800'
           value={startDate}
           onChange={(e) => {
             setStartDate(e.target.value);
           }}
         />
       </div>
-      <div className="col-span-1 flex">
-        <label htmlFor="endDate">تاريخ الانتهاء:</label>
+      <div className='col-span-1 flex'>
+        <label htmlFor='endDate'>تاريخ الانتهاء:</label>
         <input
-          type="date"
-          name="endDate"
-          id="endDate"
-          className="text-center text-gray-800"
+          type='date'
+          name='endDate'
+          id='endDate'
+          className='text-center text-gray-800'
           value={endDate}
           onChange={(e) => {
             setEndDate(e.target.value);
@@ -75,24 +75,34 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
   let totalSales = 0;
   let totalIncome = 0;
   timeFilteredInvoices.forEach((el) => {
-    totalSales += el.totalPriceOnRetail;
+    let totalItemSalesNum =
+      el.totalInvoicePrice -
+      (el.paymentMethod.cardAmount > 0
+        ? el.paymentMethod.cardAmount * 0.02
+        : 0) -
+      (el.shipmentCharge.shipmentOnRetail + el.shipmentCharge.shipmentOnCst);
+    totalSales += totalItemSalesNum;
+
+    // el.order?.forEach((item) => {
+    //   totalSales += item.totalQuantityPrice;
+    // });
     totalIncome += el.totalProfit;
   });
   return (
     <>
-      <div className="col-span-full">
-        <label htmlFor="expenses">أدخل إجمالي المصاريف</label>
+      <div className='col-span-full'>
+        <label htmlFor='expenses'>أدخل إجمالي المصاريف</label>
         <input
-          className="text-gray-800"
-          name="expenses"
-          type="number"
+          className='text-gray-800'
+          name='expenses'
+          type='number'
           value={expenses}
           onChange={(e) => {
             setExpenses(e.target.value);
           }}
         />
       </div>
-      <div className="col-span-1 grid grid-cols-1 xs:grid-cols-3">
+      <div className='col-span-1 grid grid-cols-1 xs:grid-cols-3'>
         <NumberCellAndTitle title={"المبيعات"} number={totalSales} />
         <NumberCellAndTitle title={"الإيرادات"} number={totalIncome} />
         <NumberCellAndTitle
@@ -100,7 +110,7 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
           number={totalIncome - expenses}
         />
       </div>
-      <div className="col-span-1">
+      <div className='col-span-1'>
         <SoldInventoryDetails timeFilteredInvoices={timeFilteredInvoices} />
       </div>
     </>
@@ -109,11 +119,11 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
 
 const NumberCellAndTitle = ({ title, number }) => {
   return (
-    <div className="m-2 p-3 col-span-1 grid bg-gray-700 rounded-md">
-      <h3 className="text-lg font-bold text-blue-500 justify-self-center">
+    <div className='m-2 p-3 col-span-1 grid bg-gray-700 rounded-md'>
+      <h3 className='text-lg font-bold text-blue-500 justify-self-center'>
         {title}
       </h3>
-      <h1 className="text-2xl justify-self-center">{Math.floor(number)}</h1>
+      <h1 className='text-2xl justify-self-center'>{Math.ceil(number)}</h1>
     </div>
   );
 };
@@ -140,7 +150,7 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
 
   const QuantityCell = ({ targetDimentionItems, title, thickness }) => {
     return (
-      <span className="w-full text-center border-2 border-gray-600 p-1 col-span-1">
+      <span className='w-full text-center border-2 border-gray-600 p-1 col-span-1'>
         {
           targetDimentionItems.filter(
             (item) => item.name.includes(title) && item.thickness === thickness
@@ -153,12 +163,12 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
   return (
     <>
       {/* Dimentions */}
-      <div className="w-full overflow-auto">
-        <div className="m-2 grid grid-cols-1 w-[760px] max-w-3xl overflow-auto">
-          <div className="col-span-1 grid grid-cols-10">
-            <span className="p-1 col-span-2 justify-self-center">المقاسات</span>
+      <div className='w-full overflow-auto'>
+        <div className='m-2 grid grid-cols-1 w-[760px] max-w-3xl overflow-auto'>
+          <div className='col-span-1 grid grid-cols-10'>
+            <span className='p-1 col-span-2 justify-self-center'>المقاسات</span>
             {MattressTypes.map((type, index) => (
-              <span key={index} className="p-1 col-span-1 justify-self-center">
+              <span key={index} className='p-1 col-span-1 justify-self-center'>
                 {type}
               </span>
             ))}
@@ -168,8 +178,8 @@ const SoldInventoryDetails = ({ timeFilteredInvoices }) => {
               return item.name.includes(dimention);
             });
             return (
-              <div key={index} className="col-span-1 grid grid-cols-10">
-                <span className="w-full text-center border-2 border-gray-600 p-1 col-span-2">
+              <div key={index} className='col-span-1 grid grid-cols-10'>
+                <span className='w-full text-center border-2 border-gray-600 p-1 col-span-2'>
                   {dimention}
                 </span>
                 {MattressTypesAr.map((type, index) => {
