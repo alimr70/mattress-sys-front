@@ -66,11 +66,16 @@ const CalcutalteNumbers = ({ startDate, endDate }) => {
   const { invoicesState } = useContext(InvoicesStore);
 
   const userTimezoneOffset = new Date().getTimezoneOffset() * 60000;
+
+  let startDateTime = new Date(startDate).getTime() + userTimezoneOffset;
+  // let invoiceDateTime = new Date(invoice.invoiceDate).getTime();
+  let endDateTime = new Date(endDate).getTime() + userTimezoneOffset;
+
   const timeFilteredInvoices = Object.values(invoicesState).filter(
     (invoice) =>
-      new Date(startDate).getTime() + userTimezoneOffset < invoice.time &&
-      new Date(invoice.invoiceDate).getTime() <
-        new Date(endDate).getTime() + userTimezoneOffset
+      invoice.status !== "deleted" &&
+      startDateTime <= new Date(invoice.invoiceDate).getTime() &&
+      new Date(invoice.invoiceDate).getTime() <= endDateTime
   );
   let totalSales = 0;
   let totalIncome = 0;
