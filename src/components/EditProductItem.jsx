@@ -32,6 +32,7 @@ const EditProductItem = ({ isEditMode }) => {
 
     productsDispatch(addProduct(editedProduct));
     // navigate("/products");
+    setPrice("");
   };
 
   return (
